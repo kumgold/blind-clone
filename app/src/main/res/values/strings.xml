@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">OfficeClone</string>
+
+    <string name="team">Team</string>
+    <string name="chat">Chat</string>
+    <string name="work">Work</string>
+    <string name="settings">Settings</string>
+
+</resources>
