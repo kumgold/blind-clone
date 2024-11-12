@@ -1,54 +1,73 @@
 package net.hicare.officeclone.navigation.ui
 
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.adaptive.WindowAdaptiveInfo
+import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.semantics.semantics
+import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hasRoute
 import androidx.navigation.NavDestination.Companion.hierarchy
 import net.hicare.officeclone.core.design.OfficeNavigationSuiteScaffold
+import net.hicare.officeclone.core.feature.chat.detail.ChatDetailRoute
 import net.hicare.officeclone.navigation.nav.OfficeNavHost
+import kotlin.reflect.KClass
 
 @Composable
 internal fun OfficeApp(
     modifier: Modifier = Modifier,
-    appState: OfficeAppState
+    appState: OfficeAppState,
+    windowAdaptiveInfo: WindowAdaptiveInfo = currentWindowAdaptiveInfo(),
 ) {
     val currentDestination = appState.currentDestination
 
+    var showBottomBar by rememberSaveable {
+        mutableStateOf(true)
+    }
+
+    LaunchedEffect(key1 = appState.navController) {
+        appState.navController.addOnDestinationChangedListener { _, destination, _ ->
+            showBottomBar = !destination.hasRoute(ChatDetailRoute::class)
+        }
+    }
+
     OfficeNavigationSuiteScaffold(
         navigationSuiteItems = {
-            appState.topLevelDestinations.forEach { destination ->
-                val selected = currentDestination?.hierarchy?.any {
-                    it.hasRoute(destination.route)
-                } ?: false
+            if (showBottomBar) {
+                appState.topLevelDestinations.forEach { destination ->
+                    val selected = currentDestination.isRouteInHierarchy(destination.route)
 
-                item(
-                    selected = selected,
-                    onClick = {
-                        appState.navigateToTopLevelDestination(destination)
-                    },
-                    icon = {
-                        Icon(imageVector = destination.unselectedIcon, contentDescription = null)
-                    },
-                    selectedIcon = {
-                        Icon(
-                            imageVector = destination.selectedIcon,
-                            contentDescription = null
-                        )
-                    },
-                    label = { Text(text = stringResource(id = destination.iconTextId))}
-                )
+                    item(
+                        selected = selected,
+                        onClick = {
+                            appState.navigateToTopLevelDestination(destination)
+                        },
+                        icon = {
+                            Icon(imageVector = destination.unselectedIcon, contentDescription = null)
+                        },
+                        selectedIcon = {
+                            Icon(
+                                imageVector = destination.selectedIcon,
+                                contentDescription = null
+                            )
+                        },
+                        label = { Text(text = stringResource(id = destination.iconTextId)) }
+                    )
+                }
             }
-        }
+        },
+        windowAdaptiveInfo = windowAdaptiveInfo
     ) {
         Scaffold(
             modifier = modifier
@@ -63,3 +82,8 @@ internal fun OfficeApp(
         }
     }
 }
+
+private fun NavDestination?.isRouteInHierarchy(route: KClass<*>) =
+    this?.hierarchy?.any {
+        it.hasRoute(route)
+    } ?: false

@@ -3,8 +3,13 @@ package net.hicare.officeclone.navigation.nav
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import net.hicare.officeclone.core.feature.chat.detail.ChatDetailScreen
+import net.hicare.officeclone.core.feature.chat.detail.chatDetailScreen
+import net.hicare.officeclone.core.feature.chat.detail.navigateToChatDetail
 import net.hicare.officeclone.core.feature.chat.nav.chatScreen
 import net.hicare.officeclone.core.feature.settings.nav.settingsScreen
+import net.hicare.officeclone.core.feature.team.TeamScreen
 import net.hicare.officeclone.core.feature.team.nav.TeamRoute
 import net.hicare.officeclone.core.feature.team.nav.teamScreen
 import net.hicare.officeclone.core.feature.work.nav.workScreen
@@ -23,8 +28,12 @@ fun OfficeNavHost(
         startDestination = TeamRoute
     ) {
         teamScreen()
-        chatScreen()
+        chatScreen(
+            onChatClick = navController::navigateToChatDetail
+        )
         workScreen()
         settingsScreen()
+
+        chatDetailScreen()
     }
 }

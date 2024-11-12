@@ -25,7 +25,7 @@ fun OfficeNavigationSuiteScaffold(
             OfficeNavigationSuiteScope(
                 navigationSuiteScope = this
             ).run(navigationSuiteItems)
-        } ,
+        },
         layoutType = layoutType,
         containerColor = Color.Transparent
     ) {

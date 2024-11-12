@@ -1,4 +1,8 @@
 package net.hicare.officeclone.core.feature.settings
 
-class SettingsScreen {
+import androidx.compose.runtime.Composable
+
+@Composable
+fun SettingsScreen() {
+
 }

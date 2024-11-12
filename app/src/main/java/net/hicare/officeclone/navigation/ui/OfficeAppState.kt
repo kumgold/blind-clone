@@ -21,7 +21,10 @@ import net.hicare.officeclone.core.feature.settings.nav.navigateToSettings
 import net.hicare.officeclone.core.feature.team.nav.navigateToTeam
 import net.hicare.officeclone.core.feature.work.nav.navigateToWork
 import net.hicare.officeclone.navigation.nav.TopLevelDestination
-import net.hicare.officeclone.navigation.nav.TopLevelDestination.*
+import net.hicare.officeclone.navigation.nav.TopLevelDestination.CHAT
+import net.hicare.officeclone.navigation.nav.TopLevelDestination.SETTINGS
+import net.hicare.officeclone.navigation.nav.TopLevelDestination.TEAM
+import net.hicare.officeclone.navigation.nav.TopLevelDestination.WORK
 
 @Composable
 fun rememberOfficeAppState(

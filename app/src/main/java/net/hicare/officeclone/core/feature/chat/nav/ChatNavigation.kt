@@ -11,8 +11,12 @@ import net.hicare.officeclone.core.feature.chat.ChatScreen
 
 fun NavController.navigateToChat(navOptions: NavOptions) = navigate(route = ChatRoute, navOptions)
 
-fun NavGraphBuilder.chatScreen() {
+fun NavGraphBuilder.chatScreen(
+    onChatClick: () -> Unit
+) {
     composable<ChatRoute> {
-        ChatScreen()
+        ChatScreen(
+            onChatClick = onChatClick
+        )
     }
 }
