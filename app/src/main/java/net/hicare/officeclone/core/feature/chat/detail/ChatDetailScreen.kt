@@ -31,6 +31,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import kotlinx.serialization.Serializable
 import net.hicare.officeclone.R
+import net.hicare.officeclone.ui.compose.BubbleDirection
 import net.hicare.officeclone.ui.compose.BubbleShape
 
 @Serializable data object ChatDetailRoute
@@ -93,7 +94,7 @@ private fun ChattingMessage() {
             modifier = Modifier
                 .background(
                     color = Color.Green,
-                    shape = BubbleShape()
+                    shape = BubbleShape(BubbleDirection.RIGHT)
                 )
                 .width(8.dp)
                 .fillMaxHeight()
