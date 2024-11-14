@@ -11,42 +11,32 @@ class TeamViewModel @Inject constructor() : ViewModel() {
         User(
             id = "1",
             name = "김김김",
-            number = "01012312311",
-            message = "status message",
-            group = "Group1",
-            isFavorite = true
+            number = "01011111111",
+            message = "test1"
         ),
         User(
             id = "2",
             name = "김김김2",
             number = "01011111111",
-            message = "status",
-            group = "Group2",
-            isFavorite = false
+            message = "message"
         ),
         User(
             id = "3",
-            name = "김김김",
-            number = "01012312311",
-            message = "status message",
-            group = "Group",
-            isFavorite = false
+            name = "별명",
+            number = "01012341211",
+            message = "안녕하세요"
         ),
         User(
             id = "4",
-            name = "test test",
-            number = "01012312311",
-            message = "test",
-            group = "Group",
-            isFavorite = false
+            name = "dldldl",
+            number = "01012311111",
+            message = "status message"
         ),
         User(
             id = "5",
-            name = "name1",
-            number = "01012312311",
-            message = "status message",
-            group = "Group",
-            isFavorite = true
+            name = "test test",
+            number = "01011111111",
+            message = "status message"
         ),
     )
 }

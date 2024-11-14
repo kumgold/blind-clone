@@ -7,23 +7,23 @@ import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.LayoutDirection
 
-enum class BubbleDirection {
+enum class MessageDirection {
     LEFT,
     RIGHT
 }
 
 class BubbleShape(
-    private val direction: BubbleDirection
+    private val direction: MessageDirection
 ) : Shape {
 
-    private val offset = 50
+    private val offset = 40
 
     override fun createOutline(
         size: Size,
         layoutDirection: LayoutDirection,
         density: Density
     ): Outline {
-        val path = if (direction == BubbleDirection.RIGHT) {
+        val path = if (direction == MessageDirection.RIGHT) {
             Path().apply {
                 moveTo(x = 0f, y = size.height - offset)
                 lineTo(x = 0f, y = size.height)

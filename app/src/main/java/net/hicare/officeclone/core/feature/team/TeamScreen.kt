@@ -3,6 +3,7 @@ package net.hicare.officeclone.core.feature.team
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -13,6 +14,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
@@ -26,6 +28,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.key
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -40,30 +43,34 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import net.hicare.officeclone.R
+import net.hicare.officeclone.core.feature.team.user.UserDialog
 import net.hicare.officeclone.core.network.User
 
 @Composable
 fun TeamScreen(
     modifier: Modifier = Modifier,
-    viewModel: TeamViewModel = hiltViewModel()
+    viewModel: TeamViewModel = hiltViewModel(),
+    navigateToChattingRoom: (String) -> Unit
 ) {
     val userList = viewModel.userList
 
     TeamScreen(
         modifier = modifier,
-        userList = userList
+        userList = userList,
+        navigateToChattingRoom = navigateToChattingRoom
     )
 }
 
 @Composable
 private fun TeamScreen(
     modifier: Modifier = Modifier,
-    userList: List<User>
+    userList: List<User>,
+    navigateToChattingRoom: (String) -> Unit
 ) {
     Column(
         modifier = modifier
-            .fillMaxSize()
             .padding(dimensionResource(id = R.dimen.default_margin))
+            .fillMaxSize()
     ) {
         SearchBar()
 
@@ -71,13 +78,12 @@ private fun TeamScreen(
 
         UserFeed(
             user = User(
-                id = "22",
+                id = "1",
                 name = "My Account",
                 number = "01011111111",
-                message = "status",
-                group = "Group2",
-                isFavorite = false
-            )
+                message = "message"
+            ),
+            navigateToChattingRoom = navigateToChattingRoom
         )
 
         Box(
@@ -89,7 +95,12 @@ private fun TeamScreen(
 
         LazyColumn {
             items(userList) { user ->
-                UserFeed(user = user)
+                key(user.id) {
+                    UserFeed(
+                        user = user,
+                        navigateToChattingRoom = navigateToChattingRoom
+                    )
+                }
             }
         }
     }
@@ -111,7 +122,6 @@ private fun SearchBar() {
                     imageVector = Icons.Default.Search,
                     contentDescription = null
                 )
-
                 Spacer(modifier = Modifier.width(dimensionResource(id = R.dimen.default_margin)))
             }
         },
@@ -122,13 +132,29 @@ private fun SearchBar() {
 @Composable
 private fun UserFeed(
     modifier: Modifier = Modifier,
-    user: User
+    user: User,
+    navigateToChattingRoom: (String) -> Unit
 ) {
+    var showUserDialog by remember { mutableStateOf(false) }
+
+    if (showUserDialog) {
+        UserDialog(
+            user = user,
+            navigateToChattingRoom = navigateToChattingRoom
+        ) {
+            showUserDialog = false
+        }
+    }
+
     Row(
         modifier = modifier
             .fillMaxWidth()
-            .clickable { }
-            .padding(dimensionResource(id = R.dimen.default_margin))
+            .wrapContentHeight()
+            .clickable {
+                showUserDialog = true
+            }
+            .padding(dimensionResource(id = R.dimen.default_margin)),
+        horizontalArrangement = Arrangement.Center
     ) {
         Image(
             modifier = Modifier
@@ -162,14 +188,12 @@ private fun UserFeed(
                 .align(Alignment.CenterVertically)
                 .widthIn(
                     min = 0.dp,
-                    max = 120.dp
+                    max = 100.dp
                 ),
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
             text = user.message,
-            style = MaterialTheme.typography.bodyMedium.copy(
-                color = Color.Gray
-            )
+            style = MaterialTheme.typography.bodyMedium
         )
     }
 }
@@ -179,48 +203,40 @@ private fun UserFeed(
 private fun UserFeedPreview() {
     Surface {
         TeamScreen(
+            modifier = Modifier,
             userList = listOf(
                 User(
                     id = "1",
                     name = "김김김",
-                    number = "01012312311",
-                    message = "status message",
-                    group = "Group1",
-                    isFavorite = true
+                    number = "01011111111",
+                    message = "status message"
                 ),
                 User(
                     id = "2",
                     name = "김김김2",
                     number = "01011111111",
-                    message = "status",
-                    group = "Group2",
-                    isFavorite = false
+                    message = "status message"
                 ),
                 User(
                     id = "3",
-                    name = "김김김",
-                    number = "01012312311",
-                    message = "status message",
-                    group = "Group",
-                    isFavorite = false
+                    name = "별명",
+                    number = "01012341211",
+                    message = "status message"
                 ),
                 User(
                     id = "4",
-                    name = "test test",
-                    number = "01012312311",
-                    message = "test",
-                    group = "Group",
-                    isFavorite = false
+                    name = "dldldl",
+                    number = "01012311111",
+                    message = "status message"
                 ),
                 User(
                     id = "5",
-                    name = "name1",
-                    number = "01012312311",
-                    message = "status message",
-                    group = "Group",
-                    isFavorite = true
+                    name = "test test",
+                    number = "01011111111",
+                    message = "status message"
                 ),
-            )
+            ),
+            navigateToChattingRoom = {}
         )
     }
 }

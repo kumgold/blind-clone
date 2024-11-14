@@ -4,7 +4,7 @@ data class User(
     val id: String,
     val name: String,
     val number: String,
-    val message: String = "",
+    val message: String,
     val group: String = "",
-    val isFavorite: Boolean = false
+    val favorite: Boolean = false
 )
