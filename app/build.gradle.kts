@@ -9,11 +9,11 @@ plugins {
 }
 
 android {
-    namespace = "net.hicare.officeclone"
+    namespace = "net.example.officeclone"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "net.hicare.officeclone"
+        applicationId = "net.example.officeclone"
         minSdk = 26
         targetSdk = 35
         versionCode = 1
@@ -63,6 +63,8 @@ dependencies {
 
     // Retrofit
     implementation(libs.retrofit)
+    implementation(libs.logging.interceptor)
+    implementation (libs.converter.gson)
 
     // Navigation
     implementation(libs.androidx.navigation.compose)
