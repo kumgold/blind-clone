@@ -4,20 +4,13 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.GET
+import javax.inject.Inject
 import javax.inject.Singleton
 
-
-private interface TeamApi {
-
-    @GET("/team")
-    suspend fun getMembers(): List<String>
-}
-
 @Singleton
-internal class OfficeNetworkDataSource() {
+class RetrofitOfficeNetwork @Inject constructor() : OfficeNetworkDataSource {
     private val api = Retrofit.Builder()
-        .baseUrl("localhost:8080")
+        .baseUrl("http://10.0.2.2:8080")
         .client(
             OkHttpClient.Builder()
                 .addInterceptor(
@@ -29,5 +22,8 @@ internal class OfficeNetworkDataSource() {
         )
         .addConverterFactory(GsonConverterFactory.create())
         .build()
-        .create(TeamApi::class.java)
+        .create(OfficeApi::class.java)
+
+    override suspend fun getTeamMembers(): List<String> = api.getTeamMembers()
 }
+
