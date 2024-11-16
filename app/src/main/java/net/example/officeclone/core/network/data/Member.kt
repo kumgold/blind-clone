@@ -1,10 +1,10 @@
 package net.example.officeclone.core.network.data
 
-data class User(
+data class Member(
     val id: String,
     val name: String,
     val number: String,
-    val message: String,
+    val statusMessage: String,
     val group: String = "",
-    val favorite: Boolean = false
+    val isFavorite: Boolean = false
 )

@@ -32,13 +32,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.DialogProperties
 import net.example.officeclone.R
-import net.example.officeclone.core.network.data.User
+import net.example.officeclone.core.network.data.Member
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun UserDialog(
     modifier: Modifier = Modifier,
-    user: User,
+    member: Member,
     navigateToChattingRoom: (String) -> Unit,
     onDismiss: () -> Unit
 ) {
@@ -75,8 +75,8 @@ fun UserDialog(
                 contentScale = ContentScale.FillBounds,
                 contentDescription = null
             )
-            Text(text = user.name)
-            Text(text = user.number)
+            Text(text = member.name)
+            Text(text = member.number)
 
             Column(
                 modifier = Modifier
@@ -104,11 +104,11 @@ fun UserDialog(
 private fun UserDialogPreview() {
     Surface {
         UserDialog(
-            user = User(
+            member = Member(
                 id = "1",
                 name = "김김김",
                 number = "01011111111",
-                message = "status message"
+                statusMessage = "status message"
             ),
             navigateToChattingRoom = {},
             onDismiss = {}

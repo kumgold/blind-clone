@@ -44,7 +44,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import net.example.officeclone.R
 import net.example.officeclone.core.feature.team.user.UserDialog
-import net.example.officeclone.core.network.data.User
+import net.example.officeclone.core.network.data.Member
 
 @Composable
 fun TeamScreen(
@@ -52,11 +52,11 @@ fun TeamScreen(
     viewModel: TeamViewModel = hiltViewModel(),
     navigateToChattingRoom: (String) -> Unit
 ) {
-    val userList = viewModel.userList
+    val userList = viewModel.memberLists
 
     TeamScreen(
         modifier = modifier,
-        userList = userList,
+        memberList = userList,
         navigateToChattingRoom = navigateToChattingRoom
     )
 }
@@ -64,7 +64,7 @@ fun TeamScreen(
 @Composable
 private fun TeamScreen(
     modifier: Modifier = Modifier,
-    userList: List<User>,
+    memberList: List<Member>,
     navigateToChattingRoom: (String) -> Unit
 ) {
     Column(
@@ -77,11 +77,11 @@ private fun TeamScreen(
         Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.default_margin)))
 
         UserFeed(
-            user = User(
+            member = Member(
                 id = "1",
                 name = "My Account",
                 number = "01011111111",
-                message = "message"
+                statusMessage = "message"
             ),
             navigateToChattingRoom = navigateToChattingRoom
         )
@@ -94,10 +94,10 @@ private fun TeamScreen(
         )
 
         LazyColumn {
-            items(userList) { user ->
+            items(memberList) { user ->
                 key(user.id) {
                     UserFeed(
-                        user = user,
+                        member = user,
                         navigateToChattingRoom = navigateToChattingRoom
                     )
                 }
@@ -132,14 +132,14 @@ private fun SearchBar() {
 @Composable
 private fun UserFeed(
     modifier: Modifier = Modifier,
-    user: User,
+    member: Member,
     navigateToChattingRoom: (String) -> Unit
 ) {
     var showUserDialog by remember { mutableStateOf(false) }
 
     if (showUserDialog) {
         UserDialog(
-            user = user,
+            member = member,
             navigateToChattingRoom = navigateToChattingRoom
         ) {
             showUserDialog = false
@@ -176,7 +176,7 @@ private fun UserFeed(
                 ),
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
-            text = user.name,
+            text = member.name,
             style = MaterialTheme.typography.titleMedium.copy(
                 fontWeight = FontWeight.Normal
             )
@@ -192,7 +192,7 @@ private fun UserFeed(
                 ),
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
-            text = user.message,
+            text = member.statusMessage,
             style = MaterialTheme.typography.bodyMedium
         )
     }
@@ -204,36 +204,36 @@ private fun UserFeedPreview() {
     Surface {
         TeamScreen(
             modifier = Modifier,
-            userList = listOf(
-                User(
+            memberList = listOf(
+                Member(
                     id = "1",
                     name = "김김김",
                     number = "01011111111",
-                    message = "status message"
+                    statusMessage = "status message"
                 ),
-                User(
+                Member(
                     id = "2",
                     name = "김김김2",
                     number = "01011111111",
-                    message = "status message"
+                    statusMessage = "status message"
                 ),
-                User(
+                Member(
                     id = "3",
                     name = "별명",
                     number = "01012341211",
-                    message = "status message"
+                    statusMessage = "status message"
                 ),
-                User(
+                Member(
                     id = "4",
                     name = "dldldl",
                     number = "01012311111",
-                    message = "status message"
+                    statusMessage = "status message"
                 ),
-                User(
+                Member(
                     id = "5",
                     name = "test test",
                     number = "01011111111",
-                    message = "status message"
+                    statusMessage = "status message"
                 ),
             ),
             navigateToChattingRoom = {}

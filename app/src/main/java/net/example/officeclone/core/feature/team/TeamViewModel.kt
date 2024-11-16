@@ -4,10 +4,8 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import net.example.officeclone.core.network.data.User
+import net.example.officeclone.core.network.data.Member
 import net.example.officeclone.core.repository.repo.TeamMemberRepository
 import javax.inject.Inject
 
@@ -26,36 +24,36 @@ class TeamViewModel @Inject constructor(
         }
     }
 
-    val userList = listOf(
-        User(
+    val memberLists = listOf(
+        Member(
             id = "1",
             name = "김김김",
             number = "01011111111",
-            message = "test1"
+            statusMessage = "test1"
         ),
-        User(
+        Member(
             id = "2",
             name = "김김김2",
             number = "01011111111",
-            message = "message"
+            statusMessage = "message"
         ),
-        User(
+        Member(
             id = "3",
             name = "별명",
             number = "01012341211",
-            message = "안녕하세요"
+            statusMessage = "안녕하세요"
         ),
-        User(
+        Member(
             id = "4",
             name = "dldldl",
             number = "01012311111",
-            message = "status message"
+            statusMessage = "status message"
         ),
-        User(
+        Member(
             id = "5",
             name = "test test",
             number = "01011111111",
-            message = "status message"
+            statusMessage = "status message"
         ),
     )
 }
