@@ -1,5 +1,6 @@
 package net.example.officeclone.core.network.retrofit
 
+import net.example.officeclone.core.network.data.TeamResponse
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -24,6 +25,6 @@ class RetrofitOfficeNetwork @Inject constructor() : OfficeNetworkDataSource {
         .build()
         .create(OfficeApi::class.java)
 
-    override suspend fun getTeamMembers(): List<String> = api.getTeamMembers()
+    override suspend fun getTeamMembers(): TeamResponse = api.getTeamMembers()
 }
 
