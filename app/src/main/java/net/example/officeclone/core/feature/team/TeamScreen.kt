@@ -42,6 +42,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import net.example.officeclone.R
 import net.example.officeclone.core.feature.team.user.UserDialog
 import net.example.officeclone.core.network.data.Member
@@ -52,11 +53,11 @@ fun TeamScreen(
     viewModel: TeamViewModel = hiltViewModel(),
     navigateToChattingRoom: (String) -> Unit
 ) {
-    val userList = viewModel.memberLists
+    val memberList by viewModel.memberList.collectAsStateWithLifecycle()
 
     TeamScreen(
         modifier = modifier,
-        memberList = userList,
+        memberList = memberList,
         navigateToChattingRoom = navigateToChattingRoom
     )
 }
