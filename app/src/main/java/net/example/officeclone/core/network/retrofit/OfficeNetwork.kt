@@ -1,5 +1,7 @@
 package net.example.officeclone.core.network.retrofit
 
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import net.example.officeclone.core.network.data.TeamResponse
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -26,5 +28,7 @@ class RetrofitOfficeNetwork @Inject constructor() : OfficeNetworkDataSource {
         .create(OfficeApi::class.java)
 
     override suspend fun getTeamMembers(): TeamResponse = api.getTeamMembers()
+
+    override fun observeTeamMembers(): Flow<TeamResponse> = flow { api.getTeamMembers() }
 }
 

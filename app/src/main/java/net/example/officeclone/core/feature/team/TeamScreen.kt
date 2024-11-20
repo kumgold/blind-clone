@@ -1,5 +1,6 @@
 package net.example.officeclone.core.feature.team
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -27,6 +28,7 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.key
 import androidx.compose.runtime.mutableStateOf
@@ -37,6 +39,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
@@ -53,11 +56,16 @@ fun TeamScreen(
     viewModel: TeamViewModel = hiltViewModel(),
     navigateToChattingRoom: (String) -> Unit
 ) {
-    val memberList by viewModel.memberList.collectAsStateWithLifecycle()
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    val message = uiState.message?.let { stringResource(id = it) }
+
+    LaunchedEffect(uiState.message) {
+        Log.e("error message", "snackbar = $message")
+    }
 
     TeamScreen(
         modifier = modifier,
-        memberList = memberList,
+        memberList = uiState.members,
         navigateToChattingRoom = navigateToChattingRoom
     )
 }
@@ -77,7 +85,7 @@ private fun TeamScreen(
 
         Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.default_margin)))
 
-        UserFeed(
+        MemberFeed(
             member = Member(
                 id = "1",
                 name = "My Account",
@@ -97,7 +105,7 @@ private fun TeamScreen(
         LazyColumn {
             items(memberList) { user ->
                 key(user.id) {
-                    UserFeed(
+                    MemberFeed(
                         member = user,
                         navigateToChattingRoom = navigateToChattingRoom
                     )
@@ -131,7 +139,7 @@ private fun SearchBar() {
 }
 
 @Composable
-private fun UserFeed(
+private fun MemberFeed(
     modifier: Modifier = Modifier,
     member: Member,
     navigateToChattingRoom: (String) -> Unit

@@ -6,4 +6,6 @@
     <string name="work">Work</string>
     <string name="settings">Settings</string>
 
+    <string name="network_error">Network Error occurred. Please Retry again.</string>
+
 </resources>
