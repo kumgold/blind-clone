@@ -48,7 +48,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import net.example.officeclone.R
 import net.example.officeclone.core.feature.team.user.UserDialog
-import net.example.officeclone.core.network.data.Member
+import net.example.officeclone.core.model.Member
 
 @Composable
 fun TeamScreen(
@@ -59,8 +59,10 @@ fun TeamScreen(
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val message = uiState.message?.let { stringResource(id = it) }
 
-    LaunchedEffect(uiState.message) {
-        Log.e("error message", "snackbar = $message")
+    LaunchedEffect(message) {
+        if (message != null) {
+            Log.e("error message", "snackbar = $message")
+        }
     }
 
     TeamScreen(
@@ -87,7 +89,7 @@ private fun TeamScreen(
 
         MemberFeed(
             member = Member(
-                id = "1",
+                id = "11",
                 name = "My Account",
                 number = "01011111111",
                 statusMessage = "message"
@@ -103,10 +105,10 @@ private fun TeamScreen(
         )
 
         LazyColumn {
-            items(memberList) { user ->
-                key(user.id) {
+            items(memberList) { member ->
+                key(member.id) {
                     MemberFeed(
-                        member = user,
+                        member = member,
                         navigateToChattingRoom = navigateToChattingRoom
                     )
                 }

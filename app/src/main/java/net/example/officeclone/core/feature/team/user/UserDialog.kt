@@ -32,7 +32,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.DialogProperties
 import net.example.officeclone.R
-import net.example.officeclone.core.network.data.Member
+import net.example.officeclone.core.model.Member
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

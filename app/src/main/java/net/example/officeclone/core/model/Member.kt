@@ -1,4 +1,4 @@
-package net.example.officeclone.core.network.data
+package net.example.officeclone.core.model
 
 data class Member(
     val id: String,

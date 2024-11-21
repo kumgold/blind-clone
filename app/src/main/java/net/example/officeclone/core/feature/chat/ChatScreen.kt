@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Person
@@ -37,24 +38,25 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import net.example.officeclone.R
 import net.example.officeclone.core.feature.chattingroom.ChattingRoomDialog
-import net.example.officeclone.core.network.data.ChattingRoom
+import net.example.officeclone.core.model.ChattingRoom
 
 @Composable
 fun ChatScreen(
     modifier: Modifier = Modifier,
     viewModel: ChatViewModel = hiltViewModel()
 ) {
+    viewModel.sync()
 
     ChatScreen(
         modifier = modifier,
-        chattingRoomList = listOf()
+        networkChattingRoomList = listOf()
     )
 }
 
 @Composable
 private fun ChatScreen(
     modifier: Modifier = Modifier,
-    chattingRoomList: List<ChattingRoom>
+    networkChattingRoomList: List<ChattingRoom>
 ) {
     Column(
         modifier = modifier
@@ -66,10 +68,8 @@ private fun ChatScreen(
             style = MaterialTheme.typography.titleLarge
         )
         LazyColumn {
-            items(10) {
-                ChatFeed(
-                    message = "test testtest testtest testtest testtest testtest testtest test ",
-                )
+            items(networkChattingRoomList) { room ->
+                ChatFeed(room = room)
             }
         }
     }
@@ -78,7 +78,7 @@ private fun ChatScreen(
 @Composable
 private fun ChatFeed(
     modifier: Modifier = Modifier,
-    message: String = ""
+    room: ChattingRoom
 ) {
     var showDialog by remember { mutableStateOf(false) }
 
@@ -120,7 +120,7 @@ private fun ChatFeed(
                     ),
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
-                text = "김김김Uuy123",
+                text = room.name,
                 lineHeight = 10.sp,
                 style = MaterialTheme.typography.titleLarge.copy(
                     fontWeight = FontWeight.Normal,
@@ -138,7 +138,7 @@ private fun ChatFeed(
                     ),
                 maxLines = 2,
                 overflow = TextOverflow.Ellipsis,
-                text = message,
+                text = room.previewMessage,
                 lineHeight = 15.sp,
                 style = MaterialTheme.typography.bodyLarge.copy(
                     color = Color.Gray,

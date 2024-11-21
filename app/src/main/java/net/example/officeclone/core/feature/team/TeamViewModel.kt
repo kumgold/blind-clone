@@ -3,7 +3,6 @@ package net.example.officeclone.core.feature.team
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -12,7 +11,7 @@ import kotlinx.coroutines.flow.stateIn
 import net.example.officeclone.R
 import net.example.officeclone.common.data.Result
 import net.example.officeclone.common.data.asResult
-import net.example.officeclone.core.network.data.Member
+import net.example.officeclone.core.model.Member
 import net.example.officeclone.core.repository.repo.TeamMemberRepository
 import javax.inject.Inject
 
@@ -31,7 +30,7 @@ class TeamViewModel @Inject constructor(
     private val _message = MutableStateFlow<Int?>(null)
 
     val uiState: StateFlow<TeamUiState> = combine(
-        teamMemberRepository.observeTeamMembers().asResult(),
+        teamMemberRepository.getTeamMembers().asResult(),
         _isLoading,
         _message
     ) { memberList, isLoading, message ->

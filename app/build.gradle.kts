@@ -56,6 +56,11 @@ android {
 
 dependencies {
 
+    // Room database
+    implementation(libs.androidx.room.runtime)
+    kapt(libs.androidx.room.compiler)
+    implementation(libs.androidx.room.ktx)
+
     // Hilt
     implementation(libs.hilt.android)
     implementation(libs.androidx.hilt.navigation.compose)
@@ -71,7 +76,7 @@ dependencies {
     implementation(libs.androidx.material3.adaptive.navigation.suite)
 
     implementation(libs.kotlinx.serialization.json)
-    implementation (libs.androidx.material.icons.extended)
+    implementation(libs.androidx.material.icons.extended)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
