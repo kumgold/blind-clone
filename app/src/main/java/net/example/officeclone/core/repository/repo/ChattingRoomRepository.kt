@@ -1,9 +1,9 @@
 package net.example.officeclone.core.repository.repo
 
 import kotlinx.coroutines.flow.Flow
-import net.example.officeclone.core.database.model.ChattingRoomEntity
+import net.example.officeclone.core.model.ChattingRoom
 
 interface ChattingRoomRepository {
-    fun getChattingRooms(): Flow<List<ChattingRoomEntity>>
+    fun getChattingRooms(): Flow<List<ChattingRoom>>
     suspend fun sync(): Boolean
 }

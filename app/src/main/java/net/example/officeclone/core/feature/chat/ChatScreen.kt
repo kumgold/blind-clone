@@ -29,6 +29,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.PlatformTextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
@@ -36,6 +37,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import net.example.officeclone.R
 import net.example.officeclone.core.feature.chattingroom.ChattingRoomDialog
 import net.example.officeclone.core.model.ChattingRoom
@@ -45,18 +47,18 @@ fun ChatScreen(
     modifier: Modifier = Modifier,
     viewModel: ChatViewModel = hiltViewModel()
 ) {
-    viewModel.sync()
+    val chattingRoomList by viewModel.chattingRoomList.collectAsStateWithLifecycle()
 
     ChatScreen(
         modifier = modifier,
-        networkChattingRoomList = listOf()
+        chattingRoomList = chattingRoomList
     )
 }
 
 @Composable
 private fun ChatScreen(
     modifier: Modifier = Modifier,
-    networkChattingRoomList: List<ChattingRoom>
+    chattingRoomList: List<ChattingRoom>
 ) {
     Column(
         modifier = modifier
@@ -64,11 +66,11 @@ private fun ChatScreen(
             .fillMaxSize()
     ) {
         Text(
-            text = "Chattings",
+            text = stringResource(id = R.string.chat),
             style = MaterialTheme.typography.titleLarge
         )
         LazyColumn {
-            items(networkChattingRoomList) { room ->
+            items(chattingRoomList) { room ->
                 ChatFeed(room = room)
             }
         }
@@ -109,14 +111,13 @@ private fun ChatFeed(
         )
 
         Spacer(modifier = Modifier.width(dimensionResource(id = R.dimen.default_margin)))
-        Spacer(modifier = Modifier.weight(1f))
 
         Column {
             Text(
                 modifier = Modifier
                     .widthIn(
                         min = 0.dp,
-                        max = 120.dp
+                        max = 300.dp
                     ),
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
@@ -155,6 +156,28 @@ private fun ChatFeed(
 @Composable
 private fun ChatScreenPreview() {
     Surface {
-        ChatScreen()
+        ChatScreen(
+            modifier = Modifier,
+            chattingRoomList = listOf(
+                ChattingRoom(
+                    id = "11&1",
+                    name = "User Name User Name User Name User Name User Name",
+                    previewMessage = "preview message preview message preview message preview message preview message",
+                    memberCount = 2
+                ),
+                ChattingRoom(
+                    id = "11&1",
+                    name = "User Name",
+                    previewMessage = "preview message",
+                    memberCount = 2
+                ),
+                ChattingRoom(
+                    id = "11&1",
+                    name = "User Name",
+                    previewMessage = "preview message",
+                    memberCount = 2
+                ),
+            )
+        )
     }
 }
