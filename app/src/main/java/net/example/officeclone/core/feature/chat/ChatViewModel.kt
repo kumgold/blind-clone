@@ -25,7 +25,7 @@ class ChatViewModel @Inject constructor(
         sync()
     }
 
-    fun sync() {
+    private fun sync() {
         viewModelScope.launch {
             chattingRoomRepository.sync()
         }

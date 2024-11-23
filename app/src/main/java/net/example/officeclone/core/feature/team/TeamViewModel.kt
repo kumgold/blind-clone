@@ -8,6 +8,7 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
 import net.example.officeclone.R
 import net.example.officeclone.common.data.Result
 import net.example.officeclone.common.data.asResult
@@ -30,7 +31,7 @@ class TeamViewModel @Inject constructor(
     private val _message = MutableStateFlow<Int?>(null)
 
     val uiState: StateFlow<TeamUiState> = combine(
-        teamMemberRepository.getTeamMembers().asResult(),
+        teamMemberRepository.getTeamMembers(),
         _isLoading,
         _message
     ) { memberList, isLoading, message ->
@@ -58,6 +59,16 @@ class TeamViewModel @Inject constructor(
             started = SharingStarted.WhileSubscribed(5_000),
             initialValue = TeamUiState(isLoading = true)
         )
+
+    init {
+        sync()
+    }
+
+    private fun sync() {
+        viewModelScope.launch {
+            teamMemberRepository.sync()
+        }
+    }
 
     fun createChattingRoom(id: String) {
 

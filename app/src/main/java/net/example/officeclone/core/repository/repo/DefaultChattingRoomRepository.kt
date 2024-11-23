@@ -1,5 +1,6 @@
 package net.example.officeclone.core.repository.repo
 
+import android.util.Log
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import net.example.officeclone.core.database.dao.ChattingRoomDao
@@ -20,7 +21,6 @@ class DefaultChattingRoomRepository @Inject constructor(
         chattingRoomDao.getChattingRooms()
             .map { it.map(ChattingRoomEntity::asExternal) }
 
-
     override suspend fun sync(): Boolean {
         return try {
             val networkChattingRooms = network.getChattingRooms()
@@ -31,6 +31,7 @@ class DefaultChattingRoomRepository @Inject constructor(
 
             true
         } catch (e: Exception) {
+            Log.e("chatting room sync", "error = $e")
             false
         }
     }
