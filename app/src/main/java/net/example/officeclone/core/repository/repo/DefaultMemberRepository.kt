@@ -2,7 +2,6 @@ package net.example.officeclone.core.repository.repo
 
 import android.util.Log
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 import net.example.officeclone.common.data.Result
 import net.example.officeclone.common.data.asResult
@@ -15,7 +14,7 @@ import net.example.officeclone.core.network.data.asEntity
 import net.example.officeclone.core.network.retrofit.OfficeNetworkDataSource
 import javax.inject.Inject
 
-class DefaultTeamMemberRepository @Inject constructor(
+class DefaultMemberRepository @Inject constructor(
     private val network: OfficeNetworkDataSource,
     private val memberDao: MemberDao
 ) : TeamMemberRepository {

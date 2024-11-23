@@ -13,10 +13,10 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 private interface OfficeNetworkApi {
-    @GET("/team")
+    @GET("/members")
     suspend fun getTeamMembers(): ApiResponse<List<NetworkMember>>
 
-    @GET("/chattingroom")
+    @GET("/chattingrooms")
     suspend fun getChattingRooms(): ApiResponse<List<NetworkChattingRoom>>
 }
 

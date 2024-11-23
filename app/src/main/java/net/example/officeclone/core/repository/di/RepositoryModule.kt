@@ -6,7 +6,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import net.example.officeclone.core.repository.repo.ChattingRoomRepository
 import net.example.officeclone.core.repository.repo.DefaultChattingRoomRepository
-import net.example.officeclone.core.repository.repo.DefaultTeamMemberRepository
+import net.example.officeclone.core.repository.repo.DefaultMemberRepository
 import net.example.officeclone.core.repository.repo.TeamMemberRepository
 
 @Module
@@ -14,7 +14,7 @@ import net.example.officeclone.core.repository.repo.TeamMemberRepository
 abstract class RepositoryModule {
     @Binds
     abstract fun bindTeamMemberRepository(
-        teamMemberRepository: DefaultTeamMemberRepository
+        teamMemberRepository: DefaultMemberRepository
     ): TeamMemberRepository
 
     @Binds
