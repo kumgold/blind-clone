@@ -7,4 +7,6 @@ interface OfficeNetworkDataSource {
     suspend fun getTeamMembers(): List<NetworkMember>
 
     suspend fun getChattingRooms(): List<NetworkChattingRoom>
+
+    suspend fun createChattingRoom(room: NetworkChattingRoom): NetworkChattingRoom
 }

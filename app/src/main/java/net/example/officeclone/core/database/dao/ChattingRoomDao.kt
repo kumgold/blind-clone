@@ -12,6 +12,12 @@ interface ChattingRoomDao {
     @Query(value = "SELECT * FROM chatting_rooms")
     fun getChattingRooms(): Flow<List<ChattingRoomEntity>>
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Query(value = "SELECT * FROM chatting_rooms WHERE id = :id")
+    suspend fun findChattingRoomById(id: String): ChattingRoomEntity?
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertChattingRoom(chattingRoomEntity: ChattingRoomEntity): Long
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertChattingRooms(chattingRooms: List<ChattingRoomEntity>): List<Long>
 }

@@ -7,8 +7,9 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.http.Body
 import retrofit2.http.GET
-import retrofit2.http.Query
+import retrofit2.http.POST
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -18,6 +19,11 @@ private interface OfficeNetworkApi {
 
     @GET("/chattingrooms")
     suspend fun getChattingRooms(): ApiResponse<List<NetworkChattingRoom>>
+
+    @POST("/chattingroom")
+    suspend fun createChattingRoom(
+        @Body room: NetworkChattingRoom
+    ): NetworkChattingRoom
 }
 
 @Singleton
@@ -42,6 +48,9 @@ class RetrofitOfficeNetwork @Inject constructor() : OfficeNetworkDataSource {
 
     override suspend fun getChattingRooms(): List<NetworkChattingRoom> =
         networkApi.getChattingRooms().data
+
+    override suspend fun createChattingRoom(room: NetworkChattingRoom): NetworkChattingRoom =
+        networkApi.createChattingRoom(room)
 }
 
 @Serializable

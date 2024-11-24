@@ -5,5 +5,6 @@ import net.example.officeclone.core.model.ChattingRoom
 
 interface ChattingRoomRepository {
     fun getChattingRooms(): Flow<List<ChattingRoom>>
+    suspend fun createChattingRoom(room: ChattingRoom): Result<Boolean>
     suspend fun sync(): Boolean
 }

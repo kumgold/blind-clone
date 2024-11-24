@@ -31,6 +31,7 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.DialogProperties
+import androidx.hilt.navigation.compose.hiltViewModel
 import net.example.officeclone.R
 import net.example.officeclone.core.model.Member
 
@@ -38,6 +39,7 @@ import net.example.officeclone.core.model.Member
 @Composable
 fun UserDialog(
     modifier: Modifier = Modifier,
+    viewModel: UserViewModel = hiltViewModel(),
     member: Member,
     navigateToChattingRoom: (String) -> Unit,
     onDismiss: () -> Unit
@@ -84,7 +86,11 @@ fun UserDialog(
                     .background(Color.LightGray)
                     .padding(10.dp)
                     .clickable {
-                         navigateToChattingRoom("")
+                        viewModel.createChattingRoom(
+                            id = member.id,
+                            name = member.name
+                        )
+                        navigateToChattingRoom("")
                     },
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
