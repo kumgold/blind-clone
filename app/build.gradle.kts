@@ -4,6 +4,7 @@ plugins {
 
     id("kotlin-kapt")
     id("com.google.dagger.hilt.android")
+    id("com.google.gms.google-services")
 
     kotlin("plugin.serialization")
 }
@@ -55,6 +56,9 @@ android {
 }
 
 dependencies {
+
+    // Firebase
+    implementation(libs.firebase.bom)
 
     // Room database
     implementation(libs.androidx.room.runtime)
