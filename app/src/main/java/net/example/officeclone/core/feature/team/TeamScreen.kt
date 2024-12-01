@@ -89,7 +89,7 @@ private fun TeamScreen(
 
         MemberFeed(
             member = Member(
-                id = "11",
+                id = "1",
                 name = "My Account",
                 number = "01011111111",
                 statusMessage = "message"
@@ -217,7 +217,7 @@ private fun UserFeedPreview() {
             modifier = Modifier,
             memberList = listOf(
                 Member(
-                    id = "1",
+                    id = "11",
                     name = "김김김",
                     number = "01011111111",
                     statusMessage = "status message"

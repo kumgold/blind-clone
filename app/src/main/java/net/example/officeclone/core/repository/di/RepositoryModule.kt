@@ -4,7 +4,9 @@ import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import net.example.officeclone.core.repository.repo.ChatRepository
 import net.example.officeclone.core.repository.repo.ChattingRoomRepository
+import net.example.officeclone.core.repository.repo.DefaultChatRepository
 import net.example.officeclone.core.repository.repo.DefaultChattingRoomRepository
 import net.example.officeclone.core.repository.repo.DefaultMemberRepository
 import net.example.officeclone.core.repository.repo.TeamMemberRepository
@@ -21,4 +23,9 @@ abstract class RepositoryModule {
     abstract fun bindChattingRoomRepository(
         chattingRoomRepository: DefaultChattingRoomRepository
     ): ChattingRoomRepository
+
+    @Binds
+    abstract fun bindChatRepository(
+        chatRepository: DefaultChatRepository
+    ): ChatRepository
 }

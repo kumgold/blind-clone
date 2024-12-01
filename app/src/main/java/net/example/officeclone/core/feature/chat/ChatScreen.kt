@@ -39,7 +39,7 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import net.example.officeclone.R
-import net.example.officeclone.core.feature.chattingroom.ChattingRoomDialog
+import net.example.officeclone.core.feature.chattingroom.ChattingRoomScreen
 import net.example.officeclone.core.model.ChattingRoom
 
 @Composable
@@ -85,7 +85,7 @@ private fun ChatFeed(
     var showDialog by remember { mutableStateOf(false) }
 
     if (showDialog) {
-        ChattingRoomDialog(
+        ChattingRoomScreen(
             onDismiss = {
                 showDialog = false
             }

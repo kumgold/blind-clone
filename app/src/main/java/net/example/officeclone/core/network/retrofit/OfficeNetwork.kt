@@ -1,6 +1,7 @@
 package net.example.officeclone.core.network.retrofit
 
 import kotlinx.serialization.Serializable
+import net.example.officeclone.core.network.data.NetworkChat
 import net.example.officeclone.core.network.data.NetworkChattingRoom
 import net.example.officeclone.core.network.data.NetworkMember
 import okhttp3.OkHttpClient
@@ -10,6 +11,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Query
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -17,13 +19,18 @@ private interface OfficeNetworkApi {
     @GET("/members")
     suspend fun getTeamMembers(): ApiResponse<List<NetworkMember>>
 
-    @GET("/chattingrooms")
+    @GET("/chatting-rooms")
     suspend fun getChattingRooms(): ApiResponse<List<NetworkChattingRoom>>
 
-    @POST("/chattingroom")
+    @POST("/chatting-room")
     suspend fun createChattingRoom(
         @Body room: NetworkChattingRoom
     ): NetworkChattingRoom
+
+    @GET("/chats")
+    suspend fun getChatList(
+        @Query("id") id: String
+    ): ApiResponse<List<NetworkChat>>
 }
 
 @Singleton
@@ -51,6 +58,9 @@ class RetrofitOfficeNetwork @Inject constructor() : OfficeNetworkDataSource {
 
     override suspend fun createChattingRoom(room: NetworkChattingRoom): NetworkChattingRoom =
         networkApi.createChattingRoom(room)
+
+    override suspend fun getChatList(chattingRoomId: String): List<NetworkChat> =
+        networkApi.getChatList(id = chattingRoomId).data
 }
 
 @Serializable

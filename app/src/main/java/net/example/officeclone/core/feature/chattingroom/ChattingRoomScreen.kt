@@ -12,6 +12,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.BasicAlertDialog
@@ -34,14 +36,33 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.DialogProperties
+import androidx.hilt.navigation.compose.hiltViewModel
 import net.example.officeclone.R
+import net.example.officeclone.core.model.Chat
 import net.example.officeclone.ui.compose.BubbleShape
 import net.example.officeclone.ui.compose.MessageDirection
 
+
+@Composable
+fun ChattingRoomScreen(
+    modifier: Modifier = Modifier,
+    viewModel: ChattingRoomViewModel = hiltViewModel(),
+    onDismiss: () -> Unit
+) {
+
+
+    ChattingRoomScreen(
+        modifier = modifier,
+        chatList = listOf(),
+        onDismiss = onDismiss
+    )
+}
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ChattingRoomDialog(
+private fun ChattingRoomScreen(
     modifier: Modifier = Modifier,
+    chatList: List<Chat>,
     onDismiss: () -> Unit
 ) {
     BasicAlertDialog(
@@ -69,13 +90,23 @@ fun ChattingRoomDialog(
                 }
             )
             Column(
-                modifier = Modifier.padding(horizontal = 10.dp)
+                modifier = Modifier
+                    .padding(horizontal = 10.dp)
+                    .weight(1f)
             ) {
                 MyChattingMessage()
                 OtherChattingMessage()
                 MyChattingMessage()
+                LazyColumn {
+                    items(chatList) { chat ->
+                        if (chat.id == "1") {
+                            MyChattingMessage()
+                        } else {
+                            OtherChattingMessage()
+                        }
+                    }
+                }
             }
-            Spacer(modifier = Modifier.weight(1f))
             ChattingInput()
         }
     }
@@ -153,7 +184,8 @@ private fun ChattingInput(
 @Composable
 private fun ChatDetailScreenPreview() {
     Surface {
-        ChattingRoomDialog(
+        ChattingRoomScreen(
+            chatList = listOf(),
             onDismiss = {}
         )
     }
