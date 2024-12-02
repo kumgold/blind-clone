@@ -29,10 +29,13 @@ fun OfficeNavHost(
                 appState.navigateToChattingRoomDialog(id)
             }
         )
-        chattingRoomListScreen()
+        chattingRoomListScreen(
+            navigateToChattingRoom = { id ->
+                appState.navigateToChattingRoomDialog(id)
+            }
+        )
         workScreen()
         settingsScreen()
-
         chattingRoom(
             onDismiss = navController::popBackStack
         )

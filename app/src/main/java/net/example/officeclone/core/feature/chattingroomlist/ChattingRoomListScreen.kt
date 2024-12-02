@@ -45,20 +45,23 @@ import net.example.officeclone.core.model.ChattingRoom
 @Composable
 fun ChattingRoomListScreen(
     modifier: Modifier = Modifier,
-    viewModel: ChattingRoomListViewModel = hiltViewModel()
+    viewModel: ChattingRoomListViewModel = hiltViewModel(),
+    navigateToChattingRoom: (String) -> Unit
 ) {
     val chattingRoomList by viewModel.chattingRoomList.collectAsStateWithLifecycle()
 
     ChattingRoomListScreen(
         modifier = modifier,
-        chattingRoomList = chattingRoomList
+        chattingRoomList = chattingRoomList,
+        navigateToChattingRoom = navigateToChattingRoom
     )
 }
 
 @Composable
 private fun ChattingRoomListScreen(
     modifier: Modifier = Modifier,
-    chattingRoomList: List<ChattingRoom>
+    chattingRoomList: List<ChattingRoom>,
+    navigateToChattingRoom: (String) -> Unit
 ) {
     Column(
         modifier = modifier
@@ -71,7 +74,10 @@ private fun ChattingRoomListScreen(
         )
         LazyColumn {
             items(chattingRoomList) { room ->
-                ChatFeed(room = room)
+                ChatFeed(
+                    room = room,
+                    navigateToChattingRoom = navigateToChattingRoom
+                )
             }
         }
     }
@@ -80,23 +86,25 @@ private fun ChattingRoomListScreen(
 @Composable
 private fun ChatFeed(
     modifier: Modifier = Modifier,
-    room: ChattingRoom
+    room: ChattingRoom,
+    navigateToChattingRoom: (String) -> Unit
 ) {
-    var showDialog by remember { mutableStateOf(false) }
-
-    if (showDialog) {
-        ChattingRoomScreen(
-            onDismiss = {
-                showDialog = false
-            }
-        )
-    }
+//    var showDialog by remember { mutableStateOf(false) }
+//
+//    if (showDialog) {
+//        ChattingRoomScreen(
+//            onDismiss = {
+//                showDialog = false
+//            }
+//        )
+//    }
 
     Row(
         modifier = modifier
             .fillMaxWidth()
             .clickable {
-                showDialog = true
+                navigateToChattingRoom(room.id)
+//                showDialog = true
             }
             .padding(dimensionResource(id = R.dimen.default_margin)),
         verticalAlignment = Alignment.CenterVertically
@@ -177,7 +185,8 @@ private fun ChatScreenPreview() {
                     previewMessage = "preview message",
                     memberCount = 2
                 ),
-            )
+            ),
+            navigateToChattingRoom = {}
         )
     }
 }

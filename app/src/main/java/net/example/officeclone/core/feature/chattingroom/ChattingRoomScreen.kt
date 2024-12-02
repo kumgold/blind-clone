@@ -90,18 +90,16 @@ private fun ChattingRoomScreen(
                     )
                 }
             )
-            Column(
+            LazyColumn(
                 modifier = Modifier
                     .padding(horizontal = 10.dp)
                     .weight(1f)
             ) {
-                LazyColumn {
-                    items(chatList) { chat ->
-                        if (chat.memberId == "1") {
-                            MyChattingMessage()
-                        } else {
-                            OtherChattingMessage()
-                        }
+                items(chatList) { chat ->
+                    if (chat.memberId == "1") {
+                        MyChattingMessage()
+                    } else {
+                        OtherChattingMessage()
                     }
                 }
             }
@@ -183,7 +181,12 @@ private fun ChattingInput(
 private fun ChatDetailScreenPreview() {
     Surface {
         ChattingRoomScreen(
-            chatList = listOf(),
+            chatList = listOf(
+                Chat("111", "date", "message", "1"),
+                Chat("111", "date", "message", "2"),
+                Chat("111", "date", "message", "1"),
+                Chat("111", "date", "message", "2"),
+            ),
             onDismiss = {}
         )
     }

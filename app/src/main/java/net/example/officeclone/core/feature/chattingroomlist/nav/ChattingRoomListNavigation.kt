@@ -13,8 +13,12 @@ fun NavController.navigateToChattingRoomList(
     navOptions: NavOptions
 ) = navigate(route = ChattingRoomListRoute, navOptions)
 
-fun NavGraphBuilder.chattingRoomListScreen() {
+fun NavGraphBuilder.chattingRoomListScreen(
+    navigateToChattingRoom: (String) -> Unit
+) {
     composable<ChattingRoomListRoute> {
-        ChattingRoomListScreen()
+        ChattingRoomListScreen(
+            navigateToChattingRoom = navigateToChattingRoom
+        )
     }
 }
