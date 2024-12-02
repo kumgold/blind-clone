@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import net.example.officeclone.core.feature.chattingroom.nav.chattingRoom
-import net.example.officeclone.core.feature.chat.nav.chattingRoomListScreen
+import net.example.officeclone.core.feature.chattingroomlist.nav.chattingRoomListScreen
 import net.example.officeclone.core.feature.settings.nav.settingsScreen
 import net.example.officeclone.core.feature.team.nav.TeamRoute
 import net.example.officeclone.core.feature.team.nav.teamScreen

@@ -47,7 +47,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import net.example.officeclone.R
-import net.example.officeclone.core.feature.team.user.UserDialog
+import net.example.officeclone.core.feature.user.UserDialog
 import net.example.officeclone.core.model.Member
 
 @Composable

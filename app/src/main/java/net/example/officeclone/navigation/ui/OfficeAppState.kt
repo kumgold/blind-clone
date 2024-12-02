@@ -16,7 +16,7 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import net.example.officeclone.core.data.NetworkMonitor
-import net.example.officeclone.core.feature.chat.nav.navigateToChattingRoomList
+import net.example.officeclone.core.feature.chattingroomlist.nav.navigateToChattingRoomList
 import net.example.officeclone.core.feature.chattingroom.nav.navigateToChattingRoom
 import net.example.officeclone.core.feature.settings.nav.navigateToSettings
 import net.example.officeclone.core.feature.team.nav.navigateToTeam

@@ -1,4 +1,4 @@
-package net.example.officeclone.core.feature.chat
+package net.example.officeclone.core.feature.chattingroomlist
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

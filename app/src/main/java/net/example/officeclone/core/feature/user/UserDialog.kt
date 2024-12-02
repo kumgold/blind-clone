@@ -1,4 +1,4 @@
-package net.example.officeclone.core.feature.team.user
+package net.example.officeclone.core.feature.user
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background

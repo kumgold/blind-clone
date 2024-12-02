@@ -69,8 +69,4 @@ class TeamViewModel @Inject constructor(
             teamMemberRepository.sync()
         }
     }
-
-    fun createChattingRoom(id: String) {
-
-    }
 }

@@ -12,7 +12,7 @@ import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material.icons.outlined.WorkOutline
 import androidx.compose.ui.graphics.vector.ImageVector
 import net.example.officeclone.R
-import net.example.officeclone.core.feature.chat.nav.ChattingRoomListRoute
+import net.example.officeclone.core.feature.chattingroomlist.nav.ChattingRoomListRoute
 import net.example.officeclone.core.feature.settings.nav.SettingsRoute
 import net.example.officeclone.core.feature.team.nav.TeamRoute
 import net.example.officeclone.core.feature.work.nav.WorkRoute

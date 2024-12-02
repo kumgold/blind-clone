@@ -22,8 +22,6 @@ class ChattingRoomViewModel @Inject constructor(
         sync()
     }
 
-    private val chattingRoomId = savedStateHandle.toRoute<ChattingRoomRoute>().chattingRoomId
-
     val chatList = chatRepository.getChatList("1-2")
         .stateIn(
             scope = viewModelScope,
@@ -32,6 +30,8 @@ class ChattingRoomViewModel @Inject constructor(
         )
 
     private fun sync() {
+        val chattingRoomId = savedStateHandle.toRoute<ChattingRoomRoute>().chattingRoomId
+
         viewModelScope.launch {
             chatRepository.sync(chattingRoomId)
         }

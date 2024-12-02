@@ -13,5 +13,5 @@ interface ChatDao {
     fun getChatList(chattingRoomId: String): Flow<List<ChatEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertChatList(chatList: List<ChatEntity>): List<Long>
+    suspend fun insertChatList(chatList: List<ChatEntity>): List<Long>
 }

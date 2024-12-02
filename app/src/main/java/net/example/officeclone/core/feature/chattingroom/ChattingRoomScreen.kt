@@ -95,12 +95,9 @@ private fun ChattingRoomScreen(
                     .padding(horizontal = 10.dp)
                     .weight(1f)
             ) {
-                MyChattingMessage()
-                OtherChattingMessage()
-                MyChattingMessage()
                 LazyColumn {
                     items(chatList) { chat ->
-                        if (chat.id == "1") {
+                        if (chat.memberId == "1") {
                             MyChattingMessage()
                         } else {
                             OtherChattingMessage()
