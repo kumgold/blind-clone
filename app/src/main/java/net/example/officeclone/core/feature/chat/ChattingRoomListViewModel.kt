@@ -10,7 +10,7 @@ import net.example.officeclone.core.repository.repo.ChattingRoomRepository
 import javax.inject.Inject
 
 @HiltViewModel
-class ChatViewModel @Inject constructor(
+class ChattingRoomListViewModel @Inject constructor(
     private val chattingRoomRepository: ChattingRoomRepository
 ) : ViewModel() {
 

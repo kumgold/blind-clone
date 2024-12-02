@@ -37,6 +37,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.DialogProperties
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import net.example.officeclone.R
 import net.example.officeclone.core.model.Chat
 import net.example.officeclone.ui.compose.BubbleShape
@@ -49,11 +50,11 @@ fun ChattingRoomScreen(
     viewModel: ChattingRoomViewModel = hiltViewModel(),
     onDismiss: () -> Unit
 ) {
-
+    val chatList = viewModel.chatList.collectAsStateWithLifecycle()
 
     ChattingRoomScreen(
         modifier = modifier,
-        chatList = listOf(),
+        chatList = chatList.value,
         onDismiss = onDismiss
     )
 }

@@ -48,7 +48,7 @@ class DefaultChattingRoomRepository @Inject constructor(
 
             true
         } catch (e: Exception) {
-            Log.e("chatting room sync", "error = $e")
+            Log.e("chatting room list sync", "error = $e")
             false
         }
     }

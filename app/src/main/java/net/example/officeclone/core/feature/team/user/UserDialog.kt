@@ -90,7 +90,7 @@ fun UserDialog(
                             id = member.id,
                             name = member.name
                         )
-                        navigateToChattingRoom("")
+                        navigateToChattingRoom("1-${member.id}")
                     },
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally

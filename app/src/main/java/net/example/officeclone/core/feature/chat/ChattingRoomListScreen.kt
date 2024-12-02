@@ -43,20 +43,20 @@ import net.example.officeclone.core.feature.chattingroom.ChattingRoomScreen
 import net.example.officeclone.core.model.ChattingRoom
 
 @Composable
-fun ChatScreen(
+fun ChattingRoomListScreen(
     modifier: Modifier = Modifier,
-    viewModel: ChatViewModel = hiltViewModel()
+    viewModel: ChattingRoomListViewModel = hiltViewModel()
 ) {
     val chattingRoomList by viewModel.chattingRoomList.collectAsStateWithLifecycle()
 
-    ChatScreen(
+    ChattingRoomListScreen(
         modifier = modifier,
         chattingRoomList = chattingRoomList
     )
 }
 
 @Composable
-private fun ChatScreen(
+private fun ChattingRoomListScreen(
     modifier: Modifier = Modifier,
     chattingRoomList: List<ChattingRoom>
 ) {
@@ -156,7 +156,7 @@ private fun ChatFeed(
 @Composable
 private fun ChatScreenPreview() {
     Surface {
-        ChatScreen(
+        ChattingRoomListScreen(
             modifier = Modifier,
             chattingRoomList = listOf(
                 ChattingRoom(

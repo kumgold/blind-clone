@@ -5,6 +5,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import net.example.officeclone.core.database.OfficeDatabase
+import net.example.officeclone.core.database.dao.ChatDao
 import net.example.officeclone.core.database.dao.ChattingRoomDao
 import net.example.officeclone.core.database.dao.MemberDao
 
@@ -20,4 +21,9 @@ internal object DaoModule {
     fun provideChattingRoomDao(
         database: OfficeDatabase
     ): ChattingRoomDao = database.chattingRoomDao()
+
+    @Provides
+    fun provideChatDao(
+        database: OfficeDatabase
+    ): ChatDao = database.chatDao()
 }

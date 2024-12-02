@@ -3,10 +3,12 @@ package net.example.officeclone.core.feature.chattingroom
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.toRoute
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
+import net.example.officeclone.core.feature.chattingroom.nav.ChattingRoomRoute
 import net.example.officeclone.core.repository.repo.ChatRepository
 import javax.inject.Inject
 
@@ -17,15 +19,21 @@ class ChattingRoomViewModel @Inject constructor(
 ) : ViewModel() {
 
     init {
-        test()
+        sync()
     }
 
-    private fun test() {
+    private val chattingRoomId = savedStateHandle.toRoute<ChattingRoomRoute>().chattingRoomId
+
+    val chatList = chatRepository.getChatList("1-2")
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(5_000),
+            initialValue = listOf()
+        )
+
+    private fun sync() {
         viewModelScope.launch {
-            chatRepository.getChatList("1-2")
-                .collectLatest {
-                    println(it)
-                }
+            chatRepository.sync(chattingRoomId)
         }
     }
 }

@@ -15,7 +15,7 @@ class UserViewModel @Inject constructor(
 
     fun createChattingRoom(id: String, name: String) {
         viewModelScope.launch {
-            val result = chattingRoomRepository.createChattingRoom(
+            chattingRoomRepository.createChattingRoom(
                 ChattingRoom(
                     id = "1-$id",
                     name = name,
@@ -23,8 +23,6 @@ class UserViewModel @Inject constructor(
                     memberCount = 2
                 )
             )
-
-            println("create room result = $result")
         }
     }
 }

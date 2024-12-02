@@ -1,11 +1,10 @@
 package net.example.officeclone.navigation.nav
 
-import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import net.example.officeclone.core.feature.chattingroom.nav.chattingRoom
-import net.example.officeclone.core.feature.chat.nav.chatScreen
+import net.example.officeclone.core.feature.chat.nav.chattingRoomListScreen
 import net.example.officeclone.core.feature.settings.nav.settingsScreen
 import net.example.officeclone.core.feature.team.nav.TeamRoute
 import net.example.officeclone.core.feature.team.nav.teamScreen
@@ -30,7 +29,7 @@ fun OfficeNavHost(
                 appState.navigateToChattingRoomDialog(id)
             }
         )
-        chatScreen()
+        chattingRoomListScreen()
         workScreen()
         settingsScreen()
 
