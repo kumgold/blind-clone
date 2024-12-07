@@ -22,7 +22,9 @@ class ChattingRoomViewModel @Inject constructor(
         sync()
     }
 
-    val chatList = chatRepository.getChatList("1-2")
+    private val chattingRoomId = savedStateHandle.toRoute<ChattingRoomRoute>().chattingRoomId
+
+    val chatList = chatRepository.getChatList(chattingRoomId)
         .stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(5_000),

@@ -89,22 +89,11 @@ private fun ChatFeed(
     room: ChattingRoom,
     navigateToChattingRoom: (String) -> Unit
 ) {
-//    var showDialog by remember { mutableStateOf(false) }
-//
-//    if (showDialog) {
-//        ChattingRoomScreen(
-//            onDismiss = {
-//                showDialog = false
-//            }
-//        )
-//    }
-
     Row(
         modifier = modifier
             .fillMaxWidth()
             .clickable {
                 navigateToChattingRoom(room.id)
-//                showDialog = true
             }
             .padding(dimensionResource(id = R.dimen.default_margin)),
         verticalAlignment = Alignment.CenterVertically
@@ -168,19 +157,19 @@ private fun ChatScreenPreview() {
             modifier = Modifier,
             chattingRoomList = listOf(
                 ChattingRoom(
-                    id = "11&1",
+                    id = "1-11",
                     name = "User Name User Name User Name User Name User Name",
                     previewMessage = "preview message preview message preview message preview message preview message",
                     memberCount = 2
                 ),
                 ChattingRoom(
-                    id = "11&1",
+                    id = "1-2",
                     name = "User Name",
                     previewMessage = "preview message",
                     memberCount = 2
                 ),
                 ChattingRoom(
-                    id = "11&1",
+                    id = "1-3",
                     name = "User Name",
                     previewMessage = "preview message",
                     memberCount = 2
