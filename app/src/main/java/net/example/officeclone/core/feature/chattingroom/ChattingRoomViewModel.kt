@@ -38,4 +38,10 @@ class ChattingRoomViewModel @Inject constructor(
             chatRepository.sync(chattingRoomId)
         }
     }
+
+    // 대화 상대 정보
+
+    // 채팅 리스트
+
+    // 채팅 보내기
 }

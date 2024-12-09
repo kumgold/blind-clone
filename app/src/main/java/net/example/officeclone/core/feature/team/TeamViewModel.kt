@@ -69,4 +69,9 @@ class TeamViewModel @Inject constructor(
             teamMemberRepository.sync()
         }
     }
+
+    // 내 정보 불러오기
+
+    // 내 정보 저장하기
+
 }
