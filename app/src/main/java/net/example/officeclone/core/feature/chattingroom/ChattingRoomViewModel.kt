@@ -44,4 +44,11 @@ class ChattingRoomViewModel @Inject constructor(
     // 채팅 리스트
 
     // 채팅 보내기
+    fun sendChat(message: String) {
+        val memberId = chattingRoomId.split("-").last()
+
+        viewModelScope.launch {
+            chatRepository.sendChat(message, memberId, chattingRoomId)
+        }
+    }
 }

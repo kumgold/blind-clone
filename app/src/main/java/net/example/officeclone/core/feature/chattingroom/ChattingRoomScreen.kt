@@ -10,25 +10,23 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.filled.Send
+import androidx.compose.material.icons.automirrored.filled.Send
 import androidx.compose.material3.BasicAlertDialog
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FilledIconButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -69,9 +67,7 @@ fun ChattingRoomScreen(
         modifier = modifier,
         chatList = chatList.value,
         onDismiss = onDismiss,
-        sendChat = {
-
-        }
+        sendChat = viewModel::sendChat
     )
 }
 
@@ -81,7 +77,7 @@ private fun ChattingRoomScreen(
     modifier: Modifier = Modifier,
     chatList: List<Chat>,
     onDismiss: () -> Unit,
-    sendChat: () -> Unit
+    sendChat: (String) -> Unit
 ) {
     BasicAlertDialog(
         onDismissRequest = onDismiss,
@@ -107,30 +103,29 @@ private fun ChattingRoomScreen(
                     )
                 }
             )
-            Column {
-                LazyColumn(
-                    modifier = Modifier
-                        .padding(horizontal = 10.dp)
-                        .weight(1f)
-                ) {
-                    items(chatList) { chat ->
-                        if (chat.memberId == "1") {
-                            MyChattingMessage()
-                        } else {
-                            OtherChattingMessage()
-                        }
+            LazyColumn(
+                modifier = Modifier
+                    .padding(horizontal = 10.dp)
+                    .weight(1f)
+            ) {
+                items(chatList) { chat ->
+                    if (chat.memberId == "1") {
+                        MyChattingMessage(chat)
+                    } else {
+                        OtherChattingMessage(chat)
                     }
                 }
-                BottomChattingInputBar(
-                    sendChat = sendChat
-                )
             }
+            ChattingInput(
+                modifier = modifier.imePadding(),
+                sendChat = sendChat
+            )
         }
     }
 }
 
 @Composable
-private fun MyChattingMessage() {
+private fun MyChattingMessage(chat: Chat) {
     Row(
         modifier = Modifier.height(IntrinsicSize.Max)
     ) {
@@ -139,7 +134,7 @@ private fun MyChattingMessage() {
             modifier = Modifier
                 .background(color = Color.Green)
                 .padding(dimensionResource(id = R.dimen.default_margin)),
-            text = "test test test",
+            text = chat.message,
             fontSize = 22.sp,
             color = Color.Black
         )
@@ -155,7 +150,7 @@ private fun MyChattingMessage() {
 }
 
 @Composable
-private fun OtherChattingMessage() {
+private fun OtherChattingMessage(chat: Chat) {
     Row(
         modifier = Modifier.height(IntrinsicSize.Max)
     ) {
@@ -171,7 +166,7 @@ private fun OtherChattingMessage() {
             modifier = Modifier
                 .background(color = Color.LightGray)
                 .padding(dimensionResource(id = R.dimen.default_margin)),
-            text = "test",
+            text = chat.message,
             fontSize = 22.sp,
             color = Color.Black
         )
@@ -179,74 +174,56 @@ private fun OtherChattingMessage() {
 }
 
 @Composable
-private fun BottomChattingInputBar(
+private fun ChattingInput(
     modifier: Modifier = Modifier,
-    sendChat: () -> Unit
+    sendChat: (String) -> Unit
 ) {
     Row(
         modifier = modifier
             .padding(vertical = dimensionResource(id = R.dimen.default_margin)),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        ChattingInput(
-            modifier = Modifier
+        var message by remember { mutableStateOf("") }
+
+        TextField(
+            modifier = modifier
                 .weight(1f)
                 .height(56.dp)
+                .border(
+                    width = 1.dp,
+                    color = MaterialTheme.colorScheme.primary,
+                    shape = RoundedCornerShape(dimensionResource(id = R.dimen.default_margin))
+                ),
+            value = message,
+            onValueChange = {
+                message = it
+            },
+            keyboardOptions = KeyboardOptions(
+                capitalization = KeyboardCapitalization.Sentences,
+                imeAction = ImeAction.Default,
+            ),
+            colors = TextFieldDefaults.colors(
+                focusedContainerColor = MaterialTheme.colorScheme.background,
+                unfocusedContainerColor = MaterialTheme.colorScheme.background,
+                focusedIndicatorColor = Color.Transparent,
+                unfocusedIndicatorColor = Color.Transparent,
+                disabledIndicatorColor = Color.Transparent,
+            ),
         )
         Spacer(modifier = Modifier.width(dimensionResource(id = R.dimen.default_margin)))
-        SendButton(
-            modifier = Modifier.size(56.dp),
-            sendChat = sendChat
-        )
+        FilledIconButton(
+            modifier = modifier.size(56.dp),
+            onClick = {
+                sendChat(message)
+                message = ""
+            }
+        ) {
+            Icon(
+                imageVector = Icons.AutoMirrored.Filled.Send,
+                contentDescription = null
+            )
+        }
     }
-}
-
-@Composable
-private fun ChattingInput(
-    modifier: Modifier = Modifier,
-) {
-    var searchText by remember { mutableStateOf("") }
-
-    TextField(
-        modifier = modifier
-            .border(
-                width = 1.dp,
-                color = MaterialTheme.colorScheme.primary,
-                shape = RoundedCornerShape(dimensionResource(id = R.dimen.default_margin))
-            ),
-        value = searchText,
-        onValueChange = {
-            searchText = it
-        },
-        keyboardOptions = KeyboardOptions(
-            capitalization = KeyboardCapitalization.Sentences,
-            imeAction = ImeAction.Default,
-        ),
-        colors = TextFieldDefaults.colors(
-            focusedContainerColor = MaterialTheme.colorScheme.background,
-            unfocusedContainerColor = MaterialTheme.colorScheme.background,
-            focusedIndicatorColor = Color.Transparent,
-            unfocusedIndicatorColor = Color.Transparent,
-            disabledIndicatorColor = Color.Transparent,
-        ),
-    )
-}
-
-@Composable
-private fun SendButton(
-    modifier: Modifier = Modifier,
-    sendChat: () -> Unit
-) {
-    FilledIconButton(
-        modifier = modifier,
-        onClick = sendChat
-    ) {
-        Icon(
-            imageVector = Icons.Default.Send,
-            contentDescription = null
-        )
-    }
-
 }
 
 @Preview
@@ -255,10 +232,10 @@ private fun ChatDetailScreenPreview() {
     Surface {
         ChattingRoomScreen(
             chatList = listOf(
-                Chat("111", "date", "message", "1"),
-                Chat("111", "date", "message", "2"),
-                Chat("111", "date", "message", "1"),
-                Chat("111", "date", "message", "2"),
+                Chat("111", System.currentTimeMillis(), "message", "1"),
+                Chat("111", System.currentTimeMillis(), "message", "2"),
+                Chat("111", System.currentTimeMillis(), "message", "1"),
+                Chat("111", System.currentTimeMillis(), "message", "2"),
             ),
             onDismiss = {},
             sendChat = {}

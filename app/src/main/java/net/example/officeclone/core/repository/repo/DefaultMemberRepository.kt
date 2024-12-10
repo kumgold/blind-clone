@@ -38,4 +38,12 @@ class DefaultMemberRepository @Inject constructor(
             false
         }
     }
+
+    override suspend fun getMember(memberId: String): Result<Member> {
+        return try {
+            Result.Success(memberDao.getMember(memberId).asExternal())
+        } catch (e: Exception) {
+            Result.Error(e)
+        }
+    }
 }

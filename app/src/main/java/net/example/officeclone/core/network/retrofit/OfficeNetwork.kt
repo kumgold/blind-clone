@@ -31,6 +31,11 @@ private interface OfficeNetworkApi {
     suspend fun getChatList(
         @Query("id") id: String
     ): ApiResponse<List<NetworkChat>>
+
+    @POST("/chats")
+    suspend fun sendChat(
+        @Body chat: NetworkChat
+    ): Long
 }
 
 @Singleton
@@ -61,6 +66,9 @@ class RetrofitOfficeNetwork @Inject constructor() : OfficeNetworkDataSource {
 
     override suspend fun getChatList(chattingRoomId: String): List<NetworkChat> =
         networkApi.getChatList(id = chattingRoomId).data
+
+    override suspend fun sendChat(chat: NetworkChat): Long =
+        networkApi.sendChat(chat)
 }
 
 @Serializable

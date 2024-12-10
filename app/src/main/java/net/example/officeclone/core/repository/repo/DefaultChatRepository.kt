@@ -3,14 +3,15 @@ package net.example.officeclone.core.repository.repo
 import android.util.Log
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import net.example.officeclone.common.data.Result
 import net.example.officeclone.core.database.dao.ChatDao
 import net.example.officeclone.core.database.model.ChatEntity
 import net.example.officeclone.core.database.model.asExternal
 import net.example.officeclone.core.model.Chat
 import net.example.officeclone.core.network.data.NetworkChat
-import net.example.officeclone.core.network.data.NetworkChattingRoom
 import net.example.officeclone.core.network.data.asEntity
 import net.example.officeclone.core.network.retrofit.RetrofitOfficeNetwork
+import java.util.Calendar
 import javax.inject.Inject
 
 class DefaultChatRepository @Inject constructor(
@@ -34,6 +35,28 @@ class DefaultChatRepository @Inject constructor(
         } catch (e: Exception) {
             Log.e("get chat list sync", "error = $e")
             false
+        }
+    }
+
+    override suspend fun sendChat(
+        message: String,
+        memberId: String,
+        chattingRoomId: String
+    ): Result<Long> {
+        val c = Calendar.getInstance()
+        val chat = NetworkChat(
+            id = System.currentTimeMillis().toString(),
+            message = message,
+            datetimeMilli = c.timeInMillis,
+            memberId = memberId,
+            chattingRoomId = chattingRoomId
+        )
+
+        return try {
+            chatDao.insertChat(chat.asEntity())
+            Result.Success(network.sendChat(chat))
+        } catch (e: Exception) {
+            Result.Error(e)
         }
     }
 }

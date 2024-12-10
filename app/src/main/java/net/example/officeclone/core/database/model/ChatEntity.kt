@@ -7,7 +7,7 @@ import net.example.officeclone.core.model.Chat
 @Entity(tableName = "chats")
 data class ChatEntity(
     @PrimaryKey val id: String,
-    val date: String,
+    val datetimeMilli: Long,
     val message: String,
     val memberId: String,
     val chattingRoomId: String
@@ -15,7 +15,7 @@ data class ChatEntity(
 
 fun ChatEntity.asExternal() = Chat(
     id = id,
-    date = date,
+    datetimeMilli = datetimeMilli,
     message = message,
     memberId = memberId
 )

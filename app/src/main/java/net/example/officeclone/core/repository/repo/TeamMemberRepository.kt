@@ -7,4 +7,5 @@ import net.example.officeclone.core.model.Member
 interface TeamMemberRepository {
     fun getTeamMembers(): Flow<Result<List<Member>>>
     suspend fun sync(): Boolean
+    suspend fun getMember(memberId: String): Result<Member>
 }

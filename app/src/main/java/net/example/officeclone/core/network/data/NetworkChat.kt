@@ -4,7 +4,7 @@ import net.example.officeclone.core.database.model.ChatEntity
 
 data class NetworkChat(
     val id: String,
-    val date: String,
+    val datetimeMilli: Long,
     val message: String,
     val memberId: String,
     val chattingRoomId: String
@@ -12,7 +12,7 @@ data class NetworkChat(
 
 fun NetworkChat.asEntity() = ChatEntity(
     id = id,
-    date = date,
+    datetimeMilli = datetimeMilli,
     message = message,
     memberId = memberId,
     chattingRoomId = chattingRoomId
