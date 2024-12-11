@@ -5,13 +5,11 @@ import net.example.officeclone.core.database.model.ChattingRoomEntity
 data class NetworkChattingRoom(
     val id: String,
     val name: String,
-    val previewMessage: String,
-    val memberCount: Int
+    val memberIdList: List<String>
 )
 
 fun NetworkChattingRoom.asEntity() = ChattingRoomEntity(
     id = id,
     name = name,
-    previewMessage = previewMessage,
-    memberCount = memberCount
+    memberIdList = memberIdList
 )

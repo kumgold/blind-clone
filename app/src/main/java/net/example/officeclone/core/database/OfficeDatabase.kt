@@ -2,6 +2,8 @@ package net.example.officeclone.core.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
+import net.example.officeclone.core.database.converter.ListStringConverter
 import net.example.officeclone.core.database.dao.ChatDao
 import net.example.officeclone.core.database.dao.ChattingRoomDao
 import net.example.officeclone.core.database.dao.MemberDao
@@ -18,6 +20,7 @@ import net.example.officeclone.core.database.model.MemberEntity
     version = 1,
     exportSchema = true
 )
+@TypeConverters(ListStringConverter::class)
 internal abstract class OfficeDatabase : RoomDatabase() {
     abstract fun memberDao(): MemberDao
     abstract fun chattingRoomDao(): ChattingRoomDao

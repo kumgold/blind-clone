@@ -8,13 +8,11 @@ import net.example.officeclone.core.model.ChattingRoom
 data class ChattingRoomEntity(
     @PrimaryKey val id: String,
     val name: String,
-    val previewMessage: String,
-    val memberCount: Int
+    val memberIdList: List<String>
 )
 
 fun ChattingRoomEntity.asExternal() = ChattingRoom(
     id = id,
     name = name,
-    previewMessage = previewMessage,
-    memberCount = memberCount
+    memberIdList = memberIdList
 )

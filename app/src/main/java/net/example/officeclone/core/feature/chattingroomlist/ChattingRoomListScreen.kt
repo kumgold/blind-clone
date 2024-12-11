@@ -136,7 +136,7 @@ private fun ChatFeed(
                     ),
                 maxLines = 2,
                 overflow = TextOverflow.Ellipsis,
-                text = room.previewMessage,
+                text = "last text",
                 lineHeight = 15.sp,
                 style = MaterialTheme.typography.bodyLarge.copy(
                     color = Color.Gray,
@@ -159,20 +159,17 @@ private fun ChatScreenPreview() {
                 ChattingRoom(
                     id = "1-11",
                     name = "User Name User Name User Name User Name User Name",
-                    previewMessage = "preview message preview message preview message preview message preview message",
-                    memberCount = 2
+                    memberIdList = listOf()
                 ),
                 ChattingRoom(
                     id = "1-2",
                     name = "User Name",
-                    previewMessage = "preview message",
-                    memberCount = 2
+                    memberIdList = listOf()
                 ),
                 ChattingRoom(
                     id = "1-3",
                     name = "User Name",
-                    previewMessage = "preview message",
-                    memberCount = 2
+                    memberIdList = listOf()
                 ),
             ),
             navigateToChattingRoom = {}

@@ -3,7 +3,10 @@ package net.example.officeclone.core.feature.user
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import net.example.officeclone.R
 import net.example.officeclone.core.model.ChattingRoom
 import net.example.officeclone.core.repository.repo.ChattingRoomRepository
 import javax.inject.Inject
@@ -13,16 +16,30 @@ class UserViewModel @Inject constructor(
     private val chattingRoomRepository: ChattingRoomRepository
 ) : ViewModel() {
 
-    fun createChattingRoom(id: String, name: String) {
+    private val _message: MutableStateFlow<Int?> = MutableStateFlow(null)
+    val message: StateFlow<Int?> = _message
+
+    fun createChattingRoom(
+        id: String,
+        name: String,
+        memberIdList: List<String>
+    ) {
         viewModelScope.launch {
-            chattingRoomRepository.createChattingRoom(
-                ChattingRoom(
-                    id = "1-$id",
-                    name = name,
-                    previewMessage = "",
-                    memberCount = 2
+            try {
+                val created = chattingRoomRepository.createChattingRoom(
+                    ChattingRoom(
+                        id = id,
+                        name = name,
+                        memberIdList = memberIdList
+                    )
                 )
-            )
+
+                if (created.isFailure) {
+                    _message.value = R.string.network_error
+                }
+            } catch (e: Exception) {
+                _message.value = R.string.network_error
+            }
         }
     }
 }

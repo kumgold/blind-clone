@@ -34,6 +34,7 @@ import androidx.compose.ui.window.DialogProperties
 import androidx.hilt.navigation.compose.hiltViewModel
 import net.example.officeclone.R
 import net.example.officeclone.core.model.Member
+import java.util.UUID
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -70,7 +71,7 @@ fun UserDialog(
                 modifier = Modifier
                     .clip(CircleShape)
                     .background(Color.Gray)
-                    .padding(10.dp)
+                    .padding(dimensionResource(R.dimen.default_margin))
                     .size(80.dp)
                     .align(Alignment.CenterHorizontally),
                 imageVector = Icons.Default.Person,
@@ -82,16 +83,19 @@ fun UserDialog(
 
             Column(
                 modifier = Modifier
-                    .clip(RoundedCornerShape(10.dp))
+                    .clip(RoundedCornerShape(dimensionResource(R.dimen.default_margin)))
                     .background(Color.LightGray)
-                    .padding(10.dp)
                     .clickable {
+                        val chattingRoomId = "1-${member.id}"
+
                         viewModel.createChattingRoom(
-                            id = member.id,
-                            name = member.name
+                            id = chattingRoomId,
+                            name = member.name,
+                            memberIdList = listOf("1", member.id)
                         )
-                        navigateToChattingRoom("1-${member.id}")
-                    },
+                        navigateToChattingRoom(chattingRoomId)
+                    }
+                    .padding(dimensionResource(R.dimen.default_margin)),
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {

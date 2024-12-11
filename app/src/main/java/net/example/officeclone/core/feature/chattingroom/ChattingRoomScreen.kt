@@ -17,8 +17,8 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.automirrored.filled.Send
@@ -33,22 +33,23 @@ import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
-import androidx.compose.ui.text.input.ImeAction
-import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.DialogProperties
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import kotlinx.coroutines.launch
 import net.example.officeclone.R
 import net.example.officeclone.core.model.Chat
 import net.example.officeclone.ui.compose.BubbleShape
@@ -80,8 +81,12 @@ private fun ChattingRoomScreen(
     sendChat: (String) -> Unit
 ) {
     BasicAlertDialog(
+        modifier = modifier.imePadding(),
         onDismissRequest = onDismiss,
-        properties = DialogProperties(usePlatformDefaultWidth = false)
+        properties = DialogProperties(
+            usePlatformDefaultWidth = false,
+            decorFitsSystemWindows = false
+        )
     ) {
         Column(
             modifier = modifier
@@ -89,6 +94,17 @@ private fun ChattingRoomScreen(
                 .padding(horizontal = dimensionResource(id = R.dimen.default_margin))
                 .fillMaxSize()
         ) {
+            val coroutineScope = rememberCoroutineScope()
+            val scrollState = rememberLazyListState()
+
+            LaunchedEffect(chatList.size) {
+                if (chatList.isNotEmpty()) {
+                    coroutineScope.launch {
+                        scrollState.animateScrollToItem(chatList.lastIndex)
+                    }
+                }
+            }
+
             TopAppBar(
                 title = {
                     Text("user name")
@@ -104,11 +120,15 @@ private fun ChattingRoomScreen(
                 }
             )
             LazyColumn(
-                modifier = Modifier
-                    .padding(horizontal = 10.dp)
+                modifier = modifier
                     .weight(1f)
+                    .padding(horizontal = dimensionResource(R.dimen.default_margin)),
+                state = scrollState
             ) {
-                items(chatList) { chat ->
+                items(
+                    items = chatList,
+                    key = { chat -> chat.id }
+                ) { chat ->
                     if (chat.memberId == "1") {
                         MyChattingMessage(chat)
                     } else {
@@ -117,8 +137,9 @@ private fun ChattingRoomScreen(
                 }
             }
             ChattingInput(
-                modifier = modifier.imePadding(),
-                sendChat = sendChat
+                sendChat = { id ->
+                    sendChat(id)
+                }
             )
         }
     }
@@ -198,10 +219,6 @@ private fun ChattingInput(
             onValueChange = {
                 message = it
             },
-            keyboardOptions = KeyboardOptions(
-                capitalization = KeyboardCapitalization.Sentences,
-                imeAction = ImeAction.Default,
-            ),
             colors = TextFieldDefaults.colors(
                 focusedContainerColor = MaterialTheme.colorScheme.background,
                 unfocusedContainerColor = MaterialTheme.colorScheme.background,
