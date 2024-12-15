@@ -10,12 +10,17 @@ import net.example.officeclone.core.database.model.asExternal
 import net.example.officeclone.core.model.Chat
 import net.example.officeclone.core.network.data.NetworkChat
 import net.example.officeclone.core.network.data.asEntity
+import net.example.officeclone.core.network.retrofit.OfficeWebSocket
 import net.example.officeclone.core.network.retrofit.RetrofitOfficeNetwork
+import okhttp3.Response
+import okhttp3.WebSocket
+import okhttp3.WebSocketListener
 import java.util.Calendar
 import javax.inject.Inject
 
 class DefaultChatRepository @Inject constructor(
     private val network: RetrofitOfficeNetwork,
+    private val webSocket: OfficeWebSocket,
     private val chatDao: ChatDao
 ) : ChatRepository {
     override fun getChatList(chattingRoomId: String): Flow<List<Chat>> {
@@ -51,6 +56,22 @@ class DefaultChatRepository @Inject constructor(
             memberId = memberId,
             chattingRoomId = chattingRoomId
         )
+
+        webSocket.connect(object : WebSocketListener() {
+            override fun onMessage(webSocket: WebSocket, text: String) {
+                super.onMessage(webSocket, text)
+
+                println("on message = $text")
+            }
+
+            override fun onFailure(webSocket: WebSocket, t: Throwable, response: Response?) {
+                super.onFailure(webSocket, t, response)
+
+                println("on failure")
+            }
+        })
+
+        webSocket.sendMessage(message)
 
         return try {
             chatDao.insertChat(chat.asEntity())

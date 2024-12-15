@@ -5,6 +5,8 @@ import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import net.example.officeclone.core.network.retrofit.OfficeNetworkDataSource
+import net.example.officeclone.core.network.retrofit.OfficeWebSocket
+import net.example.officeclone.core.network.retrofit.OfficeWebSocketDataSource
 import net.example.officeclone.core.network.retrofit.RetrofitOfficeNetwork
 
 @Module
@@ -12,5 +14,8 @@ import net.example.officeclone.core.network.retrofit.RetrofitOfficeNetwork
 abstract class NetworkModule {
 
     @Binds
-    abstract fun binds(impl: RetrofitOfficeNetwork): OfficeNetworkDataSource
+    abstract fun bindsNetworkDataSource(impl: RetrofitOfficeNetwork): OfficeNetworkDataSource
+
+    @Binds
+    abstract fun bindsWebSocketDataSource(impl: OfficeWebSocket): OfficeWebSocketDataSource
 }
