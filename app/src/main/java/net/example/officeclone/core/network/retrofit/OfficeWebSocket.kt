@@ -28,7 +28,7 @@ class OfficeWebSocket @Inject constructor() : OfficeWebSocketDataSource {
         Log.d(WEB_SOCKET, "connect()")
 
         val request = Request.Builder()
-            .url("http://10.0.2.2:8080")
+            .url("ws://10.0.2.2:8080/chats")
             .build()
 
         webSocket = okhttp.newWebSocket(request, listener)
