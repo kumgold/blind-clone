@@ -57,19 +57,7 @@ class DefaultChatRepository @Inject constructor(
             chattingRoomId = chattingRoomId
         )
 
-        webSocket.connect(object : WebSocketListener() {
-            override fun onMessage(webSocket: WebSocket, text: String) {
-                super.onMessage(webSocket, text)
-
-                println("on message = $text")
-            }
-
-            override fun onFailure(webSocket: WebSocket, t: Throwable, response: Response?) {
-                super.onFailure(webSocket, t, response)
-
-                println("on failure")
-            }
-        })
+        webSocket.connect()
 
         webSocket.sendMessage(message)
 

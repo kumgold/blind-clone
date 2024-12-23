@@ -3,6 +3,7 @@ package net.example.officeclone.core.network.retrofit
 import android.util.Log
 import okhttp3.OkHttpClient
 import okhttp3.Request
+import okhttp3.Response
 import okhttp3.WebSocket
 import okhttp3.WebSocketListener
 import org.json.JSONObject
@@ -24,7 +25,33 @@ class OfficeWebSocket @Inject constructor() : OfficeWebSocketDataSource {
         .pingInterval(30, TimeUnit.SECONDS)
         .build()
 
-    override fun connect(listener: WebSocketListener) {
+    private val listener = object : WebSocketListener() {
+        override fun onOpen(webSocket: WebSocket, response: Response) {
+            super.onOpen(webSocket, response)
+
+            println("on open = $response")
+        }
+
+        override fun onMessage(webSocket: WebSocket, text: String) {
+            super.onMessage(webSocket, text)
+
+            println("on message = $text")
+        }
+
+        override fun onClosed(webSocket: WebSocket, code: Int, reason: String) {
+            super.onClosed(webSocket, code, reason)
+
+            println("on closed = $reason")
+        }
+
+        override fun onFailure(webSocket: WebSocket, t: Throwable, response: Response?) {
+            super.onFailure(webSocket, t, response)
+
+            println("on failure $response")
+        }
+    }
+
+    override fun connect() {
         Log.d(WEB_SOCKET, "connect()")
 
         val request = Request.Builder()

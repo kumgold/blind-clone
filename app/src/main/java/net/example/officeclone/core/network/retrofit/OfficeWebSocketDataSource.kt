@@ -1,9 +1,7 @@
 package net.example.officeclone.core.network.retrofit
 
-import okhttp3.WebSocketListener
-
 interface OfficeWebSocketDataSource {
-    fun connect(listener: WebSocketListener)
+    fun connect()
     fun disconnect()
     fun sendMessage(message: String)
 }
