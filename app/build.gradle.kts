@@ -10,11 +10,11 @@ plugins {
 }
 
 android {
-    namespace = "net.example.officeclone"
+    namespace = "net.example.blindclone"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "net.example.officeclone"
+        applicationId = "net.example.blindclone"
         minSdk = 26
         targetSdk = 35
         versionCode = 1
