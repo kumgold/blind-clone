@@ -6,7 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import dagger.hilt.android.AndroidEntryPoint
 import net.example.officeclone.core.data.ConnectivityManagerNetworkMonitor
-import net.example.officeclone.navigation.ui.OfficeApp
+import net.example.officeclone.navigation.ui.BlindApp
 import net.example.officeclone.navigation.ui.rememberOfficeAppState
 import net.example.officeclone.ui.theme.OfficeCloneTheme
 
@@ -22,7 +22,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             val appState = rememberOfficeAppState(networkMonitor = networkMonitor)
             OfficeCloneTheme {
-                OfficeApp(appState = appState)
+                BlindApp(appState = appState)
             }
         }
     }

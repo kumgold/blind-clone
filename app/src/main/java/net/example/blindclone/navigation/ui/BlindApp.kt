@@ -14,13 +14,13 @@ import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hasRoute
 import androidx.navigation.NavDestination.Companion.hierarchy
 import net.example.officeclone.core.design.OfficeNavigationSuiteScaffold
-import net.example.officeclone.navigation.nav.OfficeNavHost
+import net.example.officeclone.navigation.nav.BlindNavHost
 import kotlin.reflect.KClass
 
 @Composable
-internal fun OfficeApp(
+internal fun BlindApp(
     modifier: Modifier = Modifier,
-    appState: OfficeAppState,
+    appState: BlindAppState,
     windowAdaptiveInfo: WindowAdaptiveInfo = currentWindowAdaptiveInfo(),
 ) {
     val currentDestination = appState.currentDestination
@@ -53,7 +53,7 @@ internal fun OfficeApp(
         Scaffold(
             modifier = modifier
         ) { padding ->
-            OfficeNavHost(
+            BlindNavHost(
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(padding),

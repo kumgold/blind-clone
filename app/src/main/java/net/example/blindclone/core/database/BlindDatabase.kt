@@ -21,7 +21,7 @@ import net.example.officeclone.core.database.model.MemberEntity
     exportSchema = true
 )
 @TypeConverters(ListStringConverter::class)
-internal abstract class OfficeDatabase : RoomDatabase() {
+internal abstract class BlindDatabase : RoomDatabase() {
     abstract fun memberDao(): MemberDao
     abstract fun chattingRoomDao(): ChattingRoomDao
     abstract fun chatDao(): ChatDao

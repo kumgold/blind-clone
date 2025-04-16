@@ -9,12 +9,12 @@ import net.example.officeclone.core.feature.settings.nav.settingsScreen
 import net.example.officeclone.core.feature.team.nav.TeamRoute
 import net.example.officeclone.core.feature.team.nav.teamScreen
 import net.example.officeclone.core.feature.work.nav.workScreen
-import net.example.officeclone.navigation.ui.OfficeAppState
+import net.example.officeclone.navigation.ui.BlindAppState
 
 @Composable
-fun OfficeNavHost(
+fun BlindNavHost(
     modifier: Modifier = Modifier,
-    appState: OfficeAppState
+    appState: BlindAppState
 ) {
     val navController = appState.navController
 

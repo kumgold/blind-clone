@@ -32,13 +32,13 @@ fun rememberOfficeAppState(
     networkMonitor: NetworkMonitor,
     coroutineScope: CoroutineScope = rememberCoroutineScope(),
     navController: NavHostController = rememberNavController()
-): OfficeAppState {
+): BlindAppState {
     return remember(
         networkMonitor,
         coroutineScope,
         networkMonitor
     ) {
-        OfficeAppState(
+        BlindAppState(
             networkMonitor = networkMonitor,
             coroutineScope = coroutineScope,
             navController = navController
@@ -47,7 +47,7 @@ fun rememberOfficeAppState(
 }
 
 @Stable
-class OfficeAppState(
+class BlindAppState(
     val navController: NavHostController,
     coroutineScope: CoroutineScope,
     networkMonitor: NetworkMonitor

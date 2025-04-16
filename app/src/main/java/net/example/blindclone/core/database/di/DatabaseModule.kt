@@ -7,7 +7,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import net.example.officeclone.core.database.OfficeDatabase
+import net.example.officeclone.core.database.BlindDatabase
 import javax.inject.Singleton
 
 @Module
@@ -17,9 +17,9 @@ internal object DatabaseModule {
     @Singleton
     fun provideOfficeDatabase(
         @ApplicationContext context: Context
-    ): OfficeDatabase = Room.databaseBuilder(
+    ): BlindDatabase = Room.databaseBuilder(
         context,
-        OfficeDatabase::class.java,
+        BlindDatabase::class.java,
         "office-database"
     ).build()
 }
