@@ -19,6 +19,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "OfficeClone"
+rootProject.name = "Blind-Clone"
 include(":app")
  
