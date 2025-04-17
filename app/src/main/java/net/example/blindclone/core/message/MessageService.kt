@@ -1,4 +1,4 @@
-package net.example.officeclone.core.message
+package net.example.blindclone.core.message
 
 class MessageService {
 }

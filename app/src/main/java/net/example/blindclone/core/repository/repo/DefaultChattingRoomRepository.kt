@@ -1,18 +1,17 @@
-package net.example.officeclone.core.repository.repo
+package net.example.blindclone.core.repository.repo
 
-import android.net.http.NetworkException
 import android.util.Log
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-import net.example.officeclone.core.database.dao.ChattingRoomDao
-import net.example.officeclone.core.database.model.ChattingRoomEntity
-import net.example.officeclone.core.database.model.asExternal
-import net.example.officeclone.core.model.ChattingRoom
-import net.example.officeclone.core.model.asEntity
-import net.example.officeclone.core.model.asNetwork
-import net.example.officeclone.core.network.data.NetworkChattingRoom
-import net.example.officeclone.core.network.data.asEntity
-import net.example.officeclone.core.network.retrofit.RetrofitOfficeNetwork
+import net.example.blindclone.core.database.dao.ChattingRoomDao
+import net.example.blindclone.core.database.model.ChattingRoomEntity
+import net.example.blindclone.core.database.model.asExternal
+import net.example.blindclone.core.model.ChattingRoom
+import net.example.blindclone.core.model.asEntity
+import net.example.blindclone.core.model.asNetwork
+import net.example.blindclone.core.network.data.NetworkChattingRoom
+import net.example.blindclone.core.network.data.asEntity
+import net.example.blindclone.core.network.retrofit.RetrofitOfficeNetwork
 import okio.IOException
 import javax.inject.Inject
 

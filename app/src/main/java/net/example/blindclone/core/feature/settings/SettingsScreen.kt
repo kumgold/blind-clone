@@ -1,4 +1,4 @@
-package net.example.officeclone.core.feature.settings
+package net.example.blindclone.core.feature.settings
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier

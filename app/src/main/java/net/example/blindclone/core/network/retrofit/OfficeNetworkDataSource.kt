@@ -1,9 +1,8 @@
-package net.example.officeclone.core.network.retrofit
+package net.example.blindclone.core.network.retrofit
 
-import net.example.officeclone.core.network.data.NetworkChat
-import net.example.officeclone.core.network.data.NetworkChattingRoom
-import net.example.officeclone.core.network.data.NetworkMember
-import retrofit2.http.Body
+import net.example.blindclone.core.network.data.NetworkChat
+import net.example.blindclone.core.network.data.NetworkChattingRoom
+import net.example.blindclone.core.network.data.NetworkMember
 
 interface OfficeNetworkDataSource {
     suspend fun getTeamMembers(): List<NetworkMember>

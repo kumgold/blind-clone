@@ -1,4 +1,4 @@
-package net.example.officeclone.core.data
+package net.example.blindclone.core.data
 
 import kotlinx.coroutines.flow.Flow
 

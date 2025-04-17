@@ -1,4 +1,4 @@
-package net.example.officeclone.navigation.ui
+package net.example.blindclone.navigation.ui
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -13,8 +13,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hasRoute
 import androidx.navigation.NavDestination.Companion.hierarchy
-import net.example.officeclone.core.design.OfficeNavigationSuiteScaffold
+import net.example.blindclone.core.design.OfficeNavigationSuiteScaffold
 import net.example.officeclone.navigation.nav.BlindNavHost
+import net.example.officeclone.navigation.ui.BlindAppState
 import kotlin.reflect.KClass
 
 @Composable

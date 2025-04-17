@@ -1,4 +1,4 @@
-package net.example.officeclone.core.feature.user
+package net.example.blindclone.core.feature.user
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -32,9 +32,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.DialogProperties
 import androidx.hilt.navigation.compose.hiltViewModel
-import net.example.officeclone.R
-import net.example.officeclone.core.model.Member
-import java.util.UUID
+import net.example.blindclone.R
+import net.example.blindclone.core.model.Member
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

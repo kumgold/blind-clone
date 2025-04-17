@@ -1,8 +1,8 @@
-package net.example.officeclone.core.repository.repo
+package net.example.blindclone.core.repository.repo
 
 import kotlinx.coroutines.flow.Flow
-import net.example.officeclone.common.data.Result
-import net.example.officeclone.core.model.Chat
+import net.example.blindclone.common.data.Result
+import net.example.blindclone.core.model.Chat
 
 interface ChatRepository {
     fun getChatList(chattingRoomId: String): Flow<List<Chat>>

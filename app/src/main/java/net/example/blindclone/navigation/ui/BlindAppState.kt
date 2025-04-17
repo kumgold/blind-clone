@@ -15,17 +15,17 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
-import net.example.officeclone.core.data.NetworkMonitor
-import net.example.officeclone.core.feature.chattingroomlist.nav.navigateToChattingRoomList
-import net.example.officeclone.core.feature.chattingroom.nav.navigateToChattingRoom
-import net.example.officeclone.core.feature.settings.nav.navigateToSettings
-import net.example.officeclone.core.feature.team.nav.navigateToTeam
-import net.example.officeclone.core.feature.work.nav.navigateToWork
-import net.example.officeclone.navigation.nav.TopLevelDestination
-import net.example.officeclone.navigation.nav.TopLevelDestination.CHAT
-import net.example.officeclone.navigation.nav.TopLevelDestination.SETTINGS
-import net.example.officeclone.navigation.nav.TopLevelDestination.TEAM
-import net.example.officeclone.navigation.nav.TopLevelDestination.WORK
+import net.example.blindclone.core.data.NetworkMonitor
+import net.example.blindclone.core.feature.chattingroomlist.nav.navigateToChattingRoomList
+import net.example.blindclone.core.feature.chattingroom.nav.navigateToChattingRoom
+import net.example.blindclone.core.feature.settings.nav.navigateToSettings
+import net.example.blindclone.core.feature.team.nav.navigateToTeam
+import net.example.blindclone.core.feature.work.nav.navigateToWork
+import net.example.blindclone.navigation.nav.TopLevelDestination
+import net.example.blindclone.navigation.nav.TopLevelDestination.CHAT
+import net.example.blindclone.navigation.nav.TopLevelDestination.SETTINGS
+import net.example.blindclone.navigation.nav.TopLevelDestination.TEAM
+import net.example.blindclone.navigation.nav.TopLevelDestination.WORK
 
 @Composable
 fun rememberOfficeAppState(

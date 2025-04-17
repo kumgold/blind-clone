@@ -1,4 +1,4 @@
-package net.example.officeclone.core.feature.chattingroomlist
+package net.example.blindclone.core.feature.chattingroomlist
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -21,9 +21,6 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -38,9 +35,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import net.example.officeclone.R
-import net.example.officeclone.core.feature.chattingroom.ChattingRoomScreen
-import net.example.officeclone.core.model.ChattingRoom
+import net.example.blindclone.R
+import net.example.blindclone.core.model.ChattingRoom
 
 @Composable
 fun ChattingRoomListScreen(

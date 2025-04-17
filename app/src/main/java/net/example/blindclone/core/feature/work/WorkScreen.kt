@@ -1,4 +1,4 @@
-package net.example.officeclone.core.feature.work
+package net.example.blindclone.core.feature.work
 
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable

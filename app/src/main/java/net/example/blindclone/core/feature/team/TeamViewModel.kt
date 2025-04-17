@@ -1,4 +1,4 @@
-package net.example.officeclone.core.feature.team
+package net.example.blindclone.core.feature.team
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -9,11 +9,10 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
-import net.example.officeclone.R
-import net.example.officeclone.common.data.Result
-import net.example.officeclone.common.data.asResult
-import net.example.officeclone.core.model.Member
-import net.example.officeclone.core.repository.repo.TeamMemberRepository
+import net.example.blindclone.R
+import net.example.blindclone.core.model.Member
+import net.example.blindclone.core.repository.repo.TeamMemberRepository
+import net.example.blindclone.common.data.Result
 import javax.inject.Inject
 
 data class TeamUiState(

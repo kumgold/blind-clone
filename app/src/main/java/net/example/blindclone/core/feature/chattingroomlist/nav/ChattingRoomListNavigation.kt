@@ -1,11 +1,11 @@
-package net.example.officeclone.core.feature.chattingroomlist.nav
+package net.example.blindclone.core.feature.chattingroomlist.nav
 
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
 import kotlinx.serialization.Serializable
-import net.example.officeclone.core.feature.chattingroomlist.ChattingRoomListScreen
+import net.example.blindclone.core.feature.chattingroomlist.ChattingRoomListScreen
 
 @Serializable data object ChattingRoomListRoute
 

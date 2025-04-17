@@ -1,4 +1,4 @@
-package net.example.officeclone.navigation.nav
+package net.example.blindclone.navigation.nav
 
 import androidx.annotation.StringRes
 import androidx.compose.material.icons.Icons
@@ -12,10 +12,10 @@ import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material.icons.outlined.WorkOutline
 import androidx.compose.ui.graphics.vector.ImageVector
 import net.example.blindclone.R
-import net.example.officeclone.core.feature.chattingroomlist.nav.ChattingRoomListRoute
-import net.example.officeclone.core.feature.settings.nav.SettingsRoute
-import net.example.officeclone.core.feature.team.nav.TeamRoute
-import net.example.officeclone.core.feature.work.nav.WorkRoute
+import net.example.blindclone.core.feature.chattingroomlist.nav.ChattingRoomListRoute
+import net.example.blindclone.core.feature.settings.nav.SettingsRoute
+import net.example.blindclone.core.feature.team.nav.TeamRoute
+import net.example.blindclone.core.feature.work.nav.WorkRoute
 import kotlin.reflect.KClass
 
 enum class TopLevelDestination(

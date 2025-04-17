@@ -1,4 +1,4 @@
-package net.example.officeclone.common.data
+package net.example.blindclone.common.data
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch

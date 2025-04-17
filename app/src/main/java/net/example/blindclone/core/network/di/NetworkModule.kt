@@ -1,13 +1,13 @@
-package net.example.officeclone.core.network.di
+package net.example.blindclone.core.network.di
 
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import net.example.officeclone.core.network.retrofit.OfficeNetworkDataSource
-import net.example.officeclone.core.network.retrofit.OfficeWebSocket
-import net.example.officeclone.core.network.retrofit.OfficeWebSocketDataSource
-import net.example.officeclone.core.network.retrofit.RetrofitOfficeNetwork
+import net.example.blindclone.core.network.retrofit.OfficeNetworkDataSource
+import net.example.blindclone.core.network.retrofit.OfficeWebSocket
+import net.example.blindclone.core.network.retrofit.OfficeWebSocketDataSource
+import net.example.blindclone.core.network.retrofit.RetrofitOfficeNetwork
 
 @Module
 @InstallIn(SingletonComponent::class)

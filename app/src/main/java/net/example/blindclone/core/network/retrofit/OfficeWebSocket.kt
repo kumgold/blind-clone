@@ -1,4 +1,4 @@
-package net.example.officeclone.core.network.retrofit
+package net.example.blindclone.core.network.retrofit
 
 import android.util.Log
 import okhttp3.OkHttpClient

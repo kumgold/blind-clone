@@ -1,6 +1,6 @@
-package net.example.officeclone.core.network.data
+package net.example.blindclone.core.network.data
 
-import net.example.officeclone.core.database.model.ChattingRoomEntity
+import net.example.blindclone.core.database.model.ChattingRoomEntity
 
 data class NetworkChattingRoom(
     val id: String,

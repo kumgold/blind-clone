@@ -1,4 +1,4 @@
-package net.example.officeclone.core.feature.team
+package net.example.blindclone.core.feature.team
 
 import android.util.Log
 import androidx.compose.foundation.Image
@@ -53,9 +53,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import net.example.officeclone.R
-import net.example.officeclone.core.feature.user.UserDialog
-import net.example.officeclone.core.model.Member
+import net.example.blindclone.R
+import net.example.blindclone.core.feature.user.UserDialog
+import net.example.blindclone.core.model.Member
 
 @Composable
 fun TeamScreen(

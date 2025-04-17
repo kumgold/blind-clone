@@ -1,4 +1,4 @@
-package net.example.officeclone.core.database.converter
+package net.example.blindclone.core.database.converter
 
 import androidx.room.TypeConverter
 import com.google.gson.Gson

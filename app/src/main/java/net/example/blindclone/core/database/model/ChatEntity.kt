@@ -1,8 +1,8 @@
-package net.example.officeclone.core.database.model
+package net.example.blindclone.core.database.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import net.example.officeclone.core.model.Chat
+import net.example.blindclone.core.model.Chat
 
 @Entity(tableName = "chats")
 data class ChatEntity(

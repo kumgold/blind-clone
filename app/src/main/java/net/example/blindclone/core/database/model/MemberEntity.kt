@@ -1,9 +1,9 @@
-package net.example.officeclone.core.database.model
+package net.example.blindclone.core.database.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import net.example.officeclone.core.model.Member
+import net.example.blindclone.core.model.Member
 
 @Entity(tableName = "members")
 data class MemberEntity(

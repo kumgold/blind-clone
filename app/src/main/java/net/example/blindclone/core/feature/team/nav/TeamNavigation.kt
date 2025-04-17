@@ -1,12 +1,11 @@
-package net.example.officeclone.core.feature.team.nav
+package net.example.blindclone.core.feature.team.nav
 
-import androidx.compose.material3.SnackbarHostState
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
 import kotlinx.serialization.Serializable
-import net.example.officeclone.core.feature.team.TeamScreen
+import net.example.blindclone.core.feature.team.TeamScreen
 
 
 /**

@@ -1,4 +1,4 @@
-package net.example.officeclone.ui.theme
+package net.example.blindclone.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

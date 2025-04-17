@@ -1,4 +1,4 @@
-package net.example.officeclone.core.feature.user
+package net.example.blindclone.core.feature.user
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -6,9 +6,9 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import net.example.officeclone.R
-import net.example.officeclone.core.model.ChattingRoom
-import net.example.officeclone.core.repository.repo.ChattingRoomRepository
+import net.example.blindclone.R
+import net.example.blindclone.core.model.ChattingRoom
+import net.example.blindclone.core.repository.repo.ChattingRoomRepository
 import javax.inject.Inject
 
 @HiltViewModel

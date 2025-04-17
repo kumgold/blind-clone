@@ -3,12 +3,13 @@ package net.example.officeclone.navigation.nav
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
-import net.example.officeclone.core.feature.chattingroom.nav.chattingRoom
-import net.example.officeclone.core.feature.chattingroomlist.nav.chattingRoomListScreen
-import net.example.officeclone.core.feature.settings.nav.settingsScreen
-import net.example.officeclone.core.feature.team.nav.TeamRoute
-import net.example.officeclone.core.feature.team.nav.teamScreen
-import net.example.officeclone.core.feature.work.nav.workScreen
+import net.example.blindclone.navigation.nav.TopLevelDestination
+import net.example.blindclone.core.feature.chattingroom.nav.chattingRoom
+import net.example.blindclone.core.feature.chattingroomlist.nav.chattingRoomListScreen
+import net.example.blindclone.core.feature.settings.nav.settingsScreen
+import net.example.blindclone.core.feature.team.nav.TeamRoute
+import net.example.blindclone.core.feature.team.nav.teamScreen
+import net.example.blindclone.core.feature.work.nav.workScreen
 import net.example.officeclone.navigation.ui.BlindAppState
 
 @Composable

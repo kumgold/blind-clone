@@ -1,4 +1,4 @@
-package net.example.officeclone.core.feature.login
+package net.example.blindclone.core.feature.login
 
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel

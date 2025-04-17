@@ -1,4 +1,4 @@
-package net.example.officeclone
+package net.example.blindclone
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp

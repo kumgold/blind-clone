@@ -1,4 +1,4 @@
-package net.example.officeclone.core.feature.chattingroom
+package net.example.blindclone.core.feature.chattingroom
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -50,10 +50,10 @@ import androidx.compose.ui.window.DialogProperties
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import kotlinx.coroutines.launch
-import net.example.officeclone.R
-import net.example.officeclone.core.model.Chat
-import net.example.officeclone.ui.compose.BubbleShape
-import net.example.officeclone.ui.compose.MessageDirection
+import net.example.blindclone.R
+import net.example.blindclone.core.model.Chat
+import net.example.blindclone.ui.compose.BubbleShape
+import net.example.blindclone.ui.compose.MessageDirection
 
 
 @Composable

@@ -1,13 +1,13 @@
-package net.example.officeclone.core.database.di
+package net.example.blindclone.core.database.di
 
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import net.example.officeclone.core.database.BlindDatabase
-import net.example.officeclone.core.database.dao.ChatDao
-import net.example.officeclone.core.database.dao.ChattingRoomDao
-import net.example.officeclone.core.database.dao.MemberDao
+import net.example.blindclone.core.database.BlindDatabase
+import net.example.blindclone.core.database.dao.ChatDao
+import net.example.blindclone.core.database.dao.ChattingRoomDao
+import net.example.blindclone.core.database.dao.MemberDao
 
 @Module
 @InstallIn(SingletonComponent::class)

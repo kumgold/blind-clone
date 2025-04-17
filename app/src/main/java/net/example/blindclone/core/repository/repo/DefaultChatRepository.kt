@@ -1,20 +1,17 @@
-package net.example.officeclone.core.repository.repo
+package net.example.blindclone.core.repository.repo
 
 import android.util.Log
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-import net.example.officeclone.common.data.Result
-import net.example.officeclone.core.database.dao.ChatDao
-import net.example.officeclone.core.database.model.ChatEntity
-import net.example.officeclone.core.database.model.asExternal
-import net.example.officeclone.core.model.Chat
-import net.example.officeclone.core.network.data.NetworkChat
-import net.example.officeclone.core.network.data.asEntity
-import net.example.officeclone.core.network.retrofit.OfficeWebSocket
-import net.example.officeclone.core.network.retrofit.RetrofitOfficeNetwork
-import okhttp3.Response
-import okhttp3.WebSocket
-import okhttp3.WebSocketListener
+import net.example.blindclone.common.data.Result
+import net.example.blindclone.core.database.dao.ChatDao
+import net.example.blindclone.core.database.model.ChatEntity
+import net.example.blindclone.core.database.model.asExternal
+import net.example.blindclone.core.model.Chat
+import net.example.blindclone.core.network.data.NetworkChat
+import net.example.blindclone.core.network.data.asEntity
+import net.example.blindclone.core.network.retrofit.OfficeWebSocket
+import net.example.blindclone.core.network.retrofit.RetrofitOfficeNetwork
 import java.util.Calendar
 import javax.inject.Inject
 

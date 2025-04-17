@@ -1,12 +1,12 @@
-package net.example.officeclone
+package net.example.blindclone
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import dagger.hilt.android.AndroidEntryPoint
-import net.example.officeclone.core.data.ConnectivityManagerNetworkMonitor
-import net.example.officeclone.navigation.ui.BlindApp
+import net.example.blindclone.core.data.ConnectivityManagerNetworkMonitor
+import net.example.blindclone.navigation.ui.BlindApp
 import net.example.officeclone.navigation.ui.rememberOfficeAppState
 import net.example.officeclone.ui.theme.OfficeCloneTheme
 

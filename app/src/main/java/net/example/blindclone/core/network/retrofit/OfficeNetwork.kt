@@ -1,9 +1,9 @@
-package net.example.officeclone.core.network.retrofit
+package net.example.blindclone.core.network.retrofit
 
 import kotlinx.serialization.Serializable
-import net.example.officeclone.core.network.data.NetworkChat
-import net.example.officeclone.core.network.data.NetworkChattingRoom
-import net.example.officeclone.core.network.data.NetworkMember
+import net.example.blindclone.core.network.data.NetworkChat
+import net.example.blindclone.core.network.data.NetworkChattingRoom
+import net.example.blindclone.core.network.data.NetworkMember
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit

@@ -1,4 +1,4 @@
-package net.example.officeclone.core.model
+package net.example.blindclone.core.model
 
 data class Chat(
     val id: String,

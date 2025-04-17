@@ -1,4 +1,4 @@
-package net.example.officeclone.ui.compose
+package net.example.blindclone.ui.compose
 
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Outline

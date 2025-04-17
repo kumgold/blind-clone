@@ -1,4 +1,4 @@
-package net.example.officeclone.core.design
+package net.example.blindclone.core.design
 
 import androidx.compose.material3.adaptive.WindowAdaptiveInfo
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo

@@ -1,4 +1,4 @@
-package net.example.officeclone.core.feature.chattingroomlist
+package net.example.blindclone.core.feature.chattingroomlist
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -6,7 +6,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
-import net.example.officeclone.core.repository.repo.ChattingRoomRepository
+import net.example.blindclone.core.repository.repo.ChattingRoomRepository
 import javax.inject.Inject
 
 @HiltViewModel

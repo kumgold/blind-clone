@@ -1,4 +1,4 @@
-package net.example.officeclone.core.feature.login
+package net.example.blindclone.core.feature.login
 
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
@@ -26,7 +26,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import net.example.officeclone.R
+import net.example.blindclone.R
 
 @Composable
 fun LoginScreen() {
