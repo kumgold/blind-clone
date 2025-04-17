@@ -1,4 +1,4 @@
-package net.example.officeclone.navigation.ui
+package net.example.blindclone.navigation.ui
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable

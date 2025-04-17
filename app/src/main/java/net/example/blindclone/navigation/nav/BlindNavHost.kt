@@ -1,4 +1,4 @@
-package net.example.officeclone.navigation.nav
+package net.example.blindclone.navigation.nav
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -10,7 +10,7 @@ import net.example.blindclone.core.feature.settings.nav.settingsScreen
 import net.example.blindclone.core.feature.team.nav.TeamRoute
 import net.example.blindclone.core.feature.team.nav.teamScreen
 import net.example.blindclone.core.feature.work.nav.workScreen
-import net.example.officeclone.navigation.ui.BlindAppState
+import net.example.blindclone.navigation.ui.BlindAppState
 
 @Composable
 fun BlindNavHost(

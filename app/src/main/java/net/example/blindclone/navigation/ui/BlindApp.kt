@@ -14,8 +14,7 @@ import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hasRoute
 import androidx.navigation.NavDestination.Companion.hierarchy
 import net.example.blindclone.core.design.OfficeNavigationSuiteScaffold
-import net.example.officeclone.navigation.nav.BlindNavHost
-import net.example.officeclone.navigation.ui.BlindAppState
+import net.example.blindclone.navigation.nav.BlindNavHost
 import kotlin.reflect.KClass
 
 @Composable
