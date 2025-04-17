@@ -1,10 +1,10 @@
-package net.example.blindclone.core.feature.work
+package net.example.blindclone.core.feature.channel
 
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class WorkViewModel @Inject constructor() : ViewModel() {
+class ChannelViewModel @Inject constructor() : ViewModel() {
 
 }

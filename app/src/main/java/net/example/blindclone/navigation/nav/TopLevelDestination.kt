@@ -2,20 +2,24 @@ package net.example.blindclone.navigation.nav
 
 import androidx.annotation.StringRes
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ChatBubble
-import androidx.compose.material.icons.filled.Person
-import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material.icons.filled.Domain
+import androidx.compose.material.icons.filled.GridView
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.Work
-import androidx.compose.material.icons.outlined.ChatBubbleOutline
-import androidx.compose.material.icons.outlined.PersonOutline
-import androidx.compose.material.icons.outlined.Settings
+import androidx.compose.material.icons.outlined.Domain
+import androidx.compose.material.icons.outlined.GridView
+import androidx.compose.material.icons.outlined.Home
+import androidx.compose.material.icons.outlined.Notifications
+import androidx.compose.material.icons.outlined.Work
 import androidx.compose.material.icons.outlined.WorkOutline
 import androidx.compose.ui.graphics.vector.ImageVector
 import net.example.blindclone.R
-import net.example.blindclone.core.feature.chattingroomlist.nav.ChattingRoomListRoute
-import net.example.blindclone.core.feature.settings.nav.SettingsRoute
-import net.example.blindclone.core.feature.team.nav.TeamRoute
-import net.example.blindclone.core.feature.work.nav.WorkRoute
+import net.example.blindclone.core.feature.corporation.nav.CorporationRoute
+import net.example.blindclone.core.feature.employment.nav.EmploymentRoute
+import net.example.blindclone.core.feature.home.nav.HomeRoute
+import net.example.blindclone.core.feature.channel.nav.ChannelRoute
+import net.example.blindclone.core.feature.notification.nav.NotificationRoute
 import kotlin.reflect.KClass
 
 enum class TopLevelDestination(
@@ -24,28 +28,34 @@ enum class TopLevelDestination(
     @StringRes val iconTextId: Int,
     val route: KClass<*>
 ) {
-    TEAM(
-        selectedIcon = Icons.Default.Person,
-        unselectedIcon = Icons.Outlined.PersonOutline,
-        iconTextId = R.string.team,
-        route = TeamRoute::class
+    HOME(
+        selectedIcon = Icons.Filled.Home,
+        unselectedIcon = Icons.Outlined.Home,
+        iconTextId = R.string.home,
+        route = HomeRoute::class
     ),
-    CHAT(
-        selectedIcon = Icons.Default.ChatBubble,
-        unselectedIcon = Icons.Outlined.ChatBubbleOutline,
-        iconTextId = R.string.chat,
-        route = ChattingRoomListRoute::class
+    CORPORATION(
+        selectedIcon = Icons.Filled.Domain,
+        unselectedIcon = Icons.Outlined.Domain,
+        iconTextId = R.string.corporation,
+        route = CorporationRoute::class
     ),
-    WORK(
-        selectedIcon = Icons.Default.Work,
+    CHANNEL(
+        selectedIcon = Icons.Filled.GridView,
+        unselectedIcon = Icons.Outlined.GridView,
+        iconTextId = R.string.channel,
+        route = ChannelRoute::class
+    ),
+    EMPLOYMENT(
+        selectedIcon = Icons.Filled.Work,
         unselectedIcon = Icons.Outlined.WorkOutline,
-        iconTextId = R.string.work,
-        route = WorkRoute::class
+        iconTextId = R.string.employment,
+        route = EmploymentRoute::class
     ),
-    SETTINGS(
-        selectedIcon = Icons.Default.Settings,
-        unselectedIcon = Icons.Outlined.Settings,
-        iconTextId = R.string.settings,
-        route = SettingsRoute::class
+    NOTIFICATION(
+        selectedIcon = Icons.Filled.Notifications,
+        unselectedIcon = Icons.Outlined.Notifications,
+        iconTextId = R.string.notification,
+        route = NotificationRoute::class
     )
 }

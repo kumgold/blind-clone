@@ -16,16 +16,17 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import net.example.blindclone.core.data.NetworkMonitor
-import net.example.blindclone.core.feature.chattingroomlist.nav.navigateToChattingRoomList
-import net.example.blindclone.core.feature.chattingroom.nav.navigateToChattingRoom
-import net.example.blindclone.core.feature.settings.nav.navigateToSettings
-import net.example.blindclone.core.feature.team.nav.navigateToTeam
-import net.example.blindclone.core.feature.work.nav.navigateToWork
+import net.example.blindclone.core.feature.channel.nav.navigateToChannel
+import net.example.blindclone.core.feature.corporation.nav.navigateToCorporation
+import net.example.blindclone.core.feature.employment.nav.navigateToEmployment
+import net.example.blindclone.core.feature.home.nav.navigateToHome
+import net.example.blindclone.core.feature.notification.nav.navigateToNotification
 import net.example.blindclone.navigation.nav.TopLevelDestination
-import net.example.blindclone.navigation.nav.TopLevelDestination.CHAT
-import net.example.blindclone.navigation.nav.TopLevelDestination.SETTINGS
-import net.example.blindclone.navigation.nav.TopLevelDestination.TEAM
-import net.example.blindclone.navigation.nav.TopLevelDestination.WORK
+import net.example.blindclone.navigation.nav.TopLevelDestination.CHANNEL
+import net.example.blindclone.navigation.nav.TopLevelDestination.CORPORATION
+import net.example.blindclone.navigation.nav.TopLevelDestination.EMPLOYMENT
+import net.example.blindclone.navigation.nav.TopLevelDestination.HOME
+import net.example.blindclone.navigation.nav.TopLevelDestination.NOTIFICATION
 
 @Composable
 fun rememberOfficeAppState(
@@ -76,17 +77,12 @@ class BlindAppState(
             }
 
             when (topLevelDestination) {
-                TEAM -> navController.navigateToTeam(topLevelNavOptions)
-                CHAT -> navController.navigateToChattingRoomList(topLevelNavOptions)
-                WORK -> navController.navigateToWork(topLevelNavOptions)
-                SETTINGS -> navController.navigateToSettings(topLevelNavOptions)
+                HOME -> navController.navigateToHome(topLevelNavOptions)
+                CORPORATION -> navController.navigateToCorporation(topLevelNavOptions)
+                CHANNEL -> navController.navigateToChannel(topLevelNavOptions)
+                EMPLOYMENT -> navController.navigateToEmployment(topLevelNavOptions)
+                NOTIFICATION -> navController.navigateToNotification(topLevelNavOptions)
             }
         }
-    }
-
-    fun navigateToChattingRoomDialog(chattingRoomId: String) {
-        navController.navigateToChattingRoom(
-            chattingRoomId = chattingRoomId
-        )
     }
 }

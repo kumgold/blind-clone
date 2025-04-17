@@ -1,4 +1,4 @@
-package net.example.blindclone.core.feature.team
+package net.example.blindclone.core.feature.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -11,41 +11,41 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import net.example.blindclone.R
 import net.example.blindclone.core.model.Member
-import net.example.blindclone.core.repository.repo.TeamMemberRepository
+import net.example.blindclone.core.repository.repo.PostRepository
 import net.example.blindclone.common.data.Result
 import javax.inject.Inject
 
-data class TeamUiState(
+data class HomeUiState(
     val members: List<Member> = listOf(),
     val isLoading: Boolean = false,
     val message: Int? = null
 )
 
 @HiltViewModel
-class TeamViewModel @Inject constructor(
-    private val teamMemberRepository: TeamMemberRepository
+class HomeViewModel @Inject constructor(
+    private val postRepository: PostRepository
 ) : ViewModel() {
 
     private val _isLoading = MutableStateFlow(false)
     private val _message = MutableStateFlow<Int?>(null)
 
-    val uiState: StateFlow<TeamUiState> = combine(
-        teamMemberRepository.getTeamMembers(),
+    val uiState: StateFlow<HomeUiState> = combine(
+        postRepository.getTeamMembers(),
         _isLoading,
         _message
     ) { memberList, isLoading, message ->
         when (memberList) {
             Result.Loading -> {
-                TeamUiState(isLoading = true)
+                HomeUiState(isLoading = true)
             }
             is Result.Error -> {
-                TeamUiState(
+                HomeUiState(
                     isLoading = false,
                     message = R.string.network_error
                 )
             }
             is Result.Success -> {
-                TeamUiState(
+                HomeUiState(
                     members = memberList.data,
                     isLoading = isLoading,
                     message = message
@@ -56,7 +56,7 @@ class TeamViewModel @Inject constructor(
         .stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(5_000),
-            initialValue = TeamUiState(isLoading = true)
+            initialValue = HomeUiState(isLoading = true)
         )
 
     init {
@@ -65,12 +65,7 @@ class TeamViewModel @Inject constructor(
 
     private fun sync() {
         viewModelScope.launch {
-            teamMemberRepository.sync()
+            postRepository.sync()
         }
     }
-
-    // 내 정보 불러오기
-
-    // 내 정보 저장하기
-
 }

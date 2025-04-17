@@ -3,13 +3,12 @@ package net.example.blindclone.navigation.nav
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
-import net.example.blindclone.navigation.nav.TopLevelDestination
-import net.example.blindclone.core.feature.chattingroom.nav.chattingRoom
-import net.example.blindclone.core.feature.chattingroomlist.nav.chattingRoomListScreen
-import net.example.blindclone.core.feature.settings.nav.settingsScreen
-import net.example.blindclone.core.feature.team.nav.TeamRoute
-import net.example.blindclone.core.feature.team.nav.teamScreen
-import net.example.blindclone.core.feature.work.nav.workScreen
+import net.example.blindclone.core.feature.channel.nav.channelScreen
+import net.example.blindclone.core.feature.corporation.nav.corporationScreen
+import net.example.blindclone.core.feature.employment.nav.employmentScreen
+import net.example.blindclone.core.feature.home.nav.HomeRoute
+import net.example.blindclone.core.feature.home.nav.homeScreen
+import net.example.blindclone.core.feature.notification.nav.notificationScreen
 import net.example.blindclone.navigation.ui.BlindAppState
 
 @Composable
@@ -22,23 +21,12 @@ fun BlindNavHost(
     NavHost(
         modifier = modifier,
         navController = navController,
-        startDestination = TeamRoute
+        startDestination = HomeRoute
     ) {
-        teamScreen(
-            navigateToChattingRoom = { id ->
-                appState.navigateToTopLevelDestination(TopLevelDestination.CHAT)
-                appState.navigateToChattingRoomDialog(id)
-            }
-        )
-        chattingRoomListScreen(
-            navigateToChattingRoom = { id ->
-                appState.navigateToChattingRoomDialog(id)
-            }
-        )
-        workScreen()
-        settingsScreen()
-        chattingRoom(
-            onDismiss = navController::popBackStack
-        )
+        homeScreen()
+        corporationScreen()
+        channelScreen()
+        employmentScreen()
+        notificationScreen()
     }
 }

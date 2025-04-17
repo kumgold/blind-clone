@@ -1,10 +1,11 @@
 <resources>
     <string name="app_name">Blind-Clone</string>
 
-    <string name="team">Team</string>
-    <string name="chat">Chat</string>
-    <string name="work">Work</string>
-    <string name="settings">Settings</string>
+    <string name="home">홈</string>
+    <string name="corporation">회사</string>
+    <string name="channel">채널</string>
+    <string name="employment">채용</string>
+    <string name="notification">알림</string>
 
     <string name="network_error">Network Error occurred. Please Retry again.</string>
 

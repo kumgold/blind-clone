@@ -17,7 +17,7 @@ import javax.inject.Inject
 class DefaultMemberRepository @Inject constructor(
     private val network: OfficeNetworkDataSource,
     private val memberDao: MemberDao
-) : TeamMemberRepository {
+) : PostRepository {
 
     override fun getTeamMembers(): Flow<Result<List<Member>>> =
         memberDao.getMemberEntities()

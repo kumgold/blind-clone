@@ -1,10 +1,10 @@
-package net.example.blindclone.core.feature.settings
+package net.example.blindclone.core.feature.employment
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 
 @Composable
-fun SettingsScreen(
+fun EmploymentScreen(
     modifier: Modifier = Modifier
 ) {
 

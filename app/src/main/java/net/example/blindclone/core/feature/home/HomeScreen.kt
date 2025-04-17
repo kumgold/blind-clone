@@ -1,10 +1,9 @@
-package net.example.blindclone.core.feature.team
+package net.example.blindclone.core.feature.home
 
 import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -54,14 +53,12 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import net.example.blindclone.R
-import net.example.blindclone.core.feature.user.UserDialog
 import net.example.blindclone.core.model.Member
 
 @Composable
-fun TeamScreen(
+fun HomeScreen(
     modifier: Modifier = Modifier,
-    viewModel: TeamViewModel = hiltViewModel(),
-    navigateToChattingRoom: (String) -> Unit
+    viewModel: HomeViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val message = uiState.message?.let { stringResource(id = it) }
@@ -72,18 +69,16 @@ fun TeamScreen(
         }
     }
 
-    TeamScreen(
+    HomeScreen(
         modifier = modifier,
-        memberList = uiState.members,
-        navigateToChattingRoom = navigateToChattingRoom
+        memberList = uiState.members
     )
 }
 
 @Composable
-private fun TeamScreen(
+private fun HomeScreen(
     modifier: Modifier = Modifier,
-    memberList: List<Member>,
-    navigateToChattingRoom: (String) -> Unit
+    memberList: List<Member>
 ) {
     Column(
         modifier = modifier
@@ -100,8 +95,7 @@ private fun TeamScreen(
                 name = "My Account",
                 number = "01011111111",
                 statusMessage = "message"
-            ),
-            navigateToChattingRoom = navigateToChattingRoom
+            )
         )
 
         Box(
@@ -116,7 +110,6 @@ private fun TeamScreen(
                 key(member.id) {
                     MemberFeed(
                         member = member,
-                        navigateToChattingRoom = navigateToChattingRoom
                     )
                 }
             }
@@ -169,27 +162,12 @@ private fun SearchBar() {
 @Composable
 private fun MemberFeed(
     modifier: Modifier = Modifier,
-    member: Member,
-    navigateToChattingRoom: (String) -> Unit
+    member: Member
 ) {
-    var showUserDialog by remember { mutableStateOf(false) }
-
-    if (showUserDialog) {
-        UserDialog(
-            member = member,
-            navigateToChattingRoom = navigateToChattingRoom
-        ) {
-            showUserDialog = false
-        }
-    }
-
     Row(
         modifier = modifier
             .fillMaxWidth()
             .wrapContentHeight()
-            .clickable {
-                showUserDialog = true
-            }
             .padding(dimensionResource(id = R.dimen.default_margin)),
         horizontalArrangement = Arrangement.Center
     ) {
@@ -239,7 +217,7 @@ private fun MemberFeed(
 @Composable
 private fun UserFeedPreview() {
     Surface {
-        TeamScreen(
+        HomeScreen(
             modifier = Modifier,
             memberList = listOf(
                 Member(
@@ -272,8 +250,7 @@ private fun UserFeedPreview() {
                     number = "01011111111",
                     statusMessage = "status message"
                 ),
-            ),
-            navigateToChattingRoom = {}
+            )
         )
     }
 }

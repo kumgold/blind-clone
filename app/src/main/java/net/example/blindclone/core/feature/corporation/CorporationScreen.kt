@@ -1,8 +1,7 @@
-package net.example.blindclone.core.feature.chattingroomlist
+package net.example.blindclone.core.feature.corporation
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -39,25 +38,22 @@ import net.example.blindclone.R
 import net.example.blindclone.core.model.ChattingRoom
 
 @Composable
-fun ChattingRoomListScreen(
+fun CorporationScreen(
     modifier: Modifier = Modifier,
-    viewModel: ChattingRoomListViewModel = hiltViewModel(),
-    navigateToChattingRoom: (String) -> Unit
+    viewModel: CorporationViewModel = hiltViewModel()
 ) {
     val chattingRoomList by viewModel.chattingRoomList.collectAsStateWithLifecycle()
 
-    ChattingRoomListScreen(
+    CorporationScreen(
         modifier = modifier,
-        chattingRoomList = chattingRoomList,
-        navigateToChattingRoom = navigateToChattingRoom
+        chattingRoomList = chattingRoomList
     )
 }
 
 @Composable
-private fun ChattingRoomListScreen(
+private fun CorporationScreen(
     modifier: Modifier = Modifier,
-    chattingRoomList: List<ChattingRoom>,
-    navigateToChattingRoom: (String) -> Unit
+    chattingRoomList: List<ChattingRoom>
 ) {
     Column(
         modifier = modifier
@@ -65,15 +61,12 @@ private fun ChattingRoomListScreen(
             .fillMaxSize()
     ) {
         Text(
-            text = stringResource(id = R.string.chat),
+            text = stringResource(id = R.string.corporation),
             style = MaterialTheme.typography.titleLarge
         )
         LazyColumn {
             items(chattingRoomList) { room ->
-                ChatFeed(
-                    room = room,
-                    navigateToChattingRoom = navigateToChattingRoom
-                )
+                ChatFeed(room = room)
             }
         }
     }
@@ -82,15 +75,11 @@ private fun ChattingRoomListScreen(
 @Composable
 private fun ChatFeed(
     modifier: Modifier = Modifier,
-    room: ChattingRoom,
-    navigateToChattingRoom: (String) -> Unit
+    room: ChattingRoom
 ) {
     Row(
         modifier = modifier
             .fillMaxWidth()
-            .clickable {
-                navigateToChattingRoom(room.id)
-            }
             .padding(dimensionResource(id = R.dimen.default_margin)),
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -149,7 +138,7 @@ private fun ChatFeed(
 @Composable
 private fun ChatScreenPreview() {
     Surface {
-        ChattingRoomListScreen(
+        CorporationScreen(
             modifier = Modifier,
             chattingRoomList = listOf(
                 ChattingRoom(
@@ -167,8 +156,7 @@ private fun ChatScreenPreview() {
                     name = "User Name",
                     memberIdList = listOf()
                 ),
-            ),
-            navigateToChattingRoom = {}
+            )
         )
     }
 }

@@ -1,4 +1,4 @@
-package net.example.blindclone.core.feature.chattingroomlist
+package net.example.blindclone.core.feature.corporation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -10,7 +10,7 @@ import net.example.blindclone.core.repository.repo.ChattingRoomRepository
 import javax.inject.Inject
 
 @HiltViewModel
-class ChattingRoomListViewModel @Inject constructor(
+class CorporationViewModel @Inject constructor(
     private val chattingRoomRepository: ChattingRoomRepository
 ) : ViewModel() {
 

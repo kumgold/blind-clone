@@ -9,7 +9,7 @@ import net.example.blindclone.core.repository.repo.ChattingRoomRepository
 import net.example.blindclone.core.repository.repo.DefaultChatRepository
 import net.example.blindclone.core.repository.repo.DefaultChattingRoomRepository
 import net.example.blindclone.core.repository.repo.DefaultMemberRepository
-import net.example.blindclone.core.repository.repo.TeamMemberRepository
+import net.example.blindclone.core.repository.repo.PostRepository
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -17,7 +17,7 @@ abstract class RepositoryModule {
     @Binds
     abstract fun bindTeamMemberRepository(
         teamMemberRepository: DefaultMemberRepository
-    ): TeamMemberRepository
+    ): PostRepository
 
     @Binds
     abstract fun bindChattingRoomRepository(
