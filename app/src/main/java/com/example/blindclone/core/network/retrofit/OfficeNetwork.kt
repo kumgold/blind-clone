@@ -15,7 +15,7 @@ import retrofit2.http.Query
 import javax.inject.Inject
 import javax.inject.Singleton
 
-private interface OfficeNetworkApi {
+private interface BlindNetworkApi {
     @GET("/members")
     suspend fun getTeamMembers(): ApiResponse<List<NetworkMember>>
 
@@ -39,7 +39,7 @@ private interface OfficeNetworkApi {
 }
 
 @Singleton
-class RetrofitOfficeNetwork @Inject constructor() : OfficeNetworkDataSource {
+class RetrofitBlindNetwork @Inject constructor() : BlindNetworkDataSource {
     private val networkApi = Retrofit.Builder()
         .baseUrl("http://10.0.2.2:8080")
         .client(
@@ -53,7 +53,7 @@ class RetrofitOfficeNetwork @Inject constructor() : OfficeNetworkDataSource {
         )
         .addConverterFactory(GsonConverterFactory.create())
         .build()
-        .create(OfficeNetworkApi::class.java)
+        .create(BlindNetworkApi::class.java)
 
     override suspend fun getTeamMembers(): List<NetworkMember> =
         networkApi.getTeamMembers().data

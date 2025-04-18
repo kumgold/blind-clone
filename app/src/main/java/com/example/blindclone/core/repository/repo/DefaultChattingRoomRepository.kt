@@ -11,12 +11,12 @@ import com.example.blindclone.core.model.asEntity
 import com.example.blindclone.core.model.asNetwork
 import com.example.blindclone.core.network.data.NetworkChattingRoom
 import com.example.blindclone.core.network.data.asEntity
-import com.example.blindclone.core.network.retrofit.RetrofitOfficeNetwork
+import com.example.blindclone.core.network.retrofit.RetrofitBlindNetwork
 import okio.IOException
 import javax.inject.Inject
 
 class DefaultChattingRoomRepository @Inject constructor(
-    private val network: RetrofitOfficeNetwork,
+    private val network: RetrofitBlindNetwork,
     private val chattingRoomDao: ChattingRoomDao
 ) : ChattingRoomRepository {
 

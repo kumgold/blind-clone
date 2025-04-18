@@ -12,7 +12,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class OfficeWebSocket @Inject constructor() : OfficeWebSocketDataSource {
+class BlindWebSocket @Inject constructor() : BlindWebSocketDataSource {
     companion object {
         private const val WEB_SOCKET = "WebSocket"
     }

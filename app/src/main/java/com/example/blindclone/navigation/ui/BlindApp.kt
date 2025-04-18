@@ -13,7 +13,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hasRoute
 import androidx.navigation.NavDestination.Companion.hierarchy
-import com.example.blindclone.core.design.OfficeNavigationSuiteScaffold
+import com.example.blindclone.core.design.BlindNavigationSuiteScaffold
 import com.example.blindclone.navigation.nav.BlindNavHost
 import kotlin.reflect.KClass
 
@@ -25,7 +25,7 @@ internal fun BlindApp(
 ) {
     val currentDestination = appState.currentDestination
 
-    OfficeNavigationSuiteScaffold(
+    BlindNavigationSuiteScaffold(
         navigationSuiteItems = {
             appState.topLevelDestinations.forEach { destination ->
                 val selected = currentDestination.isRouteInHierarchy(destination.route)

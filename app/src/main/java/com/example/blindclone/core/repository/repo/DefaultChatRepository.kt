@@ -10,14 +10,14 @@ import com.example.blindclone.core.database.model.asExternal
 import com.example.blindclone.core.model.Chat
 import com.example.blindclone.core.network.data.NetworkChat
 import com.example.blindclone.core.network.data.asEntity
-import com.example.blindclone.core.network.retrofit.OfficeWebSocket
-import com.example.blindclone.core.network.retrofit.RetrofitOfficeNetwork
+import com.example.blindclone.core.network.retrofit.BlindWebSocket
+import com.example.blindclone.core.network.retrofit.RetrofitBlindNetwork
 import java.util.Calendar
 import javax.inject.Inject
 
 class DefaultChatRepository @Inject constructor(
-    private val network: RetrofitOfficeNetwork,
-    private val webSocket: OfficeWebSocket,
+    private val network: RetrofitBlindNetwork,
+    private val webSocket: BlindWebSocket,
     private val chatDao: ChatDao
 ) : ChatRepository {
     override fun getChatList(chattingRoomId: String): Flow<List<Chat>> {

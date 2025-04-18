@@ -10,9 +10,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 
 @Composable
-fun OfficeNavigationSuiteScaffold(
+fun BlindNavigationSuiteScaffold(
     modifier: Modifier = Modifier,
-    navigationSuiteItems: OfficeNavigationSuiteScope.() -> Unit,
+    navigationSuiteItems: BlindNavigationSuiteScope.() -> Unit,
     windowAdaptiveInfo: WindowAdaptiveInfo = currentWindowAdaptiveInfo(),
     content: @Composable () -> Unit
 ) {
@@ -22,7 +22,7 @@ fun OfficeNavigationSuiteScaffold(
     NavigationSuiteScaffold(
         modifier = modifier,
         navigationSuiteItems = {
-            OfficeNavigationSuiteScope(
+            BlindNavigationSuiteScope(
                 navigationSuiteScope = this
             ).run(navigationSuiteItems)
         },
@@ -33,7 +33,7 @@ fun OfficeNavigationSuiteScaffold(
     }
 }
 
-class OfficeNavigationSuiteScope internal constructor(
+class BlindNavigationSuiteScope internal constructor(
     private val navigationSuiteScope: NavigationSuiteScope
 ) {
     fun item(

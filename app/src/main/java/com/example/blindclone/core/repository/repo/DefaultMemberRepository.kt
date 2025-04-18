@@ -11,11 +11,11 @@ import com.example.blindclone.core.database.model.asExternal
 import com.example.blindclone.core.model.Member
 import com.example.blindclone.core.network.data.NetworkMember
 import com.example.blindclone.core.network.data.asEntity
-import com.example.blindclone.core.network.retrofit.OfficeNetworkDataSource
+import com.example.blindclone.core.network.retrofit.BlindNetworkDataSource
 import javax.inject.Inject
 
 class DefaultMemberRepository @Inject constructor(
-    private val network: OfficeNetworkDataSource,
+    private val network: BlindNetworkDataSource,
     private val memberDao: MemberDao
 ) : PostRepository {
 

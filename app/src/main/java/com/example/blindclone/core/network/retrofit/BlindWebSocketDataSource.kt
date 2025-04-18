@@ -1,6 +1,6 @@
 package com.example.blindclone.core.network.retrofit
 
-interface OfficeWebSocketDataSource {
+interface BlindWebSocketDataSource {
     fun connect()
     fun disconnect()
     fun sendMessage(message: String)

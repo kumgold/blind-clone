@@ -4,18 +4,18 @@ import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import com.example.blindclone.core.network.retrofit.OfficeNetworkDataSource
-import com.example.blindclone.core.network.retrofit.OfficeWebSocket
-import com.example.blindclone.core.network.retrofit.OfficeWebSocketDataSource
-import com.example.blindclone.core.network.retrofit.RetrofitOfficeNetwork
+import com.example.blindclone.core.network.retrofit.BlindNetworkDataSource
+import com.example.blindclone.core.network.retrofit.BlindWebSocket
+import com.example.blindclone.core.network.retrofit.BlindWebSocketDataSource
+import com.example.blindclone.core.network.retrofit.RetrofitBlindNetwork
 
 @Module
 @InstallIn(SingletonComponent::class)
 abstract class NetworkModule {
 
     @Binds
-    abstract fun bindsNetworkDataSource(impl: RetrofitOfficeNetwork): OfficeNetworkDataSource
+    abstract fun bindsNetworkDataSource(impl: RetrofitBlindNetwork): BlindNetworkDataSource
 
     @Binds
-    abstract fun bindsWebSocketDataSource(impl: OfficeWebSocket): OfficeWebSocketDataSource
+    abstract fun bindsWebSocketDataSource(impl: BlindWebSocket): BlindWebSocketDataSource
 }

@@ -15,11 +15,11 @@ import javax.inject.Singleton
 internal object DatabaseModule {
     @Provides
     @Singleton
-    fun provideOfficeDatabase(
+    fun provideBlindDatabase(
         @ApplicationContext context: Context
     ): BlindDatabase = Room.databaseBuilder(
         context,
         BlindDatabase::class.java,
-        "office-database"
+        "blind-database"
     ).build()
 }
