@@ -2,19 +2,19 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
 
-    id("kotlin-kapt")
+    id("com.google.devtools.ksp")
     id("com.google.dagger.hilt.android")
-//    id("com.google.gms.google-services")
+    id("com.google.gms.google-services")
 
     kotlin("plugin.serialization")
 }
 
 android {
-    namespace = "net.example.blindclone"
+    namespace = "com.example.blindclone"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "net.example.blindclone"
+        applicationId = "com.example.blindclone"
         minSdk = 26
         targetSdk = 35
         versionCode = 1
@@ -58,18 +58,19 @@ android {
 dependencies {
 
     // Firebase
-    implementation(libs.firebase.bom)
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.analytics)
 
     // Room database
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.common)
-    kapt(libs.androidx.room.compiler)
+    ksp(libs.androidx.room.compiler)
     implementation(libs.androidx.room.ktx)
 
     // Hilt
     implementation(libs.hilt.android)
     implementation(libs.androidx.hilt.navigation.compose)
-    kapt(libs.hilt.android.compiler)
+    ksp(libs.hilt.android.compiler)
 
     // Retrofit
     implementation(libs.retrofit)
@@ -99,8 +100,4 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
-}
-
-kapt {
-    correctErrorTypes = true
 }
