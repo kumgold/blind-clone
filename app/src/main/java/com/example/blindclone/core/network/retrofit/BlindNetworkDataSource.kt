@@ -1,7 +1,7 @@
 package com.example.blindclone.core.network.retrofit
 
-import com.example.blindclone.core.network.data.NetworkChat
-import com.example.blindclone.core.network.data.NetworkMember
+import com.example.blindclone.core.network.model.NetworkChat
+import com.example.blindclone.core.network.model.NetworkMember
 
 interface BlindNetworkDataSource {
     suspend fun getTeamMembers(): List<NetworkMember>

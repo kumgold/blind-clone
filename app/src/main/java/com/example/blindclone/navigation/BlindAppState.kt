@@ -1,4 +1,4 @@
-package com.example.blindclone.navigation.ui
+package com.example.blindclone.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
@@ -21,12 +21,12 @@ import com.example.blindclone.core.feature.corporation.nav.navigateToCorporation
 import com.example.blindclone.core.feature.employment.nav.navigateToEmployment
 import com.example.blindclone.core.feature.home.nav.navigateToHome
 import com.example.blindclone.core.feature.notification.nav.navigateToNotification
-import com.example.blindclone.navigation.nav.TopLevelDestination
-import com.example.blindclone.navigation.nav.TopLevelDestination.CHANNEL
-import com.example.blindclone.navigation.nav.TopLevelDestination.CORPORATION
-import com.example.blindclone.navigation.nav.TopLevelDestination.EMPLOYMENT
-import com.example.blindclone.navigation.nav.TopLevelDestination.HOME
-import com.example.blindclone.navigation.nav.TopLevelDestination.NOTIFICATION
+import com.example.blindclone.core.feature.main.MainDestination
+import com.example.blindclone.core.feature.main.MainDestination.CHANNEL
+import com.example.blindclone.core.feature.main.MainDestination.CORPORATION
+import com.example.blindclone.core.feature.main.MainDestination.EMPLOYMENT
+import com.example.blindclone.core.feature.main.MainDestination.HOME
+import com.example.blindclone.core.feature.main.MainDestination.NOTIFICATION
 
 @Composable
 fun rememberBlindAppState(
@@ -64,10 +64,10 @@ class BlindAppState(
             initialValue = false
         )
 
-    val topLevelDestinations: List<TopLevelDestination> = TopLevelDestination.entries
+    val mainDestinations: List<MainDestination> = MainDestination.entries
 
-    fun navigateToTopLevelDestination(topLevelDestination: TopLevelDestination) {
-        trace("Navigation : ${topLevelDestination.name}") {
+    fun navigateToMainDestination(mainDestination: MainDestination) {
+        trace("Navigation : ${mainDestination.name}") {
             val topLevelNavOptions = navOptions {
                 popUpTo(navController.graph.findStartDestination().id) {
                     saveState = true
@@ -76,7 +76,7 @@ class BlindAppState(
                 restoreState = true
             }
 
-            when (topLevelDestination) {
+            when (mainDestination) {
                 HOME -> navController.navigateToHome(topLevelNavOptions)
                 CORPORATION -> navController.navigateToCorporation(topLevelNavOptions)
                 CHANNEL -> navController.navigateToChannel(topLevelNavOptions)

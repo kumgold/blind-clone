@@ -1,4 +1,4 @@
-package com.example.blindclone.navigation.nav
+package com.example.blindclone.core.feature.main
 
 import androidx.annotation.StringRes
 import androidx.compose.material.icons.Icons
@@ -21,7 +21,7 @@ import com.example.blindclone.core.feature.home.nav.HomeRoute
 import com.example.blindclone.core.feature.notification.nav.NotificationRoute
 import kotlin.reflect.KClass
 
-enum class TopLevelDestination(
+enum class MainDestination(
     val selectedIcon: ImageVector,
     val unselectedIcon: ImageVector,
     @StringRes val iconTextId: Int,

@@ -6,8 +6,8 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import dagger.hilt.android.AndroidEntryPoint
 import com.example.blindclone.core.data.ConnectivityManagerNetworkMonitor
-import com.example.blindclone.navigation.ui.BlindApp
-import com.example.blindclone.navigation.ui.rememberBlindAppState
+import com.example.blindclone.navigation.BlindApp
+import com.example.blindclone.navigation.rememberBlindAppState
 import com.example.blindclone.ui.theme.BlindCloneTheme
 
 @AndroidEntryPoint

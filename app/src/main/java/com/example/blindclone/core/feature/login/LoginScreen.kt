@@ -29,7 +29,9 @@ import androidx.compose.ui.unit.dp
 import com.example.blindclone.R
 
 @Composable
-fun LoginScreen() {
+fun LoginScreen(
+    navigateToMain: () -> Unit
+) {
     Column(
         modifier = Modifier.fillMaxSize()
             .padding(dimensionResource(R.dimen.default_margin)),
@@ -90,7 +92,9 @@ fun LoginScreen() {
         )
         Spacer(modifier = Modifier.height(dimensionResource(R.dimen.default_margin)))
         Button(
-            onClick = {}
+            onClick = {
+                navigateToMain()
+            }
         ) {
             Text(
                 text = "Login"
@@ -103,6 +107,8 @@ fun LoginScreen() {
 @Composable
 private fun LoginScreenPreview() {
     Surface {
-        LoginScreen()
+        LoginScreen(
+            navigateToMain = {}
+        )
     }
 }

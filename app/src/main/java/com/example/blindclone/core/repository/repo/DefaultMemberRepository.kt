@@ -9,8 +9,8 @@ import com.example.blindclone.core.database.dao.MemberDao
 import com.example.blindclone.core.database.model.MemberEntity
 import com.example.blindclone.core.database.model.asExternal
 import com.example.blindclone.core.model.Member
-import com.example.blindclone.core.network.data.NetworkMember
-import com.example.blindclone.core.network.data.asEntity
+import com.example.blindclone.core.network.model.NetworkMember
+import com.example.blindclone.core.network.model.asEntity
 import com.example.blindclone.core.network.retrofit.BlindNetworkDataSource
 import javax.inject.Inject
 

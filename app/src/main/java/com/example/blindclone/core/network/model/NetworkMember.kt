@@ -1,4 +1,4 @@
-package com.example.blindclone.core.network.data
+package com.example.blindclone.core.network.model
 
 import com.example.blindclone.core.database.model.MemberEntity
 

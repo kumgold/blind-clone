@@ -1,7 +1,7 @@
 package com.example.blindclone.core.network.retrofit
 
-import com.example.blindclone.core.network.data.NetworkChat
-import com.example.blindclone.core.network.data.NetworkMember
+import com.example.blindclone.core.network.model.NetworkChat
+import com.example.blindclone.core.network.model.NetworkMember
 import kotlinx.serialization.Serializable
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

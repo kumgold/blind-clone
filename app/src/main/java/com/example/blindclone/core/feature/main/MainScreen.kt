@@ -1,9 +1,10 @@
-package com.example.blindclone.navigation.ui
+package com.example.blindclone.core.feature.main
 
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Icon
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.adaptive.WindowAdaptiveInfo
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
@@ -13,27 +14,29 @@ import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hasRoute
 import androidx.navigation.NavDestination.Companion.hierarchy
-import com.example.blindclone.core.design.BlindNavigationSuiteScaffold
-import com.example.blindclone.navigation.nav.BlindNavHost
+import com.example.blindclone.navigation.BlindAppState
+import com.example.blindclone.ui.component.BlindNavigationSuiteScaffold
 import kotlin.reflect.KClass
 
 @Composable
-internal fun BlindApp(
+fun MainScreen(
     modifier: Modifier = Modifier,
     appState: BlindAppState,
     windowAdaptiveInfo: WindowAdaptiveInfo = currentWindowAdaptiveInfo(),
+    content: @Composable () -> Unit
 ) {
     val currentDestination = appState.currentDestination
 
     BlindNavigationSuiteScaffold(
+        modifier = modifier,
         navigationSuiteItems = {
-            appState.topLevelDestinations.forEach { destination ->
+            appState.mainDestinations.forEach { destination ->
                 val selected = currentDestination.isRouteInHierarchy(destination.route)
 
                 item(
                     selected = selected,
                     onClick = {
-                        appState.navigateToTopLevelDestination(destination)
+                        appState.navigateToMainDestination(destination)
                     },
                     icon = {
                         Icon(imageVector = destination.unselectedIcon, contentDescription = null)
@@ -41,7 +44,7 @@ internal fun BlindApp(
                     selectedIcon = {
                         Icon(
                             imageVector = destination.selectedIcon,
-                            contentDescription = null
+                            contentDescription = destination.name
                         )
                     },
                     label = { Text(text = stringResource(id = destination.iconTextId)) }
@@ -50,16 +53,7 @@ internal fun BlindApp(
         },
         windowAdaptiveInfo = windowAdaptiveInfo
     ) {
-        Scaffold(
-            modifier = modifier
-        ) { padding ->
-            BlindNavHost(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(padding),
-                appState = appState
-            )
-        }
+        content()
     }
 }
 

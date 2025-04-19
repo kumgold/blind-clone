@@ -1,4 +1,4 @@
-package com.example.blindclone.core.design
+package com.example.blindclone.ui.component
 
 import androidx.compose.material3.adaptive.WindowAdaptiveInfo
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
