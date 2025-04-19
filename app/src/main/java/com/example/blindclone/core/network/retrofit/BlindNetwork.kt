@@ -1,9 +1,8 @@
 package com.example.blindclone.core.network.retrofit
 
-import kotlinx.serialization.Serializable
 import com.example.blindclone.core.network.data.NetworkChat
-import com.example.blindclone.core.network.data.NetworkChattingRoom
 import com.example.blindclone.core.network.data.NetworkMember
+import kotlinx.serialization.Serializable
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -18,14 +17,6 @@ import javax.inject.Singleton
 private interface BlindNetworkApi {
     @GET("/members")
     suspend fun getTeamMembers(): ApiResponse<List<NetworkMember>>
-
-    @GET("/chatting-rooms")
-    suspend fun getChattingRooms(): ApiResponse<List<NetworkChattingRoom>>
-
-    @POST("/chatting-room")
-    suspend fun createChattingRoom(
-        @Body room: NetworkChattingRoom
-    ): NetworkChattingRoom
 
     @GET("/chats")
     suspend fun getChatList(
@@ -57,12 +48,6 @@ class RetrofitBlindNetwork @Inject constructor() : BlindNetworkDataSource {
 
     override suspend fun getTeamMembers(): List<NetworkMember> =
         networkApi.getTeamMembers().data
-
-    override suspend fun getChattingRooms(): List<NetworkChattingRoom> =
-        networkApi.getChattingRooms().data
-
-    override suspend fun createChattingRoom(room: NetworkChattingRoom): NetworkChattingRoom =
-        networkApi.createChattingRoom(room)
 
     override suspend fun getChatList(chattingRoomId: String): List<NetworkChat> =
         networkApi.getChatList(id = chattingRoomId).data
