@@ -37,7 +37,6 @@ internal fun BlindApp(
         val currentDestination = currentBackStackEntry?.destination
         val isMainSection = currentDestination?.hierarchy?.any { it.route == RootRoute.Main::class.qualifiedName || it.route == RootRoute.Main.toString() } ?: false
 
-
         if (isMainSection) {
             MainScreen(
                 modifier = Modifier.fillMaxSize(),
@@ -59,12 +58,9 @@ internal fun BlindApp(
 }
 
 sealed class RootRoute {
-    @Serializable
-    data object Login: RootRoute()
-    @Serializable
-    data object Write: RootRoute()
-    @Serializable
-    data object Main: RootRoute()
+    @Serializable data object Login: RootRoute()
+    @Serializable data object Write: RootRoute()
+    @Serializable data object Main: RootRoute()
 }
 
 @Composable
@@ -91,7 +87,9 @@ fun RootNavHost(
         }
 
         navigation<RootRoute.Main>(startDestination = HomeRoute) {
-            homeScreen()
+            homeScreen(
+                navigateToWriteScreen = { navController.navigate(RootRoute.Write) }
+            )
             corporationScreen()
             channelScreen()
             employmentScreen()

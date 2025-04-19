@@ -15,7 +15,7 @@ import com.example.blindclone.core.database.model.MemberEntity
         ChatEntity::class
     ],
     version = 1,
-    exportSchema = true
+    exportSchema = false
 )
 @TypeConverters(ListStringConverter::class)
 internal abstract class BlindDatabase : RoomDatabase() {
