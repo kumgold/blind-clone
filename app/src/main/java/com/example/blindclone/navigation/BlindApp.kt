@@ -83,7 +83,9 @@ fun RootNavHost(
             )
         }
         composable<RootRoute.Write> {
-            WriteScreen()
+            WriteScreen(
+                popBackStack = { navController.popBackStack() }
+            )
         }
 
         navigation<RootRoute.Main>(startDestination = HomeRoute) {

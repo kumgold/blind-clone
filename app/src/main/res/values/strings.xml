@@ -7,6 +7,9 @@
     <string name="employment">채용</string>
     <string name="notification">알림</string>
 
+    <string name="cancel">취소</string>
+    <string name="enroll">등록</string>
+
     <string name="network_error">Network Error occurred. Please Retry again.</string>
 
 </resources>
