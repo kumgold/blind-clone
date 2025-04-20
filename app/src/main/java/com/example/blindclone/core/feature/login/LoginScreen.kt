@@ -34,7 +34,7 @@ fun LoginScreen(
 ) {
     Column(
         modifier = Modifier.fillMaxSize()
-            .padding(dimensionResource(R.dimen.default_margin)),
+            .padding(dimensionResource(R.dimen.default_margin_small)),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -47,7 +47,7 @@ fun LoginScreen(
                 .border(
                     width = 1.dp,
                     color = MaterialTheme.colorScheme.primary,
-                    shape = RoundedCornerShape(dimensionResource(id = R.dimen.default_margin))
+                    shape = RoundedCornerShape(dimensionResource(id = R.dimen.default_margin_small))
                 ),
             value = userId,
             onValueChange = {
@@ -65,14 +65,14 @@ fun LoginScreen(
             ),
             maxLines = 1
         )
-        Spacer(modifier = Modifier.height(dimensionResource(R.dimen.default_margin)))
+        Spacer(modifier = Modifier.height(dimensionResource(R.dimen.default_margin_small)))
         TextField(
             modifier = Modifier
                 .fillMaxWidth()
                 .border(
                     width = 1.dp,
                     color = MaterialTheme.colorScheme.primary,
-                    shape = RoundedCornerShape(dimensionResource(id = R.dimen.default_margin))
+                    shape = RoundedCornerShape(dimensionResource(id = R.dimen.default_margin_small))
                 ),
             value = password,
             onValueChange = {
@@ -90,7 +90,7 @@ fun LoginScreen(
             ),
             maxLines = 1
         )
-        Spacer(modifier = Modifier.height(dimensionResource(R.dimen.default_margin)))
+        Spacer(modifier = Modifier.height(dimensionResource(R.dimen.default_margin_small)))
         Button(
             onClick = {
                 navigateToMain()

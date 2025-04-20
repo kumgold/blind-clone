@@ -31,9 +31,7 @@ private fun HomeScreenContent(
     navigateToWriteScreen: () -> Unit
 ) {
     Scaffold(
-        modifier = modifier
-            .padding(dimensionResource(id = R.dimen.default_margin))
-            .fillMaxSize(),
+        modifier = modifier.fillMaxSize(),
         topBar = {
             HomeTopAppBar()
         },
