@@ -4,6 +4,6 @@ import com.google.firebase.database.IgnoreExtraProperties
 
 @IgnoreExtraProperties
 data class Post(
-    val title: String,
-    val content: String,
+    val title: String = "",
+    val content: String = "",
 )
