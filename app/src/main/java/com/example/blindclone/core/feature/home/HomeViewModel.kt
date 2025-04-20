@@ -47,8 +47,6 @@ class HomeViewModel @Inject constructor(
 
         val postsList = (postsResult as? Result.Success)?.data ?: emptyList()
 
-        Log.d("HomeViewModel", postsList.toString())
-
         HomeUiState(
             posts = postsList,
             isLoading = isLoadingCombined,
