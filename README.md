@@ -7,6 +7,6 @@
 | <img src="./images/home.png"> | <img src="./images/write.png"> |
 
 ## 기술 스택
-UI : Android Compose <br>
-API : Firebase Realtime Database <br>
-Async : Coroutine Flow <br>
+Android Compose <br>
+Firebase Realtime Database <br>
+Coroutine Flow <br>
