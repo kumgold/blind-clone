@@ -64,7 +64,7 @@ fun WriteScreen(
                 Toast.makeText(context, "오류: ${state.message}", Toast.LENGTH_LONG).show()
             }
             is WriteViewModel.SaveState.Saving -> {
-                // 로딩 인디케이터 표시 로직
+                // 로딩 인디케이터 표시
                 Log.d("WriteScreen", "Saving...")
             }
             is WriteViewModel.SaveState.Idle -> {
