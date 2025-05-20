@@ -5,7 +5,6 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import com.example.blindclone.core.database.BlindDatabase
-import com.example.blindclone.core.database.dao.ChatDao
 import com.example.blindclone.core.database.dao.MemberDao
 
 @Module
@@ -15,9 +14,4 @@ internal object DaoModule {
     fun provideMemberDao(
         database: BlindDatabase
     ): MemberDao = database.memberDao()
-
-    @Provides
-    fun provideChatDao(
-        database: BlindDatabase
-    ): ChatDao = database.chatDao()
 }

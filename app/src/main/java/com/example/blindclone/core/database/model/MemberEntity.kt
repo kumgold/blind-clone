@@ -16,12 +16,3 @@ data class MemberEntity(
     val group: String,
     val isFavorite: Boolean
 )
-
-fun MemberEntity.asExternal() = Member(
-    id = id,
-    name = name,
-    number = number,
-    statusMessage = statusMessage,
-    group = group,
-    isFavorite = isFavorite
-)
