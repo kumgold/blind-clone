@@ -16,11 +16,13 @@ import com.example.blindclone.core.feature.home.HomeScreen
 fun NavController.navigateToHome(navOptions: NavOptions) = navigate(route = HomeRoute, navOptions)
 
 fun NavGraphBuilder.homeScreen(
-    navigateToWriteScreen: () -> Unit
+    navigateToWriteScreen: () -> Unit,
+    navigateToPostDetail: (String) -> Unit
 ) {
     composable<HomeRoute> {
         HomeScreen(
-            navigateToWriteScreen = navigateToWriteScreen
+            navigateToWriteScreen = navigateToWriteScreen,
+            navigateToPostDetail = navigateToPostDetail
         )
     }
 }

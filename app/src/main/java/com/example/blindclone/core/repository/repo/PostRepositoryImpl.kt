@@ -31,8 +31,14 @@ class PostRepositoryImpl @Inject constructor(
                     for (postSnapshot in snapshot.children) {
                         val post = postSnapshot.getValue(Post::class.java)
 
-                        post?.let {
-                            postsList.add(it)
+                        post?.let { p ->
+                            postsList.add(
+                                Post(
+                                    id = postSnapshot.key!!,
+                                    title = p.title,
+                                    content = p.content
+                                )
+                            )
                         }
                     }
                     trySend(Result.Success(postsList.reversed()))

@@ -81,7 +81,8 @@ fun WriteScreen(
                         title = title,
                         content = content
                     )
-                }
+                },
+                popBackStack = popBackStack
             )
         }
     ) { padding ->
@@ -94,7 +95,6 @@ fun WriteScreen(
                 .verticalScroll(scrollState)
         ) {
             SelectTopicButton()
-
 
             BasicTextField(
                 modifier = Modifier
@@ -155,7 +155,8 @@ fun WriteScreen(
 
 @Composable
 private fun WriteTopAppBar(
-    savePost: () -> Unit
+    savePost: () -> Unit,
+    popBackStack: () -> Unit
 ) {
     Row(
         modifier = Modifier
@@ -165,7 +166,7 @@ private fun WriteTopAppBar(
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
-        TextButton(onClick = {  }) {
+        TextButton(onClick = { popBackStack() }) {
             Text(text = stringResource(id = R.string.cancel))
         }
         TextButton(onClick = { savePost() }) {

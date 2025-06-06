@@ -1,13 +1,15 @@
 package com.example.blindclone.core.feature.home
 
+import android.util.Log
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -44,14 +46,16 @@ import com.example.blindclone.ui.component.HomeTopAppBar
 fun HomeScreen(
     modifier: Modifier = Modifier,
     viewModel: HomeViewModel = hiltViewModel(),
-    navigateToWriteScreen: () -> Unit
+    navigateToWriteScreen: () -> Unit,
+    navigateToPostDetail: (String) -> Unit
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
     HomeScreenContent(
         modifier = modifier,
         posts = uiState.posts,
-        navigateToWriteScreen = navigateToWriteScreen
+        navigateToWriteScreen = navigateToWriteScreen,
+        navigateToPostDetail = navigateToPostDetail
     )
 }
 
@@ -59,7 +63,8 @@ fun HomeScreen(
 private fun HomeScreenContent(
     modifier: Modifier = Modifier,
     posts: List<Post>,
-    navigateToWriteScreen: () -> Unit
+    navigateToWriteScreen: () -> Unit,
+    navigateToPostDetail: (String) -> Unit
 ) {
     Scaffold(
         modifier = modifier.fillMaxSize(),
@@ -76,19 +81,32 @@ private fun HomeScreenContent(
         }
     ) { paddingValue ->
         LazyColumn(
-            modifier = Modifier.padding(paddingValue).padding(horizontal = 16.dp),
-            verticalArrangement = Arrangement.spacedBy(16.dp)
+            modifier = Modifier
+                .padding(paddingValue)
+                .padding(horizontal = dimensionResource(id = R.dimen.default_margin)),
+            verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.default_margin))
         ) {
             items(posts) { post ->
-                PostItem(post = post)
+                PostItem(
+                    post = post,
+                    navigateToPostDetail = navigateToPostDetail
+                )
             }
         }
     }
 }
 
 @Composable
-private fun PostItem(post: Post) {
-    Column {
+private fun PostItem(
+    post: Post,
+    navigateToPostDetail: (String) -> Unit
+) {
+    Column(
+        modifier = Modifier.fillMaxWidth()
+            .clickable {
+                navigateToPostDetail(post.id)
+            }
+    ) {
         Row {
             Box(
                 modifier = Modifier
@@ -146,7 +164,7 @@ private fun PostItemPreview() {
             verticalArrangement = Arrangement.spacedBy(6.dp)
         ) {
             items(posts) { post ->
-                PostItem(post = post)
+                PostItem(post = post, navigateToPostDetail = {})
             }
         }
     }

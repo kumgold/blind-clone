@@ -8,10 +8,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavDestination.Companion.hierarchy
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.navigation
+import androidx.navigation.navArgument
 import com.example.blindclone.core.feature.channel.nav.channelScreen
 import com.example.blindclone.core.feature.corporation.nav.corporationScreen
 import com.example.blindclone.core.feature.employment.nav.employmentScreen
@@ -20,6 +22,7 @@ import com.example.blindclone.core.feature.home.nav.homeScreen
 import com.example.blindclone.core.feature.login.LoginScreen
 import com.example.blindclone.core.feature.main.MainScreen
 import com.example.blindclone.core.feature.notification.nav.notificationScreen
+import com.example.blindclone.core.feature.postdetail.PostDetailScreen
 import com.example.blindclone.core.feature.write.WriteScreen
 import kotlinx.serialization.Serializable
 
@@ -61,6 +64,7 @@ sealed class RootRoute {
     @Serializable data object Login: RootRoute()
     @Serializable data object Write: RootRoute()
     @Serializable data object Main: RootRoute()
+    @Serializable data object PostDetail: RootRoute()
 }
 
 @Composable
@@ -87,10 +91,23 @@ fun RootNavHost(
                 popBackStack = { navController.popBackStack() }
             )
         }
+        composable(
+            route = "${RootRoute.PostDetail}/{postId}",
+            arguments = listOf(navArgument("postId") { type = NavType.StringType })
+        ) { backStackEntry ->
+            val postId = backStackEntry.arguments?.getString("postId")
+            if (postId != null) {
+                PostDetailScreen(
+                    postId = postId,
+                    popBackStack = { navController.popBackStack() }
+                )
+            }
+        }
 
         navigation<RootRoute.Main>(startDestination = HomeRoute) {
             homeScreen(
-                navigateToWriteScreen = { navController.navigate(RootRoute.Write) }
+                navigateToWriteScreen = { navController.navigate(RootRoute.Write) },
+                navigateToPostDetail = { id -> navController.navigate("${RootRoute.PostDetail}/$id")}
             )
             corporationScreen()
             channelScreen()
