@@ -106,10 +106,13 @@ fun RootNavHost(
 
         navigation<RootRoute.Main>(startDestination = HomeRoute) {
             homeScreen(
+                navController = navController,
                 navigateToWriteScreen = { navController.navigate(RootRoute.Write) },
                 navigateToPostDetail = { id -> navController.navigate("${RootRoute.PostDetail}/$id")}
             )
-            corporationScreen()
+            corporationScreen(
+                navController = navController
+            )
             channelScreen()
             employmentScreen()
             notificationScreen()

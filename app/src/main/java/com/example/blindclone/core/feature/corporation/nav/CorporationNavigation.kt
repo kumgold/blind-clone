@@ -13,8 +13,12 @@ fun NavController.navigateToCorporation(
     navOptions: NavOptions
 ) = navigate(route = CorporationRoute, navOptions)
 
-fun NavGraphBuilder.corporationScreen() {
+fun NavGraphBuilder.corporationScreen(
+    navController: NavController
+) {
     composable<CorporationRoute> {
-        CorporationScreen()
+        CorporationScreen(
+            navController = navController
+        )
     }
 }
