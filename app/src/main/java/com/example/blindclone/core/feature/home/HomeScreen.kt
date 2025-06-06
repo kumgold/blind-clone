@@ -18,14 +18,22 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.BookmarkBorder
+import androidx.compose.material.icons.filled.ChatBubbleOutline
+import androidx.compose.material.icons.filled.FavoriteBorder
+import androidx.compose.material.icons.filled.Message
+import androidx.compose.material.icons.filled.RemoveRedEye
 import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.VerticalDivider
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -98,6 +106,11 @@ private fun HomeScreenContent(
                     post = post,
                     navigateToPostDetail = navigateToPostDetail
                 )
+                HorizontalDivider(
+                    modifier = Modifier.fillMaxWidth(),
+                    thickness = (0.5).dp,
+                    color = Color.DarkGray
+                )
             }
         }
     }
@@ -155,8 +168,45 @@ private fun PostItem(
             ),
             maxLines = 2
         )
-        Row {
-
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = dimensionResource(id = R.dimen.default_margin_small)),
+            horizontalArrangement = Arrangement.SpaceAround
+        ) {
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                Icon(
+                    modifier = Modifier.size(12.dp),
+                    imageVector = Icons.Default.FavoriteBorder,
+                    contentDescription = null
+                )
+                Spacer(modifier = Modifier.width(6.dp))
+                Text(text = "좋아요", fontSize = 12.sp, color = Color.LightGray)
+            }
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                Icon(
+                    modifier = Modifier.size(12.dp),
+                    imageVector = Icons.Default.ChatBubbleOutline,
+                    contentDescription = null
+                )
+                Spacer(modifier = Modifier.width(6.dp))
+                Text(text = "댓글", fontSize = 12.sp, color = Color.LightGray)
+            }
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                Icon(
+                    modifier = Modifier.size(12.dp),
+                    imageVector = Icons.Default.RemoveRedEye,
+                    contentDescription = null
+                )
+                Spacer(modifier = Modifier.width(6.dp))
+                Text(text = "조회수", fontSize = 12.sp, color = Color.LightGray)
+            }
         }
     }
 }
