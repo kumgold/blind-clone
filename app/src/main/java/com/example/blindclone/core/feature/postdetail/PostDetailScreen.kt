@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ChatBubbleOutline
@@ -59,7 +60,9 @@ fun PostDetailScreen(
         val item by viewModel.selectedItem.collectAsStateWithLifecycle()
 
         if (item == null) {
-            CircularProgressIndicator()
+            CircularProgressIndicator(
+                modifier = Modifier.wrapContentSize()
+            )
         } else {
             item?.let { post ->
                 PostDetail(
