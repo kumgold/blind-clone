@@ -15,8 +15,12 @@ data object NotificationRoute
 
 fun NavController.navigateToNotification(navOptions: NavOptions) = navigate(route = NotificationRoute, navOptions)
 
-fun NavGraphBuilder.notificationScreen() {
+fun NavGraphBuilder.notificationScreen(
+    navController: NavController
+) {
     composable<NotificationRoute> {
-        NotificationScreen()
+        NotificationScreen(
+            navController = navController
+        )
     }
 }

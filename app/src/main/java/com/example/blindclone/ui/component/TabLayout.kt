@@ -1,10 +1,10 @@
 package com.example.blindclone.ui.component
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.pager.HorizontalPager
-import androidx.compose.foundation.pager.rememberPagerState
+import androidx.compose.foundation.pager.PagerState
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Tab
 import androidx.compose.material3.TabRow
@@ -24,16 +24,16 @@ import kotlinx.coroutines.launch
 fun TabLayout(
     modifier: Modifier = Modifier,
     tabs: List<String>,
+    pagerState: PagerState,
+    content: @Composable ColumnScope.() -> Unit
 ) {
     Column(
         modifier = modifier.fillMaxSize()
     ) {
         val coroutineScope = rememberCoroutineScope()
-        val pagerState = rememberPagerState {
-            tabs.size
-        }
 
         TabRow(
+            modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.default_margin)),
             selectedTabIndex = pagerState.currentPage,
             indicator = { tabs ->
                 TabRowDefaults.SecondaryIndicator(
@@ -67,13 +67,6 @@ fun TabLayout(
             }
         }
 
-        HorizontalPager(
-            state = pagerState
-        ) { index ->
-            Text(
-                text = tabs[index],
-                color = MaterialTheme.colorScheme.onSurface
-            )
-        }
+        content()
     }
 }

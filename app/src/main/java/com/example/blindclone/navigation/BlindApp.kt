@@ -113,9 +113,13 @@ fun RootNavHost(
             corporationScreen(
                 navController = navController
             )
-            channelScreen()
+            channelScreen(
+                navController = navController
+            )
             employmentScreen()
-            notificationScreen()
+            notificationScreen(
+                navController = navController
+            )
         }
     }
 }

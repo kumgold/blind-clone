@@ -11,8 +11,12 @@ import com.example.blindclone.core.feature.channel.ChannelScreen
 
 fun NavController.navigateToChannel(navOptions: NavOptions) = navigate(route = ChannelRoute, navOptions)
 
-fun NavGraphBuilder.channelScreen() {
+fun NavGraphBuilder.channelScreen(
+    navController: NavController
+) {
     composable<ChannelRoute> {
-        ChannelScreen()
+        ChannelScreen(
+            navController = navController
+        )
     }
 }
