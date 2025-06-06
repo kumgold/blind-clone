@@ -1,6 +1,7 @@
 package com.example.blindclone.core.feature.write
 
 import android.util.Log
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.blindclone.core.model.Post
@@ -18,8 +19,14 @@ class WriteViewModel @Inject constructor(
     private val _saveState = MutableStateFlow<SaveState>(SaveState.Idle)
     val saveState: StateFlow<SaveState> = _saveState
 
+    private val _keyword = mutableStateOf("")
+
+    fun setKeyword(keyword: String) {
+        _keyword.value = keyword
+    }
+
     fun savePost(title: String, content: String) {
-        if (title.isBlank() || content.isBlank()) {
+        if (_keyword.value.isEmpty() || title.isBlank() || content.isBlank()) {
             _saveState.value = SaveState.Error("제목과 내용을 모두 입력해주세요.")
             viewModelScope.launch {
                 kotlinx.coroutines.delay(2000)
@@ -41,7 +48,11 @@ class WriteViewModel @Inject constructor(
                     return@launch
                 }
 
-                val post = Post(title = title, content = content)
+                val post = Post(
+                    keyword = _keyword.value,
+                    title = title,
+                    content = content
+                )
 
                 postsRef.child(postId).setValue(post)
                     .addOnSuccessListener {

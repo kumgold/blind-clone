@@ -18,10 +18,8 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.BookmarkBorder
 import androidx.compose.material.icons.filled.ChatBubbleOutline
 import androidx.compose.material.icons.filled.FavoriteBorder
-import androidx.compose.material.icons.filled.Message
 import androidx.compose.material.icons.filled.RemoveRedEye
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.HorizontalDivider
@@ -30,7 +28,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.VerticalDivider
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -127,6 +124,9 @@ private fun PostItem(
             .clickable {
                 navigateToPostDetail(post.id)
             }
+            .padding(
+                vertical = dimensionResource(id = R.dimen.default_margin_small)
+            )
     ) {
         Row {
             Box(
@@ -140,9 +140,9 @@ private fun PostItem(
             Spacer(modifier = Modifier.width(dimensionResource(id = R.dimen.default_margin_small)))
             Column {
                 Text(
-                    text = "Keyword",
+                    text = post.keyword,
                     style = TextStyle(color = MaterialTheme.colorScheme.onSurface),
-                    fontSize = 11.sp
+                    fontSize = 12.sp
                 )
                 Text(
                     text = "Company name",

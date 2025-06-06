@@ -14,8 +14,10 @@ import androidx.compose.material.icons.outlined.Person
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavController
@@ -31,6 +33,9 @@ fun MainTopAppBar(
         title = {
             Text(text = title)
         },
+        colors = TopAppBarDefaults.topAppBarColors().copy(
+            containerColor = MaterialTheme.colorScheme.background
+        ),
         navigationIcon = {
             IconButton(
                 onClick = { /*TODO*/ }
@@ -79,6 +84,9 @@ fun PostAppBar(
         title = {
             Text(text = stringResource(id = R.string.blind))
         },
+        colors = TopAppBarDefaults.topAppBarColors().copy(
+            containerColor = MaterialTheme.colorScheme.background
+        ),
         navigationIcon = {
             IconButton(
                 onClick = { popBackStack() }

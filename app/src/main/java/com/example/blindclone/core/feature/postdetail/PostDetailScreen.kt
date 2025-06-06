@@ -1,8 +1,10 @@
 package com.example.blindclone.core.feature.postdetail
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.Orientation
 import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -14,12 +16,14 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ChatBubbleOutline
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material.icons.filled.IosShare
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -27,8 +31,10 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -83,15 +89,36 @@ private fun PostDetail(
 
     Column(
         modifier = modifier
-            .padding(
-                vertical = dimensionResource(id = R.dimen.default_margin),
-                horizontal = dimensionResource(id = R.dimen.default_margin_small)
-            )
+            .padding(dimensionResource(id = R.dimen.default_margin),)
             .scrollable(
                 state = scrollState,
                 orientation = Orientation.Vertical
             )
     ) {
+        Row {
+            Box(
+                modifier = Modifier
+                    .size(24.dp)
+                    .clip(CircleShape)
+                    .background(
+                        color = MaterialTheme.colorScheme.primary
+                    )
+            )
+            Spacer(modifier = Modifier.width(dimensionResource(id = R.dimen.default_margin_small)))
+            Column {
+                Text(
+                    text = post.keyword,
+                    style = TextStyle(color = MaterialTheme.colorScheme.onSurface),
+                    fontSize = 12.sp
+                )
+                Text(
+                    text = "Company name",
+                    style = TextStyle(color = Color.LightGray),
+                    fontSize = 10.sp
+                )
+            }
+        }
+        Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.default_margin)))
         Text(
             text = post.title,
             fontSize = 20.sp,

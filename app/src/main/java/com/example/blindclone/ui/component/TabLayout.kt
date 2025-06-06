@@ -40,7 +40,8 @@ fun TabLayout(
                     modifier = Modifier.tabIndicatorOffset(tabs[pagerState.currentPage]),
                     color = MaterialTheme.colorScheme.onSurface
                 )
-            }
+            },
+            containerColor = MaterialTheme.colorScheme.background
         ) {
             tabs.forEachIndexed { index, tab ->
                 val selected = (pagerState.currentPage == index)

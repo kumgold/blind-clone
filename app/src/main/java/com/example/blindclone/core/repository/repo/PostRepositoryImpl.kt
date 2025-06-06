@@ -35,6 +35,7 @@ class PostRepositoryImpl @Inject constructor(
                             postsList.add(
                                 Post(
                                     id = postSnapshot.key!!,
+                                    keyword = p.keyword,
                                     title = p.title,
                                     content = p.content
                                 )

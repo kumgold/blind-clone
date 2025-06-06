@@ -5,6 +5,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -18,6 +19,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -26,6 +28,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -77,25 +80,39 @@ fun ChannelScreen(
 @Composable
 private fun SearchChannel() {
     Column {
+        RecommandChannel()
         Text(
             modifier = Modifier.padding(
                 vertical = dimensionResource(id = R.dimen.default_margin),
                 horizontal = dimensionResource(id = R.dimen.default_margin),
             ),
-            text = "당신을 위한 추천",
+            text = "실시간 인기글",
             fontSize = 20.sp,
             fontWeight = FontWeight.Bold
         )
-        LazyRow(
-            modifier = Modifier.padding(
-                horizontal = dimensionResource(id = R.dimen.default_margin_small)
+    }
+}
+
+@Composable
+private fun RecommandChannel() {
+    Text(
+        modifier = Modifier.padding(
+            vertical = dimensionResource(id = R.dimen.default_margin),
+            horizontal = dimensionResource(id = R.dimen.default_margin),
+        ),
+        text = "당신을 위한 추천",
+        fontSize = 20.sp,
+        fontWeight = FontWeight.Bold
+    )
+    LazyRow(
+        modifier = Modifier.padding(
+            horizontal = dimensionResource(id = R.dimen.default_margin_small)
+        )
+    ) {
+        items(channels) { channel ->
+            ChannelCard(
+                channel = channel
             )
-        ) {
-            items(channels) { channel ->
-                ChannelCard(
-                    channel = channel
-                )
-            }
         }
     }
 }
@@ -123,6 +140,7 @@ private fun ChannelCard(
                 .size(50.dp)
                 .background(color = MaterialTheme.colorScheme.primary)
         )
+        Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.default_margin_small)))
         Text(
             text = channel.title,
             fontWeight = FontWeight.Bold,
@@ -131,6 +149,33 @@ private fun ChannelCard(
         Text(
             text = channel.description,
             fontSize = 12.sp
+        )
+        Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.default_margin_small)))
+        Text(
+            modifier = Modifier
+                .clip(RoundedCornerShape(20.dp))
+                .background(color = MaterialTheme.colorScheme.primary)
+                .padding(
+                    horizontal = dimensionResource(id = R.dimen.default_margin)
+                )
+                .clickable {  },
+            text = "팔로우",
+            fontSize = 12.sp,
+            color = MaterialTheme.colorScheme.onSurface
+        )
+    }
+}
+
+@Preview
+@Composable
+private fun ChannelCardPreview() {
+    Surface {
+        ChannelCard(
+            channel = Channel(
+                title = "xptmxm",
+                description = "test",
+                thumbnail = ""
+            )
         )
     }
 }

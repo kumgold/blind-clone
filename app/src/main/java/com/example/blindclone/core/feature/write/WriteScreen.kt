@@ -2,7 +2,7 @@ package com.example.blindclone.core.feature.write
 
 import android.util.Log
 import android.widget.Toast
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -13,12 +13,16 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -27,6 +31,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -94,7 +99,11 @@ fun WriteScreen(
                 .padding(padding)
                 .verticalScroll(scrollState)
         ) {
-            SelectTopicButton()
+            SelectTopicButton(
+                setKeyword = { keyword ->
+                    viewModel.setKeyword(keyword)
+                }
+            )
 
             BasicTextField(
                 modifier = Modifier
@@ -162,29 +171,88 @@ private fun WriteTopAppBar(
         modifier = Modifier
             .statusBarsPadding()
             .height(64.dp)
-            .fillMaxWidth(),
+            .fillMaxWidth()
+            .background(
+                color = MaterialTheme.colorScheme.background
+            ),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
         TextButton(onClick = { popBackStack() }) {
-            Text(text = stringResource(id = R.string.cancel))
+            Text(
+                text = stringResource(id = R.string.cancel),
+                color = MaterialTheme.colorScheme.onSurface
+            )
         }
         TextButton(onClick = { savePost() }) {
-            Text(text = stringResource(id = R.string.enroll))
+            Text(
+                text = stringResource(id = R.string.enroll),
+                color = MaterialTheme.colorScheme.onSurface
+            )
         }
     }
 }
 
 @Composable
-private fun SelectTopicButton() {
-    Row(
+private fun SelectTopicButton(
+    setKeyword: (String) -> Unit
+) {
+    val options = listOf("IT 엔지니어", "주식, 투자", "부동산", "자동차")
+    var expanded by remember { mutableStateOf(false) }
+    var selectedText by remember { mutableStateOf("") }
+
+    Box(
         modifier = Modifier
-            .padding(horizontal = dimensionResource(id = R.dimen.screen_horizontal_margin))
-            .fillMaxWidth(),
-        horizontalArrangement = Arrangement.SpaceBetween
+            .fillMaxSize()
+            .padding(
+                horizontal = dimensionResource(id = R.dimen.default_margin)
+            ),
     ) {
-        Text(text = "등록 위치를 선택하세요")
-        Icon(imageVector = Icons.Default.ArrowDropDown, contentDescription = "등록 위치를 선택하세요")
+        OutlinedButton(
+            shape = RoundedCornerShape(10.dp),
+            onClick = { expanded = true }
+        ) {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Text(
+                    text = if (selectedText.isEmpty()) "등록 위치를 선택하세요." else selectedText,
+                    color = MaterialTheme.colorScheme.onSurface
+                )
+                Icon(
+                    imageVector = Icons.Default.ArrowDropDown,
+                    tint = MaterialTheme.colorScheme.onSurface,
+                    contentDescription = null
+                )
+            }
+        }
+
+        DropdownMenu(
+            expanded = expanded,
+            onDismissRequest = { expanded = false },
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            options.forEach { label ->
+                DropdownMenuItem(
+                    text = { Text(label) },
+                    onClick = {
+                        setKeyword(label)
+                        selectedText = label
+                        expanded = false
+                    }
+                )
+            }
+        }
+    }
+}
+
+@Preview
+@Composable
+private fun SelectTopicButtonPreview() {
+    Surface {
+        SelectTopicButton({})
     }
 }
 
