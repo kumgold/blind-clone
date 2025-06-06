@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Blind-Clone</string>
 
+    <string name="blind">Blind</string>
     <string name="home">홈</string>
     <string name="corporation">회사</string>
     <string name="channel">채널</string>

@@ -1,6 +1,5 @@
 package com.example.blindclone.core.feature.home
 
-import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -31,6 +30,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -38,14 +38,16 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.navigation.NavController
 import com.example.blindclone.R
 import com.example.blindclone.core.model.Post
-import com.example.blindclone.ui.component.HomeTopAppBar
+import com.example.blindclone.ui.component.MainTopAppBar
 
 @Composable
 fun HomeScreen(
     modifier: Modifier = Modifier,
     viewModel: HomeViewModel = hiltViewModel(),
+    navController: NavController,
     navigateToWriteScreen: () -> Unit,
     navigateToPostDetail: (String) -> Unit
 ) {
@@ -54,6 +56,7 @@ fun HomeScreen(
     HomeScreenContent(
         modifier = modifier,
         posts = uiState.posts,
+        navController = navController,
         navigateToWriteScreen = navigateToWriteScreen,
         navigateToPostDetail = navigateToPostDetail
     )
@@ -63,13 +66,17 @@ fun HomeScreen(
 private fun HomeScreenContent(
     modifier: Modifier = Modifier,
     posts: List<Post>,
+    navController: NavController,
     navigateToWriteScreen: () -> Unit,
     navigateToPostDetail: (String) -> Unit
 ) {
     Scaffold(
         modifier = modifier.fillMaxSize(),
         topBar = {
-            HomeTopAppBar()
+            MainTopAppBar(
+                title = stringResource(id = R.string.blind),
+                navController = navController
+            )
         },
         floatingActionButton = {
             FloatingActionButton(
@@ -102,7 +109,8 @@ private fun PostItem(
     navigateToPostDetail: (String) -> Unit
 ) {
     Column(
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier
+            .fillMaxWidth()
             .clickable {
                 navigateToPostDetail(post.id)
             }
@@ -116,11 +124,11 @@ private fun PostItem(
                         color = MaterialTheme.colorScheme.primary
                     )
             )
-            Spacer(modifier = Modifier.width(6.dp))
+            Spacer(modifier = Modifier.width(dimensionResource(id = R.dimen.default_margin_small)))
             Column {
                 Text(
                     text = "Keyword",
-                    style = TextStyle(color = MaterialTheme.colorScheme.primary),
+                    style = TextStyle(color = MaterialTheme.colorScheme.onSurface),
                     fontSize = 11.sp
                 )
                 Text(
@@ -130,11 +138,11 @@ private fun PostItem(
                 )
             }
         }
-        Spacer(modifier = Modifier.height(6.dp))
+        Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.default_margin_small)))
         Text(
             text = post.title,
             style = TextStyle(
-                color = MaterialTheme.colorScheme.primary,
+                color = MaterialTheme.colorScheme.onSurface,
                 fontWeight = FontWeight.Bold,
                 fontSize = 16.sp
             )
@@ -142,11 +150,14 @@ private fun PostItem(
         Text(
             text = post.content,
             style = TextStyle(
-                color = MaterialTheme.colorScheme.primary,
+                color = MaterialTheme.colorScheme.onSurface,
                 fontSize = 13.sp
             ),
             maxLines = 2
         )
+        Row {
+
+        }
     }
 }
 

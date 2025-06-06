@@ -8,28 +8,45 @@ import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 
-private val DarkColorScheme = darkColorScheme(
-    primary = Purple80,
-    secondary = PurpleGrey80,
-    tertiary = Pink80
+// 1. 라이트 모드 색상 조합 정의
+private val LightColorScheme = lightColorScheme(
+    primary = OceanBlue,
+    onPrimary = OnOceanBlue,
+    primaryContainer = OceanBlueContainer,
+    onPrimaryContainer = OnOceanBlueContainer,
+    secondary = SeafoamGreen,
+    onSecondary = OnSeafoamGreen,
+    secondaryContainer = SeafoamGreenContainer,
+    onSecondaryContainer = OnSeafoamGreenContainer,
+    tertiary = SoftCoral,
+    onTertiary = OnSoftCoral,
+    background = BackgroundLight,
+    onBackground = OnBackgroundLight,
+    surface = SurfaceLight,
+    onSurface = OnBackgroundLight,
+    inverseOnSurface = InverseOnSurfaceLight
 )
 
-private val LightColorScheme = lightColorScheme(
-    primary = Purple40,
-    secondary = PurpleGrey40,
-    tertiary = Pink40
-
-    /* Other default colors to override
-    background = Color(0xFFFFFBFE),
-    surface = Color(0xFFFFFBFE),
-    onPrimary = Color.White,
-    onSecondary = Color.White,
-    onTertiary = Color.White,
-    onBackground = Color(0xFF1C1B1F),
-    onSurface = Color(0xFF1C1B1F),
-    */
+// 2. 다크 모드 색상 조합 정의
+private val DarkColorScheme = darkColorScheme(
+    primary = OceanBlueDark,
+    onPrimary = OnOceanBlueDark,
+    primaryContainer = OceanBlueContainerDark,
+    onPrimaryContainer = OnOceanBlueContainerDark,
+    secondary = SeafoamGreenDark,
+    onSecondary = OnSeafoamGreenDark,
+    secondaryContainer = SeafoamGreenContainerDark,
+    onSecondaryContainer = OnSeafoamGreenContainerDark,
+    tertiary = SoftCoralDark,
+    onTertiary = OnSoftCoralDark,
+    background = BackgroundDark,
+    onBackground = OnBackgroundDark,
+    surface = SurfaceDark,
+    onSurface = OnBackgroundDark,
+    inverseOnSurface = InverseOnSurfaceDark
 )
 
 @Composable
