@@ -1,12 +1,15 @@
 package com.example.blindclone.core.feature.channel
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -17,6 +20,11 @@ import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ChatBubbleOutline
+import androidx.compose.material.icons.filled.FavoriteBorder
+import androidx.compose.material.icons.filled.RemoveRedEye
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
@@ -25,22 +33,30 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import com.example.blindclone.R
+import com.example.blindclone.core.feature.home.HomeViewModel
 import com.example.blindclone.core.model.Channel
+import com.example.blindclone.core.model.Post
+import com.example.blindclone.navigation.RootRoute
 import com.example.blindclone.ui.component.MainTopAppBar
 import com.example.blindclone.ui.component.TabLayout
 
 @Composable
 fun ChannelScreen(
     modifier: Modifier = Modifier,
-    navController: NavController
+    navController: NavController,
+    viewModel: HomeViewModel = hiltViewModel()
 ) {
     Scaffold(
         modifier = modifier.fillMaxSize(),
@@ -51,6 +67,8 @@ fun ChannelScreen(
             )
         },
     ) { paddingValue ->
+        val uiState = viewModel.uiState.collectAsStateWithLifecycle()
+
         val tabs = listOf("탐색", "내 채널")
         val pagerState = rememberPagerState {
             tabs.size
@@ -66,7 +84,12 @@ fun ChannelScreen(
             ) { index ->
                 when (index) {
                     0 -> {
-                        SearchChannel()
+                        SearchChannel(
+                            posts = uiState.value.posts,
+                            navigateToPostDetail = { id ->
+                                navController.navigate("${RootRoute.PostDetail}/$id")
+                            }
+                        )
                     }
                     1 -> {
 
@@ -78,17 +101,15 @@ fun ChannelScreen(
 }
 
 @Composable
-private fun SearchChannel() {
+private fun SearchChannel(
+    posts: List<Post>,
+    navigateToPostDetail: (String) -> Unit
+) {
     Column {
         RecommandChannel()
-        Text(
-            modifier = Modifier.padding(
-                vertical = dimensionResource(id = R.dimen.default_margin),
-                horizontal = dimensionResource(id = R.dimen.default_margin),
-            ),
-            text = "실시간 인기글",
-            fontSize = 20.sp,
-            fontWeight = FontWeight.Bold
+        FavoritePost(
+            posts = posts,
+            navigateToPostDetail = navigateToPostDetail
         )
     }
 }
@@ -106,7 +127,10 @@ private fun RecommandChannel() {
     )
     LazyRow(
         modifier = Modifier.padding(
-            horizontal = dimensionResource(id = R.dimen.default_margin_small)
+            horizontal = dimensionResource(id = R.dimen.default_margin)
+        ),
+        horizontalArrangement = Arrangement.spacedBy(
+            dimensionResource(id = R.dimen.default_margin)
         )
     ) {
         items(channels) { channel ->
@@ -123,7 +147,6 @@ private fun ChannelCard(
 ) {
     Column(
         modifier = Modifier
-            .padding(horizontal = dimensionResource(id = R.dimen.default_margin_small))
             .width(150.dp)
             .height(200.dp)
             .clip(RoundedCornerShape(10.dp))
@@ -158,11 +181,140 @@ private fun ChannelCard(
                 .padding(
                     horizontal = dimensionResource(id = R.dimen.default_margin)
                 )
-                .clickable {  },
+                .clickable { },
             text = "팔로우",
             fontSize = 12.sp,
             color = MaterialTheme.colorScheme.onSurface
         )
+    }
+}
+
+@Composable
+private fun FavoritePost(
+    posts: List<Post>,
+    navigateToPostDetail: (String) -> Unit
+) {
+    Column(
+        modifier = Modifier.padding(
+            vertical = dimensionResource(id = R.dimen.default_margin),
+            horizontal = dimensionResource(id = R.dimen.default_margin_small),
+        )
+    ) {
+        Text(
+            text = "실시간 인기글",
+            fontSize = 20.sp,
+            fontWeight = FontWeight.Bold
+        )
+        LazyRow(
+            horizontalArrangement = Arrangement.spacedBy(
+                dimensionResource(id = R.dimen.default_margin_small)
+            )
+        ) {
+            items(posts) { post ->
+                FavoritePostItem(
+                    post = post,
+                    navigateToPostDetail = { id ->
+                        navigateToPostDetail(id)
+                    }
+                )
+            }
+        }
+    }
+}
+
+@Composable
+private fun FavoritePostItem(
+    post: Post,
+    navigateToPostDetail: (String) -> Unit
+) {
+    Column(
+        modifier = Modifier
+            .background(
+                color = MaterialTheme.colorScheme.inverseOnSurface
+            )
+            .padding(vertical = dimensionResource(id = R.dimen.default_margin_small))
+            .border(
+                width = 1.dp,
+                color = MaterialTheme.colorScheme.onSurface,
+                shape = RoundedCornerShape(10.dp)
+            )
+            .size(320.dp, 180.dp)
+            .clickable {
+                navigateToPostDetail(post.id)
+            },
+        verticalArrangement = Arrangement.SpaceBetween
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(dimensionResource(id = R.dimen.default_margin_small)),
+        ) {
+            Row {
+                Box(
+                    modifier = Modifier
+                        .size(24.dp)
+                        .clip(CircleShape)
+                        .background(
+                            color = MaterialTheme.colorScheme.primary
+                        )
+                )
+                Spacer(modifier = Modifier.width(dimensionResource(id = R.dimen.default_margin_small)))
+                Text(
+                    text = post.keyword,
+                    style = TextStyle(color = MaterialTheme.colorScheme.onSurface),
+                    fontSize = 12.sp
+                )
+            }
+            Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.default_margin_small)))
+            Text(
+                text = post.title,
+                style = TextStyle(
+                    color = MaterialTheme.colorScheme.onSurface,
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 16.sp
+                )
+            )
+            Text(
+                text = post.content,
+                style = TextStyle(
+                    color = MaterialTheme.colorScheme.onSurface,
+                    fontSize = 14.sp
+                ),
+                maxLines = 2
+            )
+        }
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(dimensionResource(id = R.dimen.default_margin_small)),
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                Box(
+                    modifier = Modifier
+                        .size(16.dp)
+                        .clip(CircleShape)
+                        .background(
+                            color = MaterialTheme.colorScheme.primary
+                        )
+                )
+                Spacer(modifier = Modifier.width(6.dp))
+                Text(text = "Company name", fontSize = 12.sp, color = Color.LightGray)
+            }
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                Icon(
+                    modifier = Modifier.size(12.dp),
+                    imageVector = Icons.Default.RemoveRedEye,
+                    contentDescription = null
+                )
+                Spacer(modifier = Modifier.width(6.dp))
+                Text(text = "조회수", fontSize = 12.sp, color = Color.LightGray)
+            }
+        }
     }
 }
 

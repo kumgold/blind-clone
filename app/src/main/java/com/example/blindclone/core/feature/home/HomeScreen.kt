@@ -164,7 +164,7 @@ private fun PostItem(
             text = post.content,
             style = TextStyle(
                 color = MaterialTheme.colorScheme.onSurface,
-                fontSize = 13.sp
+                fontSize = 14.sp
             ),
             maxLines = 2
         )

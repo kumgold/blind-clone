@@ -19,7 +19,7 @@ val OnSoftCoral = Color(0xFFFFFFFF)
 val BackgroundLight = Color(0xFFF7F9FF) // 거의 흰색에 가까운 부드러운 배경
 val SurfaceLight = Color(0xFFFFFFFF)   // 카드 등 표면 색상
 val OnBackgroundLight = Color(0xFF1A1C1E) // 텍스트 색상 (완전한 검정보다 부드러움)
-val InverseOnSurfaceLight = Color(0xFC4D4D4D)
+val InverseOnSurfaceLight = Color(0xCCF7F9FF)
 
 // Dark Theme Colors
 val OceanBlueDark = Color(0xFF86CFFF)
@@ -38,4 +38,4 @@ val OnSoftCoralDark = Color(0xFF690004)
 val BackgroundDark = Color(0xFF1A1C1E) // 완전한 검정이 아닌 다크 그레이
 val SurfaceDark = Color(0xFF24282E)   // 배경보다 살짝 밝은 카드 색상
 val OnBackgroundDark = Color(0xFFE2E2E6) // 흰색에 가까운 텍스트 색상
-val InverseOnSurfaceDark = Color(0xFFC0C0C0)
+val InverseOnSurfaceDark = Color(0xCC1A1C1E)
