@@ -49,6 +49,7 @@ import com.example.blindclone.core.feature.home.HomeViewModel
 import com.example.blindclone.core.model.Channel
 import com.example.blindclone.core.model.Post
 import com.example.blindclone.navigation.RootRoute
+import com.example.blindclone.ui.component.AdBox
 import com.example.blindclone.ui.component.MainTopAppBar
 import com.example.blindclone.ui.component.TabLayout
 
@@ -82,8 +83,8 @@ fun ChannelScreen(
             HorizontalPager(
                 state = pagerState
             ) { index ->
-                when (index) {
-                    0 -> {
+                when (tabs[index]) {
+                    "탐색" -> {
                         SearchChannel(
                             posts = uiState.value.posts,
                             navigateToPostDetail = { id ->
@@ -91,8 +92,8 @@ fun ChannelScreen(
                             }
                         )
                     }
-                    1 -> {
-
+                    "내 채널" -> {
+                        MyChannel()
                     }
                 }
             }
@@ -107,6 +108,7 @@ private fun SearchChannel(
 ) {
     Column {
         RecommandChannel()
+        AdBox()
         FavoritePost(
             posts = posts,
             navigateToPostDetail = navigateToPostDetail
@@ -116,27 +118,27 @@ private fun SearchChannel(
 
 @Composable
 private fun RecommandChannel() {
-    Text(
-        modifier = Modifier.padding(
-            vertical = dimensionResource(id = R.dimen.default_margin),
-            horizontal = dimensionResource(id = R.dimen.default_margin),
-        ),
-        text = "당신을 위한 추천",
-        fontSize = 20.sp,
-        fontWeight = FontWeight.Bold
-    )
-    LazyRow(
-        modifier = Modifier.padding(
-            horizontal = dimensionResource(id = R.dimen.default_margin)
-        ),
-        horizontalArrangement = Arrangement.spacedBy(
-            dimensionResource(id = R.dimen.default_margin)
-        )
+    Column(
+        modifier = Modifier.padding(dimensionResource(id = R.dimen.default_margin)),
     ) {
-        items(channels) { channel ->
-            ChannelCard(
-                channel = channel
+        Text(
+            modifier = Modifier.padding(
+                vertical = dimensionResource(id = R.dimen.default_margin)
+            ),
+            text = "당신을 위한 추천",
+            fontSize = 20.sp,
+            fontWeight = FontWeight.Bold
+        )
+        LazyRow(
+            horizontalArrangement = Arrangement.spacedBy(
+                dimensionResource(id = R.dimen.default_margin)
             )
+        ) {
+            items(channels) { channel ->
+                ChannelCard(
+                    channel = channel
+                )
+            }
         }
     }
 }
@@ -195,12 +197,12 @@ private fun FavoritePost(
     navigateToPostDetail: (String) -> Unit
 ) {
     Column(
-        modifier = Modifier.padding(
-            vertical = dimensionResource(id = R.dimen.default_margin),
-            horizontal = dimensionResource(id = R.dimen.default_margin_small),
-        )
+        modifier = Modifier.padding(dimensionResource(id = R.dimen.default_margin)),
     ) {
         Text(
+            modifier = Modifier.padding(
+                vertical = dimensionResource(id = R.dimen.default_margin)
+            ),
             text = "실시간 인기글",
             fontSize = 20.sp,
             fontWeight = FontWeight.Bold
@@ -229,13 +231,13 @@ private fun FavoritePostItem(
 ) {
     Column(
         modifier = Modifier
+            .clip(RoundedCornerShape(10.dp))
             .background(
-                color = MaterialTheme.colorScheme.inverseOnSurface
+                color = MaterialTheme.colorScheme.primaryContainer
             )
-            .padding(vertical = dimensionResource(id = R.dimen.default_margin_small))
             .border(
                 width = 1.dp,
-                color = MaterialTheme.colorScheme.onSurface,
+                color = MaterialTheme.colorScheme.primary,
                 shape = RoundedCornerShape(10.dp)
             )
             .size(320.dp, 180.dp)
@@ -316,6 +318,11 @@ private fun FavoritePostItem(
             }
         }
     }
+}
+
+@Composable
+private fun MyChannel() {
+
 }
 
 @Preview
