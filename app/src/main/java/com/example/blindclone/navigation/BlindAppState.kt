@@ -11,22 +11,17 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navOptions
+import com.example.blindclone.core.data.NetworkMonitor
+import com.example.blindclone.feature.channel.nav.navigateToChannel
+import com.example.blindclone.feature.corporation.nav.navigateToCorporation
+import com.example.blindclone.feature.employment.nav.navigateToEmployment
+import com.example.blindclone.feature.home.nav.navigateToHome
+import com.example.blindclone.feature.main.MainDestination
+import com.example.blindclone.feature.notification.nav.navigateToNotification
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
-import com.example.blindclone.core.data.NetworkMonitor
-import com.example.blindclone.core.feature.channel.nav.navigateToChannel
-import com.example.blindclone.core.feature.corporation.nav.navigateToCorporation
-import com.example.blindclone.core.feature.employment.nav.navigateToEmployment
-import com.example.blindclone.core.feature.home.nav.navigateToHome
-import com.example.blindclone.core.feature.notification.nav.navigateToNotification
-import com.example.blindclone.core.feature.main.MainDestination
-import com.example.blindclone.core.feature.main.MainDestination.CHANNEL
-import com.example.blindclone.core.feature.main.MainDestination.CORPORATION
-import com.example.blindclone.core.feature.main.MainDestination.EMPLOYMENT
-import com.example.blindclone.core.feature.main.MainDestination.HOME
-import com.example.blindclone.core.feature.main.MainDestination.NOTIFICATION
 
 @Composable
 fun rememberBlindAppState(
@@ -77,11 +72,11 @@ class BlindAppState(
             }
 
             when (mainDestination) {
-                HOME -> navController.navigateToHome(topLevelNavOptions)
-                CORPORATION -> navController.navigateToCorporation(topLevelNavOptions)
-                CHANNEL -> navController.navigateToChannel(topLevelNavOptions)
-                EMPLOYMENT -> navController.navigateToEmployment(topLevelNavOptions)
-                NOTIFICATION -> navController.navigateToNotification(topLevelNavOptions)
+                MainDestination.HOME -> navController.navigateToHome(topLevelNavOptions)
+                MainDestination.CORPORATION -> navController.navigateToCorporation(topLevelNavOptions)
+                MainDestination.CHANNEL -> navController.navigateToChannel(topLevelNavOptions)
+                MainDestination.EMPLOYMENT -> navController.navigateToEmployment(topLevelNavOptions)
+                MainDestination.NOTIFICATION -> navController.navigateToNotification(topLevelNavOptions)
             }
         }
     }

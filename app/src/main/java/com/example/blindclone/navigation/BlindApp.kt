@@ -14,16 +14,16 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.navigation
 import androidx.navigation.navArgument
-import com.example.blindclone.core.feature.channel.nav.channelScreen
-import com.example.blindclone.core.feature.corporation.nav.corporationScreen
-import com.example.blindclone.core.feature.employment.nav.employmentScreen
-import com.example.blindclone.core.feature.home.nav.HomeRoute
-import com.example.blindclone.core.feature.home.nav.homeScreen
-import com.example.blindclone.core.feature.login.LoginScreen
-import com.example.blindclone.core.feature.main.MainScreen
-import com.example.blindclone.core.feature.notification.nav.notificationScreen
-import com.example.blindclone.core.feature.postdetail.PostDetailScreen
-import com.example.blindclone.core.feature.write.WriteScreen
+import com.example.blindclone.feature.channel.nav.channelScreen
+import com.example.blindclone.feature.corporation.nav.corporationScreen
+import com.example.blindclone.feature.employment.nav.employmentScreen
+import com.example.blindclone.feature.home.nav.HomeRoute
+import com.example.blindclone.feature.home.nav.homeScreen
+import com.example.blindclone.feature.login.LoginScreen
+import com.example.blindclone.feature.main.MainScreen
+import com.example.blindclone.feature.notification.nav.notificationScreen
+import com.example.blindclone.feature.postdetail.PostDetailScreen
+import com.example.blindclone.feature.write.WriteScreen
 import kotlinx.serialization.Serializable
 
 @Composable
